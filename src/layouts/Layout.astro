@@ -1,0 +1,86 @@
+---
+import '@fontsource-variable/big-shoulders-display';
+import '@fontsource-variable/manrope';
+import '../styles/global.css';
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+import { url } from '../lib/utils';
+import { club } from '../data/club';
+
+interface Props {
+  title?: string;
+  description?: string;
+  team?: 'futbol' | 'baloncesto';
+  image?: string;
+}
+
+const { title, description = club.descripcion, team, image = 'img/escudo-fc.png' } = Astro.props;
+const fullTitle = title ? `${title} · ${club.nombre}` : `${club.nombre} · Fútbol 7 y Baloncesto en Málaga`;
+const ogImage = new URL(url(image), Astro.site ?? Astro.url).href;
+---
+
+<!doctype html>
+<html lang="es" data-team={team}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{fullTitle}</title>
+    <meta name="description" content={description} />
+    <meta name="theme-color" content="#08160c" />
+    <link rel="icon" type="image/png" href={url(team === 'baloncesto' ? 'img/escudo-cb.png' : 'img/escudo-fc.png')} />
+    <link rel="apple-touch-icon" href={url('img/escudo-fc.png')} />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={fullTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:locale" content="es_ES" />
+    <meta name="twitter:card" content="summary" />
+    <script is:inline>
+      document.documentElement.classList.add('js');
+    </script>
+  </head>
+  <body>
+    <a class="skip" href="#main">Saltar al contenido</a>
+    <div class="progress" aria-hidden="true"><span></span></div>
+    <Nav />
+    <main id="main">
+      <slot />
+    </main>
+    <Footer />
+    <script>
+      import '../scripts/main';
+    </script>
+  </body>
+</html>
+
+<style>
+  .skip {
+    position: fixed;
+    left: 16px;
+    top: -60px;
+    z-index: 200;
+    padding: 10px 16px;
+    border-radius: 10px;
+    background: var(--lemon);
+    color: var(--jungle-950);
+    font-weight: 700;
+    transition: top 0.2s;
+  }
+  .skip:focus {
+    top: 16px;
+  }
+  .progress {
+    position: fixed;
+    inset: 0 0 auto 0;
+    height: 3px;
+    z-index: 120;
+    pointer-events: none;
+  }
+  .progress span {
+    display: block;
+    height: 100%;
+    background: linear-gradient(90deg, var(--lizard), var(--lemon), var(--red));
+    transform-origin: 0 50%;
+    transform: scaleX(var(--progress, 0));
+  }
+</style>

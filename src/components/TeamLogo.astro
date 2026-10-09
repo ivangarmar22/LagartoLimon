@@ -1,0 +1,45 @@
+---
+import { initials } from '../lib/utils';
+interface Props {
+  name: string;
+  logo: string | null;
+  size?: number;
+  class?: string;
+}
+const { name, logo, size = 44, class: cls } = Astro.props;
+---
+
+<span class:list={['tlogo', cls]} style={`--s:${size}px`} data-initials={initials(name)}>
+  {logo && <img src={logo} alt="" width={size} height={size} loading="lazy" decoding="async" referrerpolicy="no-referrer" onerror="this.remove()" />}
+</span>
+
+<style>
+  .tlogo {
+    position: relative;
+    display: grid;
+    place-items: center;
+    width: var(--s);
+    height: var(--s);
+    flex: none;
+    border-radius: 50%;
+    background: var(--surface-2);
+    border: 1px solid var(--border);
+    overflow: hidden;
+  }
+  .tlogo::before {
+    content: attr(data-initials);
+    font-family: var(--font-display);
+    font-weight: 800;
+    font-size: calc(var(--s) * 0.38);
+    color: var(--text-dim);
+  }
+  .tlogo img {
+    position: absolute;
+    inset: 8%;
+    width: 84%;
+    height: 84%;
+    object-fit: contain;
+    background: var(--jungle-850);
+    border-radius: 50%;
+  }
+</style>

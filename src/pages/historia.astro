@@ -1,0 +1,617 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Icon from '../components/Icon.astro';
+import Lemon from '../components/Lemon.astro';
+import Marquee from '../components/Marquee.astro';
+import { club, secciones } from '../data/club';
+import { futbol, baloncesto } from '../lib/data';
+import { timeline, totals } from '../lib/timeline';
+import { url } from '../lib/utils';
+
+// Campos donde ha jugado como local, los más recientes primero
+const venueMap = new Map<string, { name: string; sports: Set<string>; seasons: Set<string>; address?: string | null }>();
+for (const [sport, d] of [['Fútbol 7', futbol], ['Baloncesto', baloncesto]] as const) {
+  for (const s of d.seasons) {
+    for (const m of s.matches) {
+      if (!m.isHome || m.bye || !m.venue) continue;
+      const key = m.venue.toLowerCase();
+      const v = venueMap.get(key) ?? { name: m.venue, sports: new Set(), seasons: new Set(), address: m.address };
+      v.sports.add(sport);
+      if (s.yearLabel) v.seasons.add(s.yearLabel);
+      venueMap.set(key, v);
+    }
+  }
+}
+const venues = [...venueMap.values()]
+  .map((v) => ({ ...v, seasons: [...v.seasons].sort().reverse(), sports: [...v.sports] }))
+  .sort((a, b) => (b.seasons[0] ?? '').localeCompare(a.seasons[0] ?? ''))
+  .slice(0, 4);
+
+const colores = [
+  { nombre: 'Verde lagarto', hex: '#3AA935', var: 'var(--lizard)', texto: 'La piel del club. Resistente, escurridiza y siempre al sol.' },
+  { nombre: 'Amarillo limón', hex: '#FFD60A', var: 'var(--lemon)', texto: 'El toque ácido. Lo que le da chispa a cada partido.' },
+  { nombre: 'Rojo escudo', hex: '#D7261E', var: 'var(--red)', texto: 'El borde que lo protege todo: carácter y sangre caliente.' },
+  { nombre: 'Naranja canasta', hex: '#F26B1D', var: 'var(--ball)', texto: 'El color que trajo la sección de baloncesto.' },
+];
+
+const valores = [
+  { t: 'Mordida', d: 'Competimos cada balón como si fuera el último. El lagarto no suelta lo que agarra.' },
+  { t: 'Acidez', d: 'Nos tomamos el deporte en serio, pero a nosotros mismos no tanto. El humor también entrena.' },
+  { t: 'Manada', d: 'Dos secciones, una misma piel. El club es la gente que viene, juega, anima y vuelve.' },
+];
+---
+
+<Layout title="Historia" description={`Historia del ${club.nombre}: fundado en ${club.fundacion}, de ${club.origen} a las pistas y campos de Málaga.`}>
+  <section class="hhero">
+    <div class="container hhero__inner">
+      <p class="eyebrow" data-reveal>Desde {club.fundacion}</p>
+      <h1 class="hhero__title" data-split>Historia de un lagarto <span class="text-lemon">ácido</span></h1>
+      <p class="lead" data-reveal>
+        Nació en {club.origen} en {club.fundacion}. Hoy compite en fútbol 7 y baloncesto por toda {club.ciudad}. Esta es la historia de cómo un lagarto acabó
+        mordiendo un limón.
+      </p>
+    </div>
+    <Lemon class="hhero__lemon" data-parallax="0.3" />
+  </section>
+
+  <section class="section section--tight">
+    <div class="container origin">
+      <div class="origin__crest" data-reveal="scale">
+        <img src={url('img/escudo-fc.webp')} alt="Escudo del Lagarto Limón" width="367" height="412" loading="lazy" data-parallax="-0.1" />
+      </div>
+      <div class="origin__text">
+        <p class="eyebrow" data-reveal>El origen</p>
+        <h2 class="title-md" data-split>{club.origen}, {club.fundacion}</h2>
+        <p data-reveal>
+          Todo empezó en {club.origen} en {club.fundacion}. Un lagarto —escurridizo, terco, de los que aguantan al sol lo que haga falta— con un limón entre los
+          dientes: un nombre que nadie olvida y un escudo que se reconoce a cien metros.
+        </p>
+        <p data-reveal>
+          Hoy el club compite en la liga de fútbol 7 de <strong>MálagaF7</strong>, donde ha jugado en el grupo de <strong>{club.zona}</strong>, y desde
+          <strong>{secciones.baloncesto.desde}</strong> también en <strong>baloncesto</strong>, ahora en la <strong>Liga AFADE</strong>. Mismos colores, misma actitud.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <Marquee items={['Mordida', 'Acidez', 'Manada', 'Desde 2011']} variant="green" />
+
+  <section class="section">
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <p class="eyebrow" data-reveal>Línea de tiempo</p>
+          <h2 class="title-lg" data-split>Año a año</h2>
+        </div>
+      </div>
+
+      <ol class="tl" data-timeline>
+        <span class="tl__line" aria-hidden="true"><span data-timeline-fill></span></span>
+        {
+          timeline.map((h, i) => (
+            <li class:list={['tl__item', i % 2 ? 'is-right' : 'is-left']} data-team={h.deporte} data-reveal>
+              <span class="tl__dot" aria-hidden="true" />
+              <div class="tl__card glass">
+                <div class="tl__top">
+                  <span class="tl__year">{h.year}</span>
+                  {h.tag && <span class="tl__tag">{h.tag}</span>}
+                </div>
+                <h3>{h.titulo}</h3>
+                <p>{h.texto}</p>
+              </div>
+            </li>
+          ))
+        }
+      </ol>
+    </div>
+  </section>
+
+  <section class="section section--tight">
+    <div class="container">
+      <div class="numbers">
+        <div data-reveal>
+          <b data-count={totals.competiciones}>{totals.competiciones}</b>
+          <span>Competiciones registradas</span>
+        </div>
+        <div data-reveal>
+          <b data-count={totals.partidos}>{totals.partidos}</b>
+          <span>Partidos oficiales</span>
+        </div>
+        <div data-reveal>
+          <b data-count={totals.victorias}>{totals.victorias}</b>
+          <span>Victorias</span>
+        </div>
+        <div data-reveal>
+          <b data-count={totals.goles}>{totals.goles}</b>
+          <span>Goles en fútbol 7</span>
+        </div>
+      </div>
+      <p class="numbers__note">Desde el primer torneo registrado en MálagaF7 (2024) y la Liga AFADE.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <p class="eyebrow" data-reveal>Identidad</p>
+          <h2 class="title-lg" data-split>El escudo y sus colores</h2>
+        </div>
+        <p class="lead" data-reveal>
+          Un escudo rojo y amarillo, un lagarto verde que lo abraza y un limón entre los dientes. El balón cambia según la sección; la actitud, no.
+        </p>
+      </div>
+
+      <div class="crests">
+        {
+          Object.values(secciones).map((s) => (
+            <figure class="crest-fig glass" data-team={s.slug} data-reveal>
+              <img src={url(s.escudo)} alt={`Escudo ${s.nombre}`} width="300" height="337" loading="lazy" />
+              <figcaption>
+                <b>{s.nombre}</b>
+                <span>{s.deporte}</span>
+              </figcaption>
+            </figure>
+          ))
+        }
+      </div>
+
+      <div class="swatches">
+        {
+          colores.map((c) => (
+            <div class="swatch" data-reveal>
+              <span class="swatch__color" style={`background:${c.var}`} />
+              <div>
+                <b>{c.nombre}</b>
+                <code>{c.hex}</code>
+                <p>{c.texto}</p>
+              </div>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--tight">
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <p class="eyebrow" data-reveal>ADN</p>
+          <h2 class="title-lg" data-split>Lo que nos mueve</h2>
+        </div>
+      </div>
+      <div class="values">
+        {
+          valores.map((v, i) => (
+            <article class="value" data-reveal>
+              <span class="value__n">0{i + 1}</span>
+              <h3>{v.t}</h3>
+              <p>{v.d}</p>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  {
+    venues.length > 0 && (
+      <section class="section section--tight">
+        <div class="container">
+          <div class="section-head">
+            <div>
+              <p class="eyebrow" data-reveal>
+                Nuestras casas
+              </p>
+              <h2 class="title-lg" data-split>
+                Donde jugamos
+              </h2>
+            </div>
+          </div>
+          <div class="venues">
+            {venues.map((v) => (
+              <a
+                class="venue glass"
+                href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(`${v.name} ${v.address ?? ''} Málaga`)}`}
+                target="_blank"
+                rel="noopener"
+                data-reveal
+              >
+                <Icon name="pin" size={26} />
+                <h3>{v.name}</h3>
+                {v.address && <p>{v.address}</p>}
+                <div class="venue__tags">
+                  {v.sports.map((s) => (
+                    <span>{s}</span>
+                  ))}
+                  {v.seasons.map((s) => (
+                    <span class="dim">{s}</span>
+                  ))}
+                </div>
+                <span class="venue__map">
+                  Ver en el mapa <Icon name="external" size={14} />
+                </span>
+              </a>
+            ))}
+          </div>
+        </div>
+      </section>
+    )
+  }
+</Layout>
+
+<style>
+  .hhero {
+    position: relative;
+    padding-top: calc(var(--nav-h) + clamp(60px, 10vw, 140px));
+    padding-bottom: clamp(40px, 6vw, 80px);
+    overflow: hidden;
+  }
+  .hhero__inner {
+    display: grid;
+    gap: 24px;
+  }
+  .hhero__title {
+    font-size: clamp(3.4rem, 10vw, 9rem);
+    max-width: 12ch;
+    padding-top: 0.14em;
+  }
+  .hhero :global(.hhero__lemon) {
+    position: absolute;
+    right: -6vw;
+    top: 18%;
+    width: clamp(160px, 30vw, 420px);
+    opacity: 0.85;
+    rotate: -18deg;
+    filter: drop-shadow(0 40px 60px rgba(0, 0, 0, 0.5));
+    z-index: -1;
+  }
+
+  .origin {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    align-items: center;
+    gap: clamp(32px, 6vw, 90px);
+  }
+  .origin__crest img {
+    width: 100%;
+    max-width: 460px;
+    height: auto;
+    margin-inline: auto;
+    filter: drop-shadow(0 40px 60px rgba(0, 0, 0, 0.6));
+  }
+  .origin__text {
+    display: grid;
+    gap: 20px;
+  }
+  .origin__text p:not(.eyebrow) {
+    color: var(--text-muted);
+    font-size: 1.08rem;
+  }
+  .origin__text strong {
+    color: var(--cream);
+  }
+
+  .tl {
+    position: relative;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: clamp(20px, 3vw, 36px);
+  }
+  .tl__line {
+    position: absolute;
+    left: 50%;
+    top: 0;
+    bottom: 0;
+    width: 3px;
+    margin-left: -1.5px;
+    border-radius: 3px;
+    background: var(--border);
+  }
+  .tl__line span {
+    display: block;
+    width: 100%;
+    height: 100%;
+    border-radius: inherit;
+    background: linear-gradient(180deg, var(--lizard), var(--lemon), var(--ball));
+    transform-origin: top;
+    transform: scaleY(var(--tl, 1));
+  }
+  :global(.js) .tl__line span {
+    --tl: 0;
+  }
+  .tl__item {
+    position: relative;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 64px;
+  }
+  .tl__dot {
+    position: absolute;
+    left: 50%;
+    top: 28px;
+    width: 20px;
+    height: 20px;
+    margin-left: -10px;
+    border-radius: 50%;
+    background: var(--jungle-900);
+    border: 3px solid var(--team, var(--lemon));
+    box-shadow: 0 0 0 6px var(--jungle-900);
+    z-index: 1;
+  }
+  .tl__card {
+    display: grid;
+    gap: 10px;
+    padding: clamp(20px, 2.6vw, 30px);
+  }
+  .is-left .tl__card {
+    grid-column: 1;
+  }
+  .is-right .tl__card {
+    grid-column: 2;
+  }
+  .tl__top {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+  }
+  .tl__year {
+    font-family: var(--font-display);
+    font-weight: 900;
+    font-size: clamp(2.6rem, 4.4vw, 3.8rem);
+    line-height: 0.9;
+    color: var(--lemon);
+  }
+  .tl__tag {
+    padding: 5px 12px;
+    border-radius: 999px;
+    background: color-mix(in srgb, var(--team, var(--lemon)) 22%, transparent);
+    border: 1px solid color-mix(in srgb, var(--team, var(--lemon)) 50%, transparent);
+    font-size: 0.72rem;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+  .tl__card h3 {
+    font-size: clamp(1.6rem, 2.4vw, 2.1rem);
+  }
+  .tl__card p {
+    color: var(--text-muted);
+  }
+
+  .numbers {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: clamp(12px, 2vw, 20px);
+  }
+  .numbers div {
+    display: grid;
+    gap: 6px;
+    padding: clamp(20px, 3vw, 34px);
+    border-radius: var(--radius);
+    background: var(--lemon);
+    color: var(--jungle-950);
+  }
+  .numbers div:nth-child(2) {
+    background: var(--lizard);
+  }
+  .numbers div:nth-child(3) {
+    background: var(--cream);
+  }
+  .numbers div:nth-child(4) {
+    background: var(--red);
+    color: var(--cream);
+  }
+  .numbers b {
+    font-family: var(--font-display);
+    font-weight: 900;
+    font-size: clamp(3rem, 6vw, 5.4rem);
+    line-height: 0.9;
+  }
+  .numbers span {
+    font-weight: 700;
+    font-size: 0.9rem;
+  }
+  .numbers__note {
+    margin-top: 14px;
+    font-size: 0.85rem;
+    color: var(--text-dim);
+  }
+
+  .crests {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: clamp(14px, 2vw, 24px);
+  }
+  .crest-fig {
+    margin: 0;
+    display: grid;
+    justify-items: center;
+    gap: 16px;
+    padding: clamp(24px, 4vw, 48px);
+    background:
+      radial-gradient(60% 60% at 50% 40%, color-mix(in srgb, var(--team) 35%, transparent), transparent 70%),
+      var(--surface);
+  }
+  .crest-fig img {
+    width: min(100%, 300px);
+    height: auto;
+    filter: drop-shadow(0 30px 40px rgba(0, 0, 0, 0.6));
+    transition: transform 0.8s var(--ease-out);
+  }
+  .crest-fig:hover img {
+    transform: rotate(-6deg) scale(1.05);
+  }
+  .crest-fig figcaption {
+    display: grid;
+    justify-items: center;
+  }
+  .crest-fig b {
+    font-family: var(--font-display);
+    font-weight: 900;
+    font-size: 2rem;
+    text-transform: uppercase;
+  }
+  .crest-fig span {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+  }
+  .swatches {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: clamp(12px, 2vw, 20px);
+    margin-top: clamp(14px, 2vw, 24px);
+  }
+  .swatch {
+    display: grid;
+    gap: 14px;
+    padding: 14px 14px 20px;
+    border-radius: var(--radius);
+    background: var(--surface);
+    border: 1px solid var(--border);
+  }
+  .swatch__color {
+    height: 110px;
+    border-radius: 14px;
+    box-shadow: inset 0 -30px 40px -20px rgba(0, 0, 0, 0.3);
+  }
+  .swatch b {
+    display: block;
+    font-family: var(--font-display);
+    font-weight: 800;
+    font-size: 1.4rem;
+    text-transform: uppercase;
+  }
+  .swatch code {
+    font-size: 0.8rem;
+    color: var(--text-dim);
+  }
+  .swatch p {
+    margin-top: 6px;
+    font-size: 0.9rem;
+    color: var(--text-muted);
+  }
+
+  .values {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: clamp(12px, 2vw, 20px);
+  }
+  .value {
+    position: relative;
+    display: grid;
+    gap: 14px;
+    padding: clamp(24px, 3vw, 40px);
+    border-radius: var(--radius);
+    border: 1px solid var(--border);
+    background: var(--surface);
+    overflow: hidden;
+    transition: background 0.4s, transform 0.6s var(--ease-out);
+  }
+  .value:hover {
+    background: var(--surface-2);
+    transform: translateY(-6px);
+  }
+  .value__n {
+    font-family: var(--font-display);
+    font-weight: 900;
+    font-size: 1.1rem;
+    color: var(--lemon);
+    letter-spacing: 0.1em;
+  }
+  .value h3 {
+    font-size: clamp(2.4rem, 4vw, 3.4rem);
+  }
+  .value p {
+    color: var(--text-muted);
+  }
+
+  .venues {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 260px), 1fr));
+    gap: clamp(12px, 2vw, 20px);
+  }
+  .venue {
+    display: grid;
+    align-content: start;
+    gap: 10px;
+    padding: 26px;
+    transition: transform 0.5s var(--ease-out), border-color 0.3s;
+  }
+  .venue:hover {
+    transform: translateY(-6px);
+    border-color: rgba(255, 214, 10, 0.5);
+  }
+  .venue > :global(svg) {
+    color: var(--lemon);
+  }
+  .venue h3 {
+    font-size: 1.7rem;
+  }
+  .venue p {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+  }
+  .venue__tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+  .venue__tags span {
+    padding: 4px 10px;
+    border-radius: 999px;
+    background: var(--surface-2);
+    font-size: 0.72rem;
+    font-weight: 700;
+  }
+  .venue__tags .dim {
+    color: var(--text-dim);
+  }
+  .venue__map {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    margin-top: 6px;
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--lemon);
+  }
+
+  @media (max-width: 900px) {
+    .numbers,
+    .swatches {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    .tl__line,
+    .tl__dot {
+      left: 10px;
+    }
+    .tl__item {
+      grid-template-columns: 1fr;
+      padding-left: 40px;
+      gap: 0;
+    }
+    .is-left .tl__card,
+    .is-right .tl__card {
+      grid-column: 1;
+    }
+  }
+  @media (max-width: 700px) {
+    .origin,
+    .crests,
+    .values {
+      grid-template-columns: 1fr;
+    }
+    .origin__crest img {
+      max-width: 260px;
+    }
+    .hhero :global(.hhero__lemon) {
+      display: none;
+    }
+  }
+</style>

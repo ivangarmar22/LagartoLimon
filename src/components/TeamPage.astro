@@ -1,0 +1,618 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Icon from './Icon.astro';
+import Lemon from './Lemon.astro';
+import Marquee from './Marquee.astro';
+import NextMatch from './NextMatch.astro';
+import MatchRow from './MatchRow.astro';
+import Standings from './Standings.astro';
+import PlayerCard from './PlayerCard.astro';
+import SeasonCard from './SeasonCard.astro';
+import { futbol, baloncesto, upcoming, form, ourRow as findOurRow } from '../lib/data';
+import { secciones, staff } from '../data/club';
+import { url, formatUpdated, outcome } from '../lib/utils';
+
+interface Props {
+  sport: 'futbol' | 'baloncesto';
+}
+const { sport } = Astro.props;
+const info = secciones[sport];
+const data = sport === 'futbol' ? futbol : baloncesto;
+const season = data.current;
+const isFut = sport === 'futbol';
+
+const matches = season.matches;
+const next = upcoming(matches).filter((m) => m.iso);
+const ourRow = findOurRow(season.tables[0]);
+const last5 = form(matches);
+const crest = url(info.escudo);
+
+const ORDER = isFut ? ['Portero', 'Defensa', 'Centrocampista', 'Delantero', 'Jugador'] : ['Base', 'Escolta', 'Alero', 'Ala-pívot', 'Pívot', 'Jugador'];
+const PLURAL: Record<string, string> = {
+  Portero: 'Porteros',
+  Defensa: 'Defensas',
+  Centrocampista: 'Centrocampistas',
+  Delantero: 'Delanteros',
+  Jugador: 'Jugadores',
+  Base: 'Bases',
+  Escolta: 'Escoltas',
+  Alero: 'Aleros',
+  'Ala-pívot': 'Ala-pívots',
+  Pívot: 'Pívots',
+};
+const positions = ORDER.filter((p) => data.roster.some((r) => r.posicion === p));
+const otherPositions = [...new Set(data.roster.map((r) => r.posicion))].filter((p) => !ORDER.includes(p));
+const filters = [...positions, ...otherPositions];
+const placeholders = data.roster.length === 0 ? 8 : 0;
+
+const stats = [
+  { label: 'Jugados', value: season.record.pj },
+  { label: 'Victorias', value: season.record.g },
+  ...(isFut ? [{ label: 'Empates', value: season.record.e }] : []),
+  { label: 'Derrotas', value: season.record.p },
+  { label: isFut ? 'Goles' : 'Puntos', value: season.record.gf },
+];
+
+const subnav = [
+  { id: 'proximo', label: 'Próximo' },
+  { id: 'calendario', label: 'Calendario' },
+  { id: 'clasificacion', label: 'Clasificación' },
+  { id: 'plantilla', label: 'Plantilla' },
+  { id: 'temporadas', label: 'Temporadas' },
+];
+const marquee = isFut
+  ? ['Lagarto Limón FC', 'Fútbol 7', season.name, 'MálagaF7', 'Ácido en el área']
+  : ['Lagarto Limón CB', 'Baloncesto', 'Liga AFADE', season.category ?? '', 'Escamas en la zona'];
+---
+
+<Layout
+  title={info.nombre}
+  description={`${info.nombre}: calendario, resultados, clasificación, plantilla y temporadas del equipo de ${info.deporte.toLowerCase()} del Lagarto Limón.`}
+  team={sport}
+  image={info.escudo.replace('.webp', '.png')}
+>
+  <section class="thero">
+    <div class="thero__glow" aria-hidden="true"></div>
+    <Lemon class="float-lemon fl-1" data-parallax="-0.25" />
+
+    <div class="container thero__grid">
+      <div class="thero__text">
+        <p class="eyebrow" data-reveal>
+          <Icon name={isFut ? 'ball' : 'basket'} size={16} />
+          {info.deporte} · {info.liga}
+        </p>
+        <h1 class="title-xl" data-split>
+          Lagarto Limón <span class="text-team">{info.corto}</span>
+        </h1>
+        <p class="lead" data-reveal>
+          {
+            isFut
+              ? `Compitiendo en la ${season.name} de MálagaF7${season.tables[0]?.group ? ` (${season.tables[0].group})` : ''}. Siete contra siete, escamas contra todo.`
+              : `Compitiendo en la Liga AFADE · ${season.category}, ${season.stage} ${season.group}. Botes, triples y mucho limón.`
+          }
+        </p>
+        <div class="thero__chips" data-reveal>
+          <a class="chip" href={info.ligaUrl} target="_blank" rel="noopener">
+            {info.liga}
+            <Icon name="external" size={14} />
+          </a>
+          <a class="chip" href={info.instagram.instagram} target="_blank" rel="noopener">
+            <Icon name="instagram" size={14} />
+            {info.instagram.handle}
+          </a>
+        </div>
+      </div>
+
+      <div class="thero__crest" data-reveal="scale">
+        <div class="thero__ring" aria-hidden="true"></div>
+        <img src={crest} alt={`Escudo del ${info.nombre}`} width="460" height="516" data-parallax="0.12" />
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="thero__stats glass" data-reveal>
+        {
+          ourRow && (
+            <div class="stat stat--pos">
+              <b>{ourRow.pos}º</b>
+              <span>{season.tables[0].group || 'Clasificación'}</span>
+            </div>
+          )
+        }
+        {
+          stats.map((s) => (
+            <div class="stat">
+              <b data-count={s.value}>{s.value}</b>
+              <span>{s.label}</span>
+            </div>
+          ))
+        }
+        {
+          last5.length > 0 && (
+            <div class="stat stat--form">
+              <div class="form">
+                {last5.map((m) => {
+                  const r = outcome(m);
+                  return <i class:list={[`f-${r}`]} title={`${m.home.name} ${m.score?.join('-')} ${m.away.name}`} />;
+                })}
+              </div>
+              <span>Racha</span>
+            </div>
+          )
+        }
+      </div>
+    </div>
+  </section>
+
+  <nav class="subnav" aria-label="Secciones del equipo" data-subnav>
+    <div class="subnav__inner glass">
+      {subnav.map((s) => <a href={`#${s.id}`} data-subnav-link={s.id}>{s.label}</a>)}
+    </div>
+  </nav>
+
+  <section id="proximo" class="section section--tight">
+    <div class="container">
+      {
+        next.length ? (
+          <div data-reveal>
+            <NextMatch matches={next} />
+          </div>
+        ) : (
+          <div class="empty glass" data-reveal>
+            <Icon name="calendar" size={28} />
+            <p>Sin partidos programados ahora mismo. Vuelve pronto: el lagarto nunca hiberna mucho tiempo.</p>
+          </div>
+        )
+      }
+    </div>
+  </section>
+
+  <Marquee items={marquee} variant={isFut ? 'green' : 'lemon'} tilt={-2} />
+
+  <section id="calendario" class="section">
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <p class="eyebrow">Temporada {season.yearLabel}</p>
+          <h2 class="title-lg" data-split>Calendario y resultados</h2>
+        </div>
+        <div class="filters" role="group" aria-label="Filtrar partidos" data-filter-group="cal">
+          <button class="filter is-active" data-filter="all">Todos</button>
+          <button class="filter" data-filter="next">Próximos</button>
+          <button class="filter" data-filter="played">Jugados</button>
+        </div>
+      </div>
+      <div class="cal" data-filter-target="cal">
+        {
+          matches.map((m) => (
+            <div data-kind={m.bye ? 'bye' : m.played ? 'played' : 'next'}>
+              <MatchRow match={m} sport={sport} />
+            </div>
+          ))
+        }
+      </div>
+      <p class="updated">
+        Datos de <a href={data.source.url} target="_blank" rel="noopener">{data.source.name}</a> · actualizados el {formatUpdated(data.updatedAt)}
+      </p>
+    </div>
+  </section>
+
+  <section id="clasificacion" class="section section--tight">
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <p class="eyebrow">{season.name}</p>
+          <h2 class="title-lg" data-split>Clasificación</h2>
+        </div>
+      </div>
+      <div class="tables">
+        {season.tables.map((t) => <Standings table={t} sport={sport} />)}
+      </div>
+    </div>
+  </section>
+
+  <section id="plantilla" class="section">
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <p class="eyebrow">{data.roster.length ? `${data.roster.length} jugadores` : 'La manada'}</p>
+          <h2 class="title-lg" data-split>Plantilla</h2>
+        </div>
+        {
+          filters.length > 1 && (
+            <div class="filters" role="group" aria-label="Filtrar por posición" data-filter-group="squad">
+              <button class="filter is-active" data-filter="all">
+                Todos
+              </button>
+              {filters.map((p) => (
+                <button class="filter" data-filter={p}>
+                  {PLURAL[p] ?? p}
+                </button>
+              ))}
+            </div>
+          )
+        }
+      </div>
+
+      <div class="squad" data-filter-target="squad">
+        {
+          data.roster.map((p, i) => (
+            <div data-kind={p.posicion}>
+              <PlayerCard player={p} crest={crest} index={i} stat={isFut ? 'edad' : 'altura'} />
+            </div>
+          ))
+        }
+        {Array.from({ length: placeholders }, (_, i) => <PlayerCard crest={crest} placeholder index={i} stat={isFut ? 'edad' : 'altura'} />)}
+      </div>
+
+      {
+        staff[sport].length > 0 && (
+          <div class="staff">
+            <h3>Cuerpo técnico</h3>
+            <ul>
+              {staff[sport].map((s) => (
+                <li class="glass">
+                  <b>{s.nombre}</b>
+                  <span>{s.rol}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        )
+      }
+    </div>
+  </section>
+
+  <section id="temporadas" class="section section--tight">
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <p class="eyebrow">Historial</p>
+          <h2 class="title-lg" data-split>Temporadas</h2>
+        </div>
+        <p class="lead">
+          {
+            data.seasons.length > 1
+              ? `${data.seasons.length} competiciones registradas en ${info.liga}. Cada una, una muda de piel.`
+              : `El ${info.nombre} compite desde ${info.desde}. La web de la liga sólo publica la temporada actual.`
+          }
+        </p>
+      </div>
+      <div class="seasons">
+        {data.seasons.map((s, i) => <SeasonCard season={s} sport={sport} index={i} />)}
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .thero {
+    position: relative;
+    padding-top: calc(var(--nav-h) + clamp(40px, 7vw, 90px));
+    padding-bottom: clamp(40px, 6vw, 70px);
+    overflow: hidden;
+  }
+  .thero__glow {
+    position: absolute;
+    inset: -20% -10% auto auto;
+    width: 70vw;
+    height: 70vw;
+    max-width: 900px;
+    max-height: 900px;
+    border-radius: 50%;
+    background: radial-gradient(circle, color-mix(in srgb, var(--team) 35%, transparent), transparent 65%);
+    filter: blur(20px);
+    pointer-events: none;
+  }
+  .thero__grid {
+    position: relative;
+    display: grid;
+    grid-template-columns: 1.3fr 1fr;
+    align-items: center;
+    gap: clamp(24px, 4vw, 60px);
+  }
+  .thero__text {
+    display: grid;
+    gap: 22px;
+  }
+  .thero__text h1 {
+    font-size: clamp(3.4rem, 9.5vw, 8.6rem);
+    padding-top: 0.14em;
+  }
+  .thero__chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  .chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 9px 16px;
+    border-radius: 999px;
+    border: 1px solid var(--border-strong);
+    font-weight: 700;
+    font-size: 0.9rem;
+    transition: background 0.3s, color 0.3s, border-color 0.3s;
+  }
+  .chip:hover {
+    background: var(--lemon);
+    border-color: var(--lemon);
+    color: var(--jungle-950);
+  }
+  .thero__crest {
+    position: relative;
+    display: grid;
+    place-items: center;
+  }
+  .thero__crest img {
+    position: relative;
+    width: min(100%, 460px);
+    height: auto;
+    filter: drop-shadow(0 40px 60px rgba(0, 0, 0, 0.6));
+    animation: bob 6s ease-in-out infinite;
+  }
+  .thero__ring {
+    position: absolute;
+    width: 92%;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    border: 1.5px dashed color-mix(in srgb, var(--team) 60%, transparent);
+    animation: spin 40s linear infinite;
+  }
+  .thero__ring::after {
+    content: '';
+    position: absolute;
+    inset: 10%;
+    border-radius: 50%;
+    border: 1px solid rgba(255, 214, 10, 0.2);
+  }
+  @keyframes bob {
+    50% {
+      translate: 0 -14px;
+    }
+  }
+  @keyframes spin {
+    to {
+      rotate: 360deg;
+    }
+  }
+  .thero :global(.float-lemon) {
+    position: absolute;
+    pointer-events: none;
+    opacity: 0.9;
+    filter: drop-shadow(0 20px 30px rgba(0, 0, 0, 0.5));
+  }
+  .thero :global(.fl-1) {
+    width: 90px;
+    top: 22%;
+    left: 46%;
+    rotate: 20deg;
+  }
+
+  .thero__stats {
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: clamp(32px, 5vw, 60px);
+    padding: 8px;
+  }
+  .stat {
+    flex: 1 1 90px;
+    display: grid;
+    justify-items: center;
+    gap: 2px;
+    padding: 16px 10px;
+    text-align: center;
+  }
+  .stat + .stat {
+    border-left: 1px solid var(--border);
+  }
+  .stat b {
+    font-family: var(--font-display);
+    font-weight: 900;
+    font-size: clamp(2.2rem, 4vw, 3.2rem);
+    line-height: 1;
+  }
+  .stat span {
+    font-size: 0.75rem;
+    font-weight: 800;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+  }
+  .stat--pos b {
+    color: var(--team);
+  }
+  .form {
+    display: flex;
+    gap: 6px;
+    height: clamp(2.2rem, 4vw, 3.2rem);
+    align-items: center;
+  }
+  .form i {
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+  }
+  .f-W {
+    background: var(--lizard-bright);
+  }
+  .f-D {
+    background: var(--lemon);
+  }
+  .f-L {
+    background: var(--red);
+  }
+
+  .subnav {
+    position: sticky;
+    top: 86px;
+    z-index: 50;
+    display: flex;
+    justify-content: center;
+    padding-inline: var(--gutter);
+    pointer-events: none;
+    transition: top 0.6s var(--ease-out);
+  }
+  :global(.nav-hidden) .subnav {
+    top: 14px;
+  }
+  .subnav__inner {
+    pointer-events: auto;
+    display: flex;
+    gap: 2px;
+    padding: 5px;
+    border-radius: 999px;
+    background: rgba(8, 22, 12, 0.72);
+    overflow-x: auto;
+    scrollbar-width: none;
+    max-width: 100%;
+  }
+  .subnav__inner::-webkit-scrollbar {
+    display: none;
+  }
+  .subnav a {
+    flex: none;
+    padding: 8px 16px;
+    border-radius: 999px;
+    font-size: 0.88rem;
+    font-weight: 700;
+    color: var(--text-muted);
+    transition: background 0.3s, color 0.3s;
+  }
+  .subnav a:hover {
+    color: var(--cream);
+  }
+  .subnav a.is-active {
+    background: var(--team);
+    color: var(--jungle-950);
+  }
+
+  .empty {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    padding: 28px;
+    color: var(--text-muted);
+  }
+  .empty :global(svg) {
+    color: var(--team);
+    flex: none;
+  }
+
+  .filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+  .filter {
+    padding: 9px 16px;
+    border-radius: 999px;
+    border: 1px solid var(--border-strong);
+    font-weight: 700;
+    font-size: 0.88rem;
+    color: var(--text-muted);
+    transition: background 0.3s, color 0.3s, border-color 0.3s;
+  }
+  .filter:hover {
+    color: var(--cream);
+    border-color: var(--cream);
+  }
+  .filter.is-active {
+    background: var(--cream);
+    border-color: var(--cream);
+    color: var(--jungle-950);
+  }
+  [data-filter-target] > [hidden] {
+    display: none;
+  }
+
+  .cal {
+    display: grid;
+    gap: 10px;
+  }
+  .updated {
+    margin-top: 22px;
+    font-size: 0.85rem;
+    color: var(--text-dim);
+  }
+  .updated a {
+    color: var(--text-muted);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+
+  .tables {
+    display: grid;
+    gap: 24px;
+  }
+
+  .squad {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: clamp(14px, 2vw, 24px);
+  }
+  .staff {
+    margin-top: 48px;
+  }
+  .staff h3 {
+    font-size: 1.8rem;
+    margin-bottom: 16px;
+  }
+  .staff ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 12px;
+  }
+  .staff li {
+    display: grid;
+    padding: 16px 20px;
+  }
+  .staff span {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+  }
+
+  .seasons {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 340px), 1fr));
+    gap: clamp(14px, 2vw, 24px);
+    align-items: start;
+  }
+
+  @media (max-width: 860px) {
+    .thero__grid {
+      grid-template-columns: 1fr;
+    }
+    .thero__crest {
+      order: -1;
+      max-width: 300px;
+      margin-inline: auto;
+    }
+    .stat + .stat {
+      border-left: 0;
+    }
+    .subnav {
+      top: 84px;
+    }
+  }
+  @media (max-width: 520px) {
+    .squad {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+    }
+    .thero__stats {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+    }
+    .stat {
+      padding: 12px 4px;
+    }
+    .stat--form {
+      grid-column: span 2;
+    }
+  }
+</style>

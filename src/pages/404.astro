@@ -1,0 +1,41 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Icon from '../components/Icon.astro';
+import Lemon from '../components/Lemon.astro';
+import { url } from '../lib/utils';
+---
+
+<Layout title="Página no encontrada">
+  <section class="nf">
+    <div class="container nf__inner">
+      <Lemon class="nf__lemon" />
+      <p class="eyebrow">Error 404</p>
+      <h1 class="title-xl">Fuera de juego</h1>
+      <p class="lead">Esta página se ha escurrido como un lagarto. Vuelve al inicio y sigue jugando.</p>
+      <a class="btn" href={url('')}>Volver al inicio <Icon name="arrow" /></a>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .nf {
+    min-height: 90svh;
+    display: grid;
+    align-items: center;
+    padding-top: var(--nav-h);
+  }
+  .nf__inner {
+    display: grid;
+    justify-items: start;
+    gap: 24px;
+  }
+  .nf :global(.nf__lemon) {
+    width: 120px;
+    animation: spin 12s linear infinite;
+  }
+  @keyframes spin {
+    to {
+      rotate: 360deg;
+    }
+  }
+</style>

@@ -1,0 +1,2559 @@
+{
+  "updatedAt": "2026-10-09T11:19:43.672Z",
+  "source": {
+    "name": "MálagaF7",
+    "url": "https://www.malagaf7.com"
+  },
+  "currentId": 25,
+  "roster": [
+    {
+      "id": 1274,
+      "nombre": "Juan Francisco",
+      "apellidos": "Robles",
+      "dorsal": 1,
+      "posicion": "Portero",
+      "capitan": false
+    },
+    {
+      "id": 2056,
+      "nombre": "Roger David",
+      "apellidos": "Trinidad Amate",
+      "dorsal": 2,
+      "posicion": "Jugador",
+      "capitan": false
+    },
+    {
+      "id": 2182,
+      "nombre": "Richar Ricardo",
+      "apellidos": "Riveros Elizeche",
+      "dorsal": 2,
+      "posicion": "Centrocampista",
+      "capitan": false
+    },
+    {
+      "id": 1272,
+      "nombre": "Andrés",
+      "apellidos": "Arroyo Gaona",
+      "dorsal": 3,
+      "posicion": "Defensa",
+      "capitan": false
+    },
+    {
+      "id": 1331,
+      "nombre": "Alberto",
+      "apellidos": "Castiel Denis",
+      "dorsal": 4,
+      "posicion": "Defensa",
+      "capitan": false
+    },
+    {
+      "id": 1278,
+      "nombre": "Nicolás",
+      "apellidos": "Robles Lara",
+      "dorsal": 6,
+      "posicion": "Delantero",
+      "capitan": false
+    },
+    {
+      "id": 1276,
+      "nombre": "Jesús",
+      "apellidos": "García García",
+      "dorsal": 8,
+      "posicion": "Centrocampista",
+      "capitan": false
+    },
+    {
+      "id": 1266,
+      "nombre": "Ángel",
+      "apellidos": "Regojo Nieto",
+      "dorsal": 9,
+      "posicion": "Delantero",
+      "capitan": false
+    },
+    {
+      "id": 1273,
+      "nombre": "Rafael",
+      "apellidos": "Arjona Fernández",
+      "dorsal": 10,
+      "posicion": "Centrocampista",
+      "capitan": true
+    },
+    {
+      "id": 1523,
+      "nombre": "Andrés",
+      "apellidos": "Hurtado Pérez",
+      "dorsal": 12,
+      "posicion": "Delantero",
+      "capitan": false
+    },
+    {
+      "id": 1332,
+      "nombre": "Juan",
+      "apellidos": "Lozano Hidalgo",
+      "dorsal": 14,
+      "posicion": "Delantero",
+      "capitan": false
+    },
+    {
+      "id": 1277,
+      "nombre": "Juan Pablo",
+      "apellidos": "Bueno Medina",
+      "dorsal": 15,
+      "posicion": "Centrocampista",
+      "capitan": false
+    },
+    {
+      "id": 2193,
+      "nombre": "Facundo Daniel",
+      "apellidos": "Oviedo",
+      "dorsal": 15,
+      "posicion": "Jugador",
+      "capitan": false
+    },
+    {
+      "id": 1269,
+      "nombre": "Gonzalo",
+      "apellidos": "Gámez Silva",
+      "dorsal": 16,
+      "posicion": "Centrocampista",
+      "capitan": false
+    },
+    {
+      "id": 1522,
+      "nombre": "Adrián",
+      "apellidos": "Bueno Medina",
+      "dorsal": 18,
+      "posicion": "Jugador",
+      "capitan": false
+    },
+    {
+      "id": 1268,
+      "nombre": "Sandro",
+      "apellidos": "Hurtado Requena",
+      "dorsal": 24,
+      "posicion": "Defensa",
+      "capitan": false
+    },
+    {
+      "id": 1317,
+      "nombre": "Javier",
+      "apellidos": "Galán Navarro",
+      "dorsal": 28,
+      "posicion": "Defensa",
+      "capitan": false
+    },
+    {
+      "id": 1729,
+      "nombre": "Rafael",
+      "apellidos": "Navarro Molina",
+      "dorsal": 30,
+      "posicion": "Delantero",
+      "capitan": false
+    },
+    {
+      "id": 1605,
+      "nombre": "Alejandro",
+      "apellidos": "Martín Martínez De Ubago",
+      "dorsal": 69,
+      "posicion": "Portero",
+      "capitan": false
+    }
+  ],
+  "seasons": [
+    {
+      "id": 25,
+      "idSeason": 7,
+      "name": "SUPERLIGA AXTRA GAMING 26-27",
+      "active": true,
+      "url": "https://www.malagaf7.com/tournaments/25",
+      "teamUrl": "https://www.malagaf7.com/tournaments/25/teams/288",
+      "teamId": 288,
+      "record": {
+        "pj": 2,
+        "g": 1,
+        "e": 1,
+        "p": 0,
+        "gf": 7,
+        "gc": 4
+      },
+      "tables": [
+        {
+          "stage": "Primera Fase",
+          "group": "Grupo B",
+          "zones": [
+            {
+              "from": 1,
+              "to": 5,
+              "title": "DIVISIÓN ORO",
+              "color": "#fcdc00"
+            },
+            {
+              "from": 5,
+              "to": 11,
+              "title": "DIVISIÓN PLATA",
+              "color": "#cccccc"
+            }
+          ],
+          "rows": [
+            {
+              "pos": 1,
+              "team": "Inter Malagueño CF",
+              "logo": "https://www.malagaf7.com/upload/AB/54/5udvi204.png",
+              "us": false,
+              "pj": 2,
+              "g": 2,
+              "e": 0,
+              "p": 0,
+              "gf": 13,
+              "gc": 2,
+              "dg": 11,
+              "pts": 6
+            },
+            {
+              "pos": 2,
+              "team": "Inmobiliaria Redpiso",
+              "logo": "https://www.malagaf7.com/upload/D3/2E/mo1roysi.png",
+              "us": false,
+              "pj": 2,
+              "g": 2,
+              "e": 0,
+              "p": 0,
+              "gf": 8,
+              "gc": 1,
+              "dg": 7,
+              "pts": 6
+            },
+            {
+              "pos": 3,
+              "team": "Real Hispanos",
+              "logo": "https://www.malagaf7.com/upload/26/BA/jche4dbi.png",
+              "us": false,
+              "pj": 2,
+              "g": 1,
+              "e": 1,
+              "p": 0,
+              "gf": 10,
+              "gc": 5,
+              "dg": 5,
+              "pts": 4
+            },
+            {
+              "pos": 4,
+              "team": "Lagarto Limón",
+              "logo": "https://www.malagaf7.com/upload/F8/93/y1zkt2nv.png",
+              "us": true,
+              "pj": 2,
+              "g": 1,
+              "e": 1,
+              "p": 0,
+              "gf": 7,
+              "gc": 4,
+              "dg": 3,
+              "pts": 4
+            },
+            {
+              "pos": 5,
+              "team": "Alianza Ibérica FC",
+              "logo": "https://www.malagaf7.com/upload/malaga.mygol.es/2026/09/2b55ef3ef3ee4c56b4fe62b921e92872.jpeg",
+              "us": false,
+              "pj": 2,
+              "g": 1,
+              "e": 0,
+              "p": 1,
+              "gf": 3,
+              "gc": 4,
+              "dg": -1,
+              "pts": 3
+            },
+            {
+              "pos": 6,
+              "team": "Marena FC",
+              "logo": "https://www.malagaf7.com/upload/4E/95/rkpatnak.png",
+              "us": false,
+              "pj": 2,
+              "g": 1,
+              "e": 0,
+              "p": 1,
+              "gf": 10,
+              "gc": 10,
+              "dg": 0,
+              "pts": 3
+            },
+            {
+              "pos": 7,
+              "team": "Ibima",
+              "logo": "https://www.malagaf7.com/upload/malaga.mygol.es/2026/09/d2c7b041fbb54aae9e1b3af6f4dea2e6.jpeg",
+              "us": false,
+              "pj": 2,
+              "g": 0,
+              "e": 2,
+              "p": 0,
+              "gf": 7,
+              "gc": 7,
+              "dg": 0,
+              "pts": 2
+            },
+            {
+              "pos": 8,
+              "team": "Chatarreros",
+              "logo": "https://www.malagaf7.com/upload/imagesv2/teams/TeamShield11.png",
+              "us": false,
+              "pj": 2,
+              "g": 0,
+              "e": 0,
+              "p": 2,
+              "gf": 8,
+              "gc": 14,
+              "dg": -6,
+              "pts": 0
+            },
+            {
+              "pos": 9,
+              "team": "Wittemberg FC",
+              "logo": "https://www.malagaf7.com/upload/3B/25/r3rojwbk.png",
+              "us": false,
+              "pj": 2,
+              "g": 0,
+              "e": 0,
+              "p": 2,
+              "gf": 3,
+              "gc": 11,
+              "dg": -8,
+              "pts": 0
+            },
+            {
+              "pos": 10,
+              "team": "Leyendas",
+              "logo": "https://www.malagaf7.com/upload/imagesv2/teams/TeamShield25.png",
+              "us": false,
+              "pj": 2,
+              "g": 0,
+              "e": 0,
+              "p": 2,
+              "gf": 1,
+              "gc": 12,
+              "dg": -11,
+              "pts": 0
+            }
+          ]
+        }
+      ],
+      "matches": [
+        {
+          "id": 2319,
+          "round": "Jornada 1",
+          "stage": "Primera Fase",
+          "knockout": false,
+          "date": "2026-09-30T21:00",
+          "venue": "CAMPO CARLINDA",
+          "isHome": true,
+          "bye": false,
+          "played": true,
+          "home": {
+            "name": "Lagarto Limón",
+            "logo": "https://www.malagaf7.com/upload/F8/93/y1zkt2nv.png",
+            "us": true
+          },
+          "away": {
+            "name": "Ibima",
+            "logo": "https://www.malagaf7.com/upload/malaga.mygol.es/2026/09/d2c7b041fbb54aae9e1b3af6f4dea2e6.jpeg",
+            "us": false
+          },
+          "score": [
+            2,
+            2
+          ],
+          "shootout": null,
+          "url": "https://www.malagaf7.com/tournaments/25/matches/2319"
+        },
+        {
+          "id": 2320,
+          "round": "Jornada 2",
+          "stage": "Primera Fase",
+          "knockout": false,
+          "date": "2026-10-08T22:30",
+          "venue": "CAMPO CARLINDA",
+          "isHome": false,
+          "bye": false,
+          "played": true,
+          "home": {
+            "name": "Wittemberg FC",
+            "logo": "https://www.malagaf7.com/upload/3B/25/r3rojwbk.png",
+            "us": false
+          },
+          "away": {
+            "name": "Lagarto Limón",
+            "logo": "https://www.malagaf7.com/upload/F8/93/y1zkt2nv.png",
+            "us": true
+          },
+          "score": [
+            2,
+            5
+          ],
+          "shootout": null,
+          "url": "https://www.malagaf7.com/tournaments/25/matches/2320"
+        },
+        {
+          "id": 2329,
+          "round": "Jornada 3",
+          "stage": "Primera Fase",
+          "knockout": false,
+          "date": "2026-10-13T22:30",
+          "venue": "CAMPO CARLINDA 2",
+          "isHome": true,
+          "bye": false,
+          "played": false,
+          "home": {
+            "name": "Lagarto Limón",
+            "logo": "https://www.malagaf7.com/upload/F8/93/y1zkt2nv.png",
+            "us": true
+          },
+          "away": {
+            "name": "Real Hispanos",
+            "logo": "https://www.malagaf7.com/upload/26/BA/jche4dbi.png",
+            "us": false
+          },
+          "score": null,
+          "shootout": null,
+          "url": "https://www.malagaf7.com/tournaments/25/matches/2329"
+        },
+        {
+          "id": 2330,
+          "round": "Jornada 4",
+          "stage": "Primera Fase",
+          "knockout": false,
+          "date": null,
+          "venue": "CAMPO CARLINDA",
+          "isHome": false,
+          "bye": false,
+          "played": false,
+          "home": {
+            "name": "Alianza Ibérica FC",
+            "logo": "https://www.malagaf7.com/upload/malaga.mygol.es/2026/09/2b55ef3ef3ee4c56b4fe62b921e92872.jpeg",
+            "us": false
+          },
+          "away": {
+            "name": "Lagarto Limón",
+            "logo": "https://www.malagaf7.com/upload/F8/93/y1zkt2nv.png",
+            "us": true
+          },
+          "score": null,
+          "shootout": null,
+          "url": "https://www.malagaf7.com/tournaments/25/matches/2330"
+        },
+        {
+          "id": 2339,
+          "round": "Jornada 5",
+          "stage": "Primera Fase",
+          "knockout": false,
+          "date": null,
+          "venue": "CAMPO CARLINDA",
+          "isHome": true,
+          "bye": false,
+          "played": false,
+          "home": {
+            "name": "Lagarto Limón",
+            "logo": "https://www.malagaf7.com/upload/F8/93/y1zkt2nv.png",
+            "us": true
+          },
+          "away": {
+            "name": "Inter Malagueño CF",
+            "logo": "https://www.malagaf7.com/upload/AB/54/5udvi204.png",
+            "us": false
+          },
+          "score": null,
+          "shootout": null,
+          "url": "https://www.malagaf7.com/tournaments/25/matches/2339"
+        },
+        {
+          "id": 2340,
+          "round": "Jornada 6",
+          "stage": "Primera Fase",
+          "knockout": false,
+          "date": null,
+          "venue": "CAMPO CARLINDA",
+          "isHome": false,
+          "bye": false,
+          "played": false,
+          "home": {
+            "name": "Chatarreros",
+            "logo": "https://www.malagaf7.com/upload/imagesv2/teams/TeamShield11.png",
+            "us": false
+          },
+          "away": {
+            "name": "Lagarto Limón",
+            "logo": "https://www.malagaf7.com/upload/F8/93/y1zkt2nv.png",
+            "us": true
+          },
+          "score": null,
+          "shootout": null,
+          "url": "https://www.malagaf7.com/tournaments/25/matches/2340"
+        },
+        {
+          "id": 2349,
+          "round": "Jornada 7",
+          "stage": "Primera Fase",
+          "knockout": false,
+          "date": null,
+          "venue": "CAMPO CARLINDA",
+          "isHome": true,
+          "bye": false,
+          "played": false,
+          "home": {
+            "name": "Lagarto Limón",
+            "logo": "https://www.malagaf7.com/upload/F8/93/y1zkt2nv.png",
+            "us": true
+          },
+          "away": {
+            "name": "Marena FC",
+            "logo": "https://www.malagaf7.com/upload/4E/95/rkpatnak.png",
+            "us": false
+          },
+          "score": null,
+          "shootout": null,
+          "url": "https://www.malagaf7.com/tournaments/25/matches/2349"
+        },
+        {
+          "id": 2350,
+          "round": "Jornada 8",
+          "stage": "Primera Fase",
+          "knockout": false,
+          "date": null,
+          "venue": "CAMPO CARLINDA",
+          "isHome": true,
+          "bye": false,
+          "played": false,
+          "home": {
+            "name": "Lagarto Limón",
+            "logo": "https://www.malagaf7.com/upload/F8/93/y1zkt2nv.png",
+            "us": true
+          },
+          "away": {
+            "name": "Leyendas",
+            "logo": "https://www.malagaf7.com/upload/imagesv2/teams/TeamShield25.png",
+            "us": false
+          },
+          "score": null,
+          "shootout": null,
+          "url": "https://www.malagaf7.com/tournaments/25/matches/2350"
+        },
+        {
+          "id": 2359,
+          "round": "Jornada 9",
+          "stage": "Primera Fase",
+          "knockout": false,
+          "date": null,
+          "venue": "CAMPO CARLINDA",
+          "isHome": false,
+          "bye": false,
+          "played": false,
+          "home": {
+            "name": "Inmobiliaria Redpiso",
+            "logo": "https://www.malagaf7.com/upload/D3/2E/mo1roysi.png",
+            "us": false
+          },
+          "away": {
+            "name": "Lagarto Limón",
+            "logo": "https://www.malagaf7.com/upload/F8/93/y1zkt2nv.png",
+            "us": true
+          },
+          "score": null,
+          "shootout": null,
+          "url": "https://www.malagaf7.com/tournaments/25/matches/2359"
+        }
+      ]
+    },
+    {
+      "id": 24,
+      "idSeason": 6,
+      "name": "SUPERCOPA STOCKEN CAPITAL 2026",
+      "active": false,
+      "url": "https://www.malagaf7.com/tournaments/24",
+      "teamUrl": "https://www.malagaf7.com/tournaments/24/teams/268",
+      "teamId": 268,
+      "record": {
+        "pj": 5,
+        "g": 3,
+        "e": 0,
+        "p": 2,
+        "gf": 21,
+        "gc": 23
+      },
+      "tables": [
+        {
+          "stage": "GRUPOS",
+          "group": "GRUPO C",
+          "zones": [],
+          "rows": [
+            {
+              "pos": 1,
+              "team": "Lagarto Limón",
+              "logo": "https://www.malagaf7.com/upload/F8/93/y1zkt2nv.png",
+              "us": true,
+              "pj": 4,
+              "g": 3,
+              "e": 0,
+              "p": 1,
+              "gf": 19,
+              "gc": 17,
+              "dg": 2,
+              "pts": 9
+            },
+            {
+              "pos": 2,
+              "team": "Rebalae FC",
+              "logo": "https://www.malagaf7.com/upload/22/BF/tpptuff3.png",
+              "us": false,
+              "pj": 4,
+              "g": 2,
+              "e": 1,
+              "p": 1,
+              "gf": 22,
+              "gc": 16,
+              "dg": 6,
+              "pts": 7
+            },
+            {
+              "pos": 3,
+              "team": "Dentón FC",
+              "logo": "https://www.malagaf7.com/upload/FB/1E/fm3hge4k.png",
+              "us": false,
+              "pj": 4,
+              "g": 2,
+              "e": 0,
+              "p": 2,
+              "gf": 18,
+              "gc": 15,
+              "dg": 3,
+              "pts": 6
+            },
+            {
+              "pos": 4,
+              "team": "Wittemberg FC",
+              "logo": "https://www.malagaf7.com/upload/3B/25/r3rojwbk.png",
+              "us": false,
+              "pj": 4,
+              "g": 2,
+              "e": 0,
+              "p": 2,
+              "gf": 17,
+              "gc": 17,
+              "dg": 0,
+              "pts": 6
+            },
+            {
+              "pos": 5,
+              "team": "Spartan United FC",
+              "logo": "https://www.malagaf7.com/upload/32/1D/qnayz4qh.jpeg",
+              "us": false,
+              "pj": 4,
+              "g": 0,
+              "e": 1,
+              "p": 3,
+              "gf": 10,
+              "gc": 21,
+              "dg": -11,
+              "pts": 1
+            }
+          ]
+        }
+      ],
+      "matches": [
+        {
+          "id": 2226,
+          "round": "Jornada 5",
+          "stage": "GRUPOS",
+          "knockout": false,
+          "date": "2026-04-13T21:30",
+          "venue": "Campo Nuevo San Ignacio F11",
+          "isHome": true,
+          "bye": false,
+          "played": true,
+          "home": {
+            "name": "Lagarto Limón",
+            "logo": "https://www.malagaf7.com/upload/F8/93/y1zkt2nv.png",
+            "us": true
+          },
+          "away": {
+            "name": "Rebalae FC",
+            "logo": "https://www.malagaf7.com/upload/22/BF/tpptuff3.png",
+            "us": false
+          },
+          "score": [
+            4,
+            3
+          ],
+          "shootout": null,
+          "url": "https://www.malagaf7.com/tournaments/24/matches/2226"
+        },
+        {
+          "id": 2213,
+          "round": "Jornada 1",
+          "stage": "GRUPOS",
+          "knockout": false,
+          "date": "2026-04-16T22:30",
+          "venue": "CAMPO CARLINDA",
+          "isHome": false,
+          "bye": false,
+          "played": true,
+          "home": {
+            "name": "Dentón FC",
+            "logo": "https://www.malagaf7.com/upload/FB/1E/fm3hge4k.png",
+            "us": false
+          },
+          "away": {
+            "name": "Lagarto Limón",
+            "logo": "https://www.malagaf7.com/upload/F8/93/y1zkt2nv.png",
+            "us": true
+          },
+          "score": [
+            4,
+            6
+          ],
+          "shootout": null,
+          "url": "https://www.malagaf7.com/tournaments/24/matches/2213"
+        },
+        {
+          "id": 2219,
+          "round": "Jornada 3",
+          "stage": "GRUPOS",
+          "knockout": false,
+          "date": "2026-04-20T21:30",
+          "venue": "CAMPO CARLINDA",
+          "isHome": true,
+          "bye": false,
+          "played": true,
+          "home": {
+            "name": "Lagarto Limón",
+            "logo": "https://www.malagaf7.com/upload/F8/93/y1zkt2nv.png",
+            "us": true
+          },
+          "away": {
+            "name": "Wittemberg FC",
+            "logo": "https://www.malagaf7.com/upload/3B/25/r3rojwbk.png",
+            "us": false
+          },
+          "score": [
+            4,
+            8
+          ],
+          "shootout": null,
+          "url": "https://www.malagaf7.com/tournaments/24/matches/2219"
+        },
+        {
+          "id": 2222,
+          "round": "Jornada 4",
+          "stage": "GRUPOS",
+          "knockout": false,
+          "date": "2026-04-27T22:30",
+          "venue": "CAMPO CARLINDA",
+          "isHome": false,
+          "bye": false,
+          "played": true,
+          "home": {
+            "name": "Spartan United FC",
+            "logo": "https://www.malagaf7.com/upload/32/1D/qnayz4qh.jpeg",
+            "us": false
+          },
+          "away": {
+            "name": "Lagarto Limón",
+            "logo": "https://www.malagaf7.com/upload/F8/93/y1zkt2nv.png",
+            "us": true
+          },
+          "score": [
+            2,
+            5
+          ],
+          "shootout": null,
+          "url": "https://www.malagaf7.com/tournaments/24/matches/2222"
+        },
+        {
+          "id": 2229,
+          "round": "4avos",
+          "stage": "ELIMINATORIAS",
+          "knockout": true,
+          "date": "2026-05-07T21:30",
+          "venue": "CAMPO CARLINDA",
+          "isHome": true,
+          "bye": false,
+          "played": true,
+          "home": {
+            "name": "Lagarto Limón",
+            "logo": "https://www.malagaf7.com/upload/F8/93/y1zkt2nv.png",
+            "us": true
+          },
+          "away": {
+            "name": "Real Hispanos",
+            "logo": "https://www.malagaf7.com/upload/26/BA/jche4dbi.png",
+            "us": false
+          },
+          "score": [
+            2,
+            6
+          ],
+          "shootout": null,
+          "url": "https://www.malagaf7.com/tournaments/24/matches/2229"
+        },
+        {
+          "id": 2215,
+          "round": "Jornada 2",
+          "stage": "GRUPOS",
+          "knockout": false,
+          "date": null,
+          "venue": null,
+          "isHome": true,
+          "bye": true,
+          "played": false,
+          "home": {
+            "name": "Lagarto Limón",
+            "logo": "https://www.malagaf7.com/upload/F8/93/y1zkt2nv.png",
+            "us": true
+          },
+          "away": {
+            "name": "Descansa",
+            "logo": null,
+            "us": false
+          },
+          "score": null,
+          "shootout": null,
+          "url": "https://www.malagaf7.com/tournaments/24/matches/2215"
+        }
+      ]
+    },
+    {
+      "id": 23,
+      "idSeason": 6,
+      "name": "SUPERLIGA STOCKEN CAPITAL 25-26",
+      "active": false,
+      "url": "https://www.malagaf7.com/tournaments/23",
+      "teamUrl": "https://www.malagaf7.com/tournaments/23/teams/228",
+      "teamId": 228,
+      "record": {
+        "pj": 14,
+        "g": 4,
+        "e": 2,
+        "p": 8,
+        "gf": 54,
+        "gc": 63
+      },
+      "tables": [
+        {
+          "stage": "MÁLAGA ESTE",
+          "group": "MÁLAGA ESTE",
+          "zones": [
+            {
+              "from": 1,
+              "to": 4,
+              "title": "PLAYOFFS",
+              "color": "#a4dd00"
+            }
+          ],
+          "rows": [
+            {
+              "pos": 1,
+              "team": "Rebalae FC",
+              "logo": "https://www.malagaf7.com/upload/22/BF/tpptuff3.png",
+              "us": false,
+              "pj": 14,
+              "g": 10,
+              "e": 1,
+              "p": 3,
+              "gf": 82,
+              "gc": 42,
+              "dg": 40,
+              "pts": 31
+            },
+            {
+              "pos": 2,
+              "team": "Sapino FC",
+              "logo": "https://www.malagaf7.com/upload/D3/BC/v1w2wksy.png",
+              "us": false,
+              "pj": 14,
+              "g": 9,
+              "e": 3,
+              "p": 2,
+              "gf": 76,
+              "gc": 28,
+              "dg": 48,
+              "pts": 30
+            },
+            {
+              "pos": 3,
+              "team": "Marena FC",
+              "logo": "https://www.malagaf7.com/upload/4E/95/rkpatnak.png",
+              "us": false,
+              "pj": 14,
+              "g": 9,
+              "e": 3,
+              "p": 2,
+              "gf": 67,
+              "gc": 28,
+              "dg": 39,
+              "pts": 30
+            },
+            {
+              "pos": 4,
+              "team": "Paleño CF",
+              "logo": "https://www.malagaf7.com/upload/7E/F4/jguk4e4n.png",
+              "us": false,
+              "pj": 14,
+              "g": 7,
+              "e": 4,
+              "p": 3,
+              "gf": 51,
+              "gc": 35,
+              "dg": 16,
+              "pts": 25
+            },
+            {
+              "pos": 5,
+              "team": "Al-Bichihad",
+              "logo": "https://www.malagaf7.com/upload/D1/BB/zyh4wytm.jpg",
+              "us": false,
+              "pj": 14,
+              "g": 7,
+              "e": 0,
+              "p": 7,
+              "gf": 68,
+              "gc": 56,
+              "dg": 12,
+              "pts": 21
+            },
+            {
+              "pos": 6,
+              "team": "Lagarto Limón",
+              "logo": "https://www.malagaf7.com/upload/F8/93/y1zkt2nv.png",
+              "us": true,
+              "pj": 14,
+              "g": 5,
+              "e": 1,
+              "p": 8,
+              "gf": 54,
+              "gc": 63,
+              "dg": -9,
+              "pts": 16
+            },
+            {
+              "pos": 7,
+              "team": "FC Capitale",
+              "logo": "https://www.malagaf7.com/upload/E7/D8/xduphd1c.png",
+              "us": false,
+              "pj": 14,
+              "g": 2,
+              "e": 0,
+              "p": 12,
+              "gf": 22,
+              "gc": 64,
+              "dg": -42,
+              "pts": 6
+            },
+            {
+              "pos": 8,
+              "team": "Misyanik FC",
+              "logo": "https://www.malagaf7.com/upload/imagesv2/teams/TeamShield27.png",
+              "us": false,
+              "pj": 14,
+              "g": 1,
+              "e": 0,
+              "p": 13,
+              "gf": 35,
+              "gc": 139,
+              "dg": -104,
+              "pts": 3
+            }
+          ]
+        }
+      ],
+      "matches": [
+        {
+          "id": 1963,
+          "round": "Jornada 1",
+          "stage": "MÁLAGA ESTE",
+          "knockout": false,
+          "date": "2025-10-08T21:30",
+          "venue": "Campo Nuevo San Ignacio F7",
+          "isHome": false,
+          "bye": false,
+          "played": true,
+          "home": {
+            "name": "FC Capitale",
+            "logo": "https://www.malagaf7.com/upload/E7/D8/xduphd1c.png",
+            "us": false
+          },
+          "away": {
+            "name": "Lagarto Limón",
+            "logo": "https://www.malagaf7.com/upload/F8/93/y1zkt2nv.png",
+            "us": true
+          },
+          "score": [
+            1,
+            0
+          ],
+          "shootout": null,
+          "url": "https://www.malagaf7.com/tournaments/23/matches/1963"
+        },
+        {
+          "id": 1970,
+          "round": "Jornada 3",
+          "stage": "MÁLAGA ESTE",
+          "knockout": false,
+          "date": "2025-10-20T22:00",
+          "venue": "San Estanislao",
+          "isHome": false,
+          "bye": false,
+          "played": true,
+          "home": {
+            "name": "Rebalae FC",
+            "logo": "https://www.malagaf7.com/upload/22/BF/tpptuff3.png",
+            "us": false
+          },
+          "away": {
+            "name": "Lagarto Limón",
+            "logo": "https://www.malagaf7.com/upload/F8/93/y1zkt2nv.png",
+            "us": true
+          },
+          "score": [
+            10,
+            5
+          ],
+          "shootout": null,
+          "url": "https://www.malagaf7.com/tournaments/23/matches/1970"
+        },
+        {
+          "id": 1981,
+          "round": "Jornada 6",
+          "stage": "MÁLAGA ESTE",
+          "knockout": false,
+          "date": "2025-11-10T22:00",
+          "venue": "San Estanislao",
+          "isHome": true,
+          "bye": false,
+          "played": true,
+          "home": {
+            "name": "Lagarto Limón",
+            "logo": "https://www.malagaf7.com/upload/F8/93/y1zkt2nv.png",
+            "us": true
+          },
+          "away": {
+            "name": "Paleño CF",
+            "logo": "https://www.malagaf7.com/upload/7E/F4/jguk4e4n.png",
+            "us": false
+          },
+          "score": [
+            3,
+            7
+          ],
+          "shootout": null,
+          "url": "https://www.malagaf7.com/tournaments/23/matches/1981"
+        },
+        {
+          "id": 1984,
+          "round": "Jornada 7",
+          "stage": "MÁLAGA ESTE",
+          "knockout": false,
+          "date": "2025-11-19T20:30",
+          "venue": "Campo Nuevo San Ignacio F7",
+          "isHome": false,
+          "bye": false,
+          "played": true,
+          "home": {
+            "name": "Sapino FC",
+            "logo": "https://www.malagaf7.com/upload/D3/BC/v1w2wksy.png",
+            "us": false
+          },
+          "away": {
+            "name": "Lagarto Limón",
+            "logo": "https://www.malagaf7.com/upload/F8/93/y1zkt2nv.png",
+            "us": true
+          },
+          "score": [
+            3,
+            2
+          ],
+          "shootout": null,
+          "url": "https://www.malagaf7.com/tournaments/23/matches/1984"
+        },
+        {
+          "id": 1991,
+          "round": "Jornada 8",
+          "stage": "MÁLAGA ESTE",
+          "knockout": false,
+          "date": "2025-11-26T21:30",
+          "venue": "Campo Nuevo San Ignacio F7",
+          "isHome": true,
+          "bye": false,
+          "played": true,
+          "home": {
+            "name": "Lagarto Limón",
+            "logo": "https://www.malagaf7.com/upload/F8/93/y1zkt2nv.png",
+            "us": true
+          },
+          "away": {
+            "name": "FC Capitale",
+            "logo": "https://www.malagaf7.com/upload/E7/D8/xduphd1c.png",
+            "us": false
+          },
+          "score": [
+            4,
+            4
+          ],
+          "shootout": null,
+          "url": "https://www.malagaf7.com/tournaments/23/matches/1991"
+        },
+        {
+          "id": 1995,
+          "round": "Jornada 9",
+          "stage": "MÁLAGA ESTE",
+          "knockout": false,
+          "date": "2025-12-15T22:00",
+          "venue": "San Estanislao",
+          "isHome": false,
+          "bye": false,
+          "played": true,
+          "home": {
+            "name": "Misyanik FC",
+            "logo": "https://www.malagaf7.com/upload/imagesv2/teams/TeamShield27.png",
+            "us": false
+          },
+          "away": {
+            "name": "Lagarto Limón",
+            "logo": "https://www.malagaf7.com/upload/F8/93/y1zkt2nv.png",
+            "us": true
+          },
+          "score": [
+            3,
+            8
+          ],
+          "shootout": null,
+          "url": "https://www.malagaf7.com/tournaments/23/matches/1995"
+        },
+        {
+          "id": 1967,
+          "round": "Jornada 2",
+          "stage": "MÁLAGA ESTE",
+          "knockout": false,
+          "date": "2026-01-12T22:00",
+          "venue": "San Estanislao",
+          "isHome": true,
+          "bye": false,
+          "played": true,
+          "home": {
+            "name": "Lagarto Limón",
+            "logo": "https://www.malagaf7.com/upload/F8/93/y1zkt2nv.png",
+            "us": true
+          },
+          "away": {
+            "name": "Misyanik FC",
+            "logo": "https://www.malagaf7.com/upload/imagesv2/teams/TeamShield27.png",
+            "us": false
+          },
+          "score": [
+            7,
+            5
+          ],
+          "shootout": null,
+          "url": "https://www.malagaf7.com/tournaments/23/matches/1967"
+        },
+        {
+          "id": 1977,
+          "round": "Jornada 5",
+          "stage": "MÁLAGA ESTE",
+          "knockout": false,
+          "date": "2026-01-19T21:30",
+          "venue": "Campo Nuevo San Ignacio F7",
+          "isHome": false,
+          "bye": false,
+          "played": true,
+          "home": {
+            "name": "Marena FC",
+            "logo": "https://www.malagaf7.com/upload/4E/95/rkpatnak.png",
+            "us": false
+          },
+          "away": {
+            "name": "Lagarto Limón",
+            "logo": "https://www.malagaf7.com/upload/F8/93/y1zkt2nv.png",
+            "us": true
+          },
+          "score": [
+            4,
+            2
+          ],
+          "shootout": null,
+          "url": "https://www.malagaf7.com/tournaments/23/matches/1977"
+        },
+        {
+          "id": 2002,
+          "round": "Jornada 11",
+          "stage": "MÁLAGA ESTE",
+          "knockout": false,
+          "date": "2026-01-26T21:30",
+          "venue": "Campo Nuevo San Ignacio F7",
+          "isHome": false,
+          "bye": false,
+          "played": true,
+          "home": {
+            "name": "Al-Bichihad",
+            "logo": "https://www.malagaf7.com/upload/D1/BB/zyh4wytm.jpg",
+            "us": false
+          },
+          "away": {
+            "name": "Lagarto Limón",
+            "logo": "https://www.malagaf7.com/upload/F8/93/y1zkt2nv.png",
+            "us": true
+          },
+          "score": [
+            5,
+            7
+          ],
+          "shootout": null,
+          "url": "https://www.malagaf7.com/tournaments/23/matches/2002"
+        },
+        {
+          "id": 1974,
+          "round": "Jornada 4",
+          "stage": "MÁLAGA ESTE",
+          "knockout": false,
+          "date": "2026-02-09T22:00",
+          "venue": "San Estanislao",
+          "isHome": true,
+          "bye": false,
+          "played": true,
+          "home": {
+            "name": "Lagarto Limón",
+            "logo": "https://www.malagaf7.com/upload/F8/93/y1zkt2nv.png",
+            "us": true
+          },
+          "away": {
+            "name": "Al-Bichihad",
+            "logo": "https://www.malagaf7.com/upload/D1/BB/zyh4wytm.jpg",
+            "us": false
+          },
+          "score": [
+            8,
+            7
+          ],
+          "shootout": null,
+          "url": "https://www.malagaf7.com/tournaments/23/matches/1974"
+        },
+        {
+          "id": 1998,
+          "round": "Jornada 10",
+          "stage": "MÁLAGA ESTE",
+          "knockout": false,
+          "date": "2026-02-11T20:30",
+          "venue": "Campo Nuevo San Ignacio F7",
+          "isHome": true,
+          "bye": false,
+          "played": true,
+          "home": {
+            "name": "Lagarto Limón",
+            "logo": "https://www.malagaf7.com/upload/F8/93/y1zkt2nv.png",
+            "us": true
+          },
+          "away": {
+            "name": "Rebalae FC",
+            "logo": "https://www.malagaf7.com/upload/22/BF/tpptuff3.png",
+            "us": false
+          },
+          "score": [
+            2,
+            3
+          ],
+          "shootout": null,
+          "url": "https://www.malagaf7.com/tournaments/23/matches/1998"
+        },
+        {
+          "id": 2009,
+          "round": "Jornada 13",
+          "stage": "MÁLAGA ESTE",
+          "knockout": false,
+          "date": "2026-02-18T21:30",
+          "venue": "Campo Nuevo San Ignacio F7",
+          "isHome": false,
+          "bye": false,
+          "played": true,
+          "home": {
+            "name": "Paleño CF",
+            "logo": "https://www.malagaf7.com/upload/7E/F4/jguk4e4n.png",
+            "us": false
+          },
+          "away": {
+            "name": "Lagarto Limón",
+            "logo": "https://www.malagaf7.com/upload/F8/93/y1zkt2nv.png",
+            "us": true
+          },
+          "score": [
+            2,
+            2
+          ],
+          "shootout": null,
+          "url": "https://www.malagaf7.com/tournaments/23/matches/2009"
+        },
+        {
+          "id": 2005,
+          "round": "Jornada 12",
+          "stage": "MÁLAGA ESTE",
+          "knockout": false,
+          "date": "2026-02-23T21:30",
+          "venue": "Campo Nuevo San Ignacio F7",
+          "isHome": true,
+          "bye": false,
+          "played": true,
+          "home": {
+            "name": "Lagarto Limón",
+            "logo": "https://www.malagaf7.com/upload/F8/93/y1zkt2nv.png",
+            "us": true
+          },
+          "away": {
+            "name": "Marena FC",
+            "logo": "https://www.malagaf7.com/upload/4E/95/rkpatnak.png",
+            "us": false
+          },
+          "score": [
+            2,
+            5
+          ],
+          "shootout": null,
+          "url": "https://www.malagaf7.com/tournaments/23/matches/2005"
+        },
+        {
+          "id": 2012,
+          "round": "Jornada 14",
+          "stage": "MÁLAGA ESTE",
+          "knockout": false,
+          "date": "2026-03-09T21:30",
+          "venue": "Campo Nuevo San Ignacio F7",
+          "isHome": true,
+          "bye": false,
+          "played": true,
+          "home": {
+            "name": "Lagarto Limón",
+            "logo": "https://www.malagaf7.com/upload/F8/93/y1zkt2nv.png",
+            "us": true
+          },
+          "away": {
+            "name": "Sapino FC",
+            "logo": "https://www.malagaf7.com/upload/D3/BC/v1w2wksy.png",
+            "us": false
+          },
+          "score": [
+            2,
+            4
+          ],
+          "shootout": null,
+          "url": "https://www.malagaf7.com/tournaments/23/matches/2012"
+        }
+      ]
+    },
+    {
+      "id": 22,
+      "idSeason": 5,
+      "name": "Supercopa Stocken Capital",
+      "active": false,
+      "url": "https://www.malagaf7.com/tournaments/22",
+      "teamUrl": "https://www.malagaf7.com/tournaments/22/teams/208",
+      "teamId": 208,
+      "record": {
+        "pj": 7,
+        "g": 3,
+        "e": 0,
+        "p": 4,
+        "gf": 18,
+        "gc": 30
+      },
+      "tables": [
+        {
+          "stage": "FASE DE GRUPOS |MÁLAGA ESTE",
+          "group": "MÁLAGA ESTE",
+          "zones": [
+            {
+              "from": 1,
+              "to": 4,
+              "title": "Semifinales",
+              "color": "#a4dd00"
+            }
+          ],
+          "rows": [
+            {
+              "pos": 1,
+              "team": "Marena FC",
+              "logo": "https://www.malagaf7.com/upload/4E/95/rkpatnak.png",
+              "us": false,
+              "pj": 6,
+              "g": 6,
+              "e": 0,
+              "p": 0,
+              "gf": 31,
+              "gc": 12,
+              "dg": 19,
+              "pts": 18
+            },
+            {
+              "pos": 2,
+              "team": "404 El Palo CF",
+              "logo": "https://www.malagaf7.com/upload/4A/A2/np5jbob1.png",
+              "us": false,
+              "pj": 6,
+              "g": 5,
+              "e": 0,
+              "p": 1,
+              "gf": 25,
+              "gc": 25,
+              "dg": 0,
+              "pts": 15
+            },
+            {
+              "pos": 3,
+              "team": "Lagarto Limón",
+              "logo": "https://www.malagaf7.com/upload/F8/93/y1zkt2nv.png",
+              "us": true,
+              "pj": 6,
+              "g": 4,
+              "e": 0,
+              "p": 2,
+              "gf": 13,
+              "gc": 22,
+              "dg": -9,
+              "pts": 12
+            },
+            {
+              "pos": 4,
+              "team": "FC Capitale",
+              "logo": "https://www.malagaf7.com/upload/E7/D8/xduphd1c.png",
+              "us": false,
+              "pj": 6,
+              "g": 3,
+              "e": 0,
+              "p": 3,
+              "gf": 16,
+              "gc": 23,
+              "dg": -7,
+              "pts": 9
+            },
+            {
+              "pos": 5,
+              "team": "Yeguada Borja Sousa",
+              "logo": "https://www.malagaf7.com/upload/32/8B/pfnj4yzg.png",
+              "us": false,
+              "pj": 6,
+              "g": 2,
+              "e": 0,
+              "p": 4,
+              "gf": 8,
+              "gc": 17,
+              "dg": -9,
+              "pts": 3
+            },
+            {
+              "pos": 6,
+              "team": "Rebalae FC",
+              "logo": "https://www.malagaf7.com/upload/22/BF/tpptuff3.png",
+              "us": false,
+              "pj": 6,
+              "g": 0,
+              "e": 1,
+              "p": 5,
+              "gf": 23,
+              "gc": 14,
+              "dg": 9,
+              "pts": 0
+            },
+            {
+              "pos": 7,
+              "team": "Vodka Juniors",
+              "logo": "https://www.malagaf7.com/upload/76/85/wdqfiuff.png",
+              "us": false,
+              "pj": 6,
+              "g": 0,
+              "e": 1,
+              "p": 5,
+              "gf": 10,
+              "gc": 13,
+              "dg": -3,
+              "pts": 0
+            }
+          ]
+        }
+      ],
+      "matches": [
+        {
+          "id": 1837,
+          "round": "Jornada 3",
+          "stage": "FASE DE GRUPOS |MÁLAGA ESTE",
+          "knockout": false,
+          "date": "2025-03-24T20:30",
+          "venue": null,
+          "isHome": false,
+          "bye": false,
+          "played": true,
+          "home": {
+            "name": "Vodka Juniors",
+            "logo": "https://www.malagaf7.com/upload/76/85/wdqfiuff.png",
+            "us": false
+          },
+          "away": {
+            "name": "Lagarto Limón",
+            "logo": "https://www.malagaf7.com/upload/F8/93/y1zkt2nv.png",
+            "us": true
+          },
+          "score": [
+            4,
+            1
+          ],
+          "shootout": null,
+          "url": "https://www.malagaf7.com/tournaments/22/matches/1837"
+        },
+        {
+          "id": 1840,
+          "round": "Jornada 4",
+          "stage": "FASE DE GRUPOS |MÁLAGA ESTE",
+          "knockout": false,
+          "date": "2025-04-01T21:30",
+          "venue": null,
+          "isHome": true,
+          "bye": false,
+          "played": true,
+          "home": {
+            "name": "Lagarto Limón",
+            "logo": "https://www.malagaf7.com/upload/F8/93/y1zkt2nv.png",
+            "us": true
+          },
+          "away": {
+            "name": "404 El Palo CF",
+            "logo": "https://www.malagaf7.com/upload/4A/A2/np5jbob1.png",
+            "us": false
+          },
+          "score": [
+            3,
+            4
+          ],
+          "shootout": null,
+          "url": "https://www.malagaf7.com/tournaments/22/matches/1840"
+        },
+        {
+          "id": 1833,
+          "round": "Jornada 2",
+          "stage": "FASE DE GRUPOS |MÁLAGA ESTE",
+          "knockout": false,
+          "date": "2025-04-21T21:30",
+          "venue": null,
+          "isHome": true,
+          "bye": false,
+          "played": true,
+          "home": {
+            "name": "Lagarto Limón",
+            "logo": "https://www.malagaf7.com/upload/F8/93/y1zkt2nv.png",
+            "us": true
+          },
+          "away": {
+            "name": "Marena FC",
+            "logo": "https://www.malagaf7.com/upload/4E/95/rkpatnak.png",
+            "us": false
+          },
+          "score": [
+            0,
+            11
+          ],
+          "shootout": null,
+          "url": "https://www.malagaf7.com/tournaments/22/matches/1833"
+        },
+        {
+          "id": 1851,
+          "round": "Jornada 7",
+          "stage": "FASE DE GRUPOS |MÁLAGA ESTE",
+          "knockout": false,
+          "date": "2025-05-05T20:30",
+          "venue": null,
+          "isHome": false,
+          "bye": false,
+          "played": true,
+          "home": {
+            "name": "Yeguada Borja Sousa",
+            "logo": "https://www.malagaf7.com/upload/32/8B/pfnj4yzg.png",
+            "us": false
+          },
+          "away": {
+            "name": "Lagarto Limón",
+            "logo": "https://www.malagaf7.com/upload/F8/93/y1zkt2nv.png",
+            "us": true
+          },
+          "score": [
+            1,
+            3
+          ],
+          "shootout": null,
+          "url": "https://www.malagaf7.com/tournaments/22/matches/1851"
+        },
+        {
+          "id": 1844,
+          "round": "Jornada 5",
+          "stage": "FASE DE GRUPOS |MÁLAGA ESTE",
+          "knockout": false,
+          "date": "2025-05-12T20:30",
+          "venue": "Campo BEONE",
+          "isHome": false,
+          "bye": false,
+          "played": true,
+          "home": {
+            "name": "FC Capitale",
+            "logo": "https://www.malagaf7.com/upload/E7/D8/xduphd1c.png",
+            "us": false
+          },
+          "away": {
+            "name": "Lagarto Limón",
+            "logo": "https://www.malagaf7.com/upload/F8/93/y1zkt2nv.png",
+            "us": true
+          },
+          "score": [
+            2,
+            3
+          ],
+          "shootout": null,
+          "url": "https://www.malagaf7.com/tournaments/22/matches/1844"
+        },
+        {
+          "id": 1861,
+          "round": "Semifinales",
+          "stage": "FASE FINAL | MÁLAGA ESTE",
+          "knockout": true,
+          "date": "2025-05-19T20:30",
+          "venue": "Campo BEONE",
+          "isHome": false,
+          "bye": false,
+          "played": true,
+          "home": {
+            "name": "404 El Palo CF",
+            "logo": "https://www.malagaf7.com/upload/4A/A2/np5jbob1.png",
+            "us": false
+          },
+          "away": {
+            "name": "Lagarto Limón",
+            "logo": "https://www.malagaf7.com/upload/F8/93/y1zkt2nv.png",
+            "us": true
+          },
+          "score": [
+            8,
+            5
+          ],
+          "shootout": null,
+          "url": "https://www.malagaf7.com/tournaments/22/matches/1861"
+        },
+        {
+          "id": 1826,
+          "round": "Jornada 1",
+          "stage": "FASE DE GRUPOS |MÁLAGA ESTE",
+          "knockout": false,
+          "date": null,
+          "venue": null,
+          "isHome": false,
+          "bye": true,
+          "played": false,
+          "home": {
+            "name": "Descansa",
+            "logo": null,
+            "us": false
+          },
+          "away": {
+            "name": "Lagarto Limón",
+            "logo": "https://www.malagaf7.com/upload/F8/93/y1zkt2nv.png",
+            "us": true
+          },
+          "score": null,
+          "shootout": null,
+          "url": "https://www.malagaf7.com/tournaments/22/matches/1826"
+        },
+        {
+          "id": 1847,
+          "round": "Jornada 6",
+          "stage": "FASE DE GRUPOS |MÁLAGA ESTE",
+          "knockout": false,
+          "date": null,
+          "venue": null,
+          "isHome": true,
+          "bye": false,
+          "played": true,
+          "home": {
+            "name": "Lagarto Limón",
+            "logo": "https://www.malagaf7.com/upload/F8/93/y1zkt2nv.png",
+            "us": true
+          },
+          "away": {
+            "name": "Rebalae FC",
+            "logo": "https://www.malagaf7.com/upload/22/BF/tpptuff3.png",
+            "us": false
+          },
+          "score": [
+            3,
+            0
+          ],
+          "shootout": null,
+          "url": "https://www.malagaf7.com/tournaments/22/matches/1847"
+        }
+      ]
+    },
+    {
+      "id": 21,
+      "idSeason": 5,
+      "name": "Superliga Stocken Capital 24-25",
+      "active": false,
+      "url": "https://www.malagaf7.com/tournaments/21",
+      "teamUrl": "https://www.malagaf7.com/tournaments/21/teams/188",
+      "teamId": 188,
+      "record": {
+        "pj": 15,
+        "g": 2,
+        "e": 1,
+        "p": 12,
+        "gf": 27,
+        "gc": 62
+      },
+      "tables": [
+        {
+          "stage": "FASE APERTURA",
+          "group": "MÁLAGA ESTE",
+          "zones": [],
+          "rows": [
+            {
+              "pos": 1,
+              "team": "Rebalae FC",
+              "logo": "https://www.malagaf7.com/upload/22/BF/tpptuff3.png",
+              "us": false,
+              "pj": 14,
+              "g": 13,
+              "e": 1,
+              "p": 0,
+              "gf": 50,
+              "gc": 23,
+              "dg": 27,
+              "pts": 40
+            },
+            {
+              "pos": 2,
+              "team": "Marena FC",
+              "logo": "https://www.malagaf7.com/upload/4E/95/rkpatnak.png",
+              "us": false,
+              "pj": 14,
+              "g": 9,
+              "e": 3,
+              "p": 2,
+              "gf": 64,
+              "gc": 39,
+              "dg": 25,
+              "pts": 30
+            },
+            {
+              "pos": 3,
+              "team": "404 El Palo CF",
+              "logo": "https://www.malagaf7.com/upload/4A/A2/np5jbob1.png",
+              "us": false,
+              "pj": 14,
+              "g": 8,
+              "e": 1,
+              "p": 5,
+              "gf": 53,
+              "gc": 42,
+              "dg": 11,
+              "pts": 25
+            },
+            {
+              "pos": 4,
+              "team": "Vodka Juniors",
+              "logo": "https://www.malagaf7.com/upload/76/85/wdqfiuff.png",
+              "us": false,
+              "pj": 14,
+              "g": 8,
+              "e": 1,
+              "p": 5,
+              "gf": 59,
+              "gc": 36,
+              "dg": 23,
+              "pts": 25
+            },
+            {
+              "pos": 5,
+              "team": "Sporting Rincón",
+              "logo": "https://www.malagaf7.com/upload/7C/C0/ddacwwjh.png",
+              "us": false,
+              "pj": 14,
+              "g": 8,
+              "e": 1,
+              "p": 5,
+              "gf": 47,
+              "gc": 36,
+              "dg": 11,
+              "pts": 25
+            },
+            {
+              "pos": 6,
+              "team": "Lagarto Limón",
+              "logo": "https://www.malagaf7.com/upload/F8/93/y1zkt2nv.png",
+              "us": true,
+              "pj": 14,
+              "g": 2,
+              "e": 1,
+              "p": 11,
+              "gf": 26,
+              "gc": 58,
+              "dg": -32,
+              "pts": 7
+            },
+            {
+              "pos": 7,
+              "team": "Yeguada Borja Sousa",
+              "logo": "https://www.malagaf7.com/upload/32/8B/pfnj4yzg.png",
+              "us": false,
+              "pj": 14,
+              "g": 3,
+              "e": 0,
+              "p": 11,
+              "gf": 25,
+              "gc": 55,
+              "dg": -30,
+              "pts": 6
+            },
+            {
+              "pos": 8,
+              "team": "Selección Española sub 40",
+              "logo": "https://www.malagaf7.com/upload/B8/79/abqnon0d.png",
+              "us": false,
+              "pj": 14,
+              "g": 1,
+              "e": 0,
+              "p": 13,
+              "gf": 20,
+              "gc": 55,
+              "dg": -35,
+              "pts": -3
+            }
+          ]
+        }
+      ],
+      "matches": [
+        {
+          "id": 1702,
+          "round": "Jornada 1",
+          "stage": "FASE APERTURA",
+          "knockout": false,
+          "date": "2024-10-07T21:30",
+          "venue": null,
+          "isHome": false,
+          "bye": false,
+          "played": true,
+          "home": {
+            "name": "Yeguada Borja Sousa",
+            "logo": "https://www.malagaf7.com/upload/32/8B/pfnj4yzg.png",
+            "us": false
+          },
+          "away": {
+            "name": "Lagarto Limón",
+            "logo": "https://www.malagaf7.com/upload/F8/93/y1zkt2nv.png",
+            "us": true
+          },
+          "score": [
+            6,
+            1
+          ],
+          "shootout": null,
+          "url": "https://www.malagaf7.com/tournaments/21/matches/1702"
+        },
+        {
+          "id": 1706,
+          "round": "Jornada 2",
+          "stage": "FASE APERTURA",
+          "knockout": false,
+          "date": "2024-10-14T21:30",
+          "venue": null,
+          "isHome": true,
+          "bye": false,
+          "played": true,
+          "home": {
+            "name": "Lagarto Limón",
+            "logo": "https://www.malagaf7.com/upload/F8/93/y1zkt2nv.png",
+            "us": true
+          },
+          "away": {
+            "name": "Rebalae FC",
+            "logo": "https://www.malagaf7.com/upload/22/BF/tpptuff3.png",
+            "us": false
+          },
+          "score": [
+            2,
+            4
+          ],
+          "shootout": null,
+          "url": "https://www.malagaf7.com/tournaments/21/matches/1706"
+        },
+        {
+          "id": 1709,
+          "round": "Jornada 3",
+          "stage": "FASE APERTURA",
+          "knockout": false,
+          "date": "2024-10-22T20:30",
+          "venue": null,
+          "isHome": false,
+          "bye": false,
+          "played": true,
+          "home": {
+            "name": "Sporting Rincón",
+            "logo": "https://www.malagaf7.com/upload/7C/C0/ddacwwjh.png",
+            "us": false
+          },
+          "away": {
+            "name": "Lagarto Limón",
+            "logo": "https://www.malagaf7.com/upload/F8/93/y1zkt2nv.png",
+            "us": true
+          },
+          "score": [
+            5,
+            1
+          ],
+          "shootout": null,
+          "url": "https://www.malagaf7.com/tournaments/21/matches/1709"
+        },
+        {
+          "id": 1713,
+          "round": "Jornada 4",
+          "stage": "FASE APERTURA",
+          "knockout": false,
+          "date": "2024-10-28T21:30",
+          "venue": null,
+          "isHome": true,
+          "bye": false,
+          "played": true,
+          "home": {
+            "name": "Lagarto Limón",
+            "logo": "https://www.malagaf7.com/upload/F8/93/y1zkt2nv.png",
+            "us": true
+          },
+          "away": {
+            "name": "404 El Palo CF",
+            "logo": "https://www.malagaf7.com/upload/4A/A2/np5jbob1.png",
+            "us": false
+          },
+          "score": [
+            2,
+            5
+          ],
+          "shootout": null,
+          "url": "https://www.malagaf7.com/tournaments/21/matches/1713"
+        },
+        {
+          "id": 1716,
+          "round": "Jornada 5",
+          "stage": "FASE APERTURA",
+          "knockout": false,
+          "date": "2024-11-04T21:30",
+          "venue": null,
+          "isHome": false,
+          "bye": false,
+          "played": true,
+          "home": {
+            "name": "Marena FC",
+            "logo": "https://www.malagaf7.com/upload/4E/95/rkpatnak.png",
+            "us": false
+          },
+          "away": {
+            "name": "Lagarto Limón",
+            "logo": "https://www.malagaf7.com/upload/F8/93/y1zkt2nv.png",
+            "us": true
+          },
+          "score": [
+            7,
+            3
+          ],
+          "shootout": null,
+          "url": "https://www.malagaf7.com/tournaments/21/matches/1716"
+        },
+        {
+          "id": 1720,
+          "round": "Jornada 6",
+          "stage": "FASE APERTURA",
+          "knockout": false,
+          "date": "2024-11-11T21:30",
+          "venue": null,
+          "isHome": true,
+          "bye": false,
+          "played": true,
+          "home": {
+            "name": "Lagarto Limón",
+            "logo": "https://www.malagaf7.com/upload/F8/93/y1zkt2nv.png",
+            "us": true
+          },
+          "away": {
+            "name": "Selección Española sub 40",
+            "logo": "https://www.malagaf7.com/upload/B8/79/abqnon0d.png",
+            "us": false
+          },
+          "score": [
+            3,
+            1
+          ],
+          "shootout": null,
+          "url": "https://www.malagaf7.com/tournaments/21/matches/1720"
+        },
+        {
+          "id": 1730,
+          "round": "Jornada 8",
+          "stage": "FASE APERTURA",
+          "knockout": false,
+          "date": "2024-11-25T21:30",
+          "venue": null,
+          "isHome": true,
+          "bye": false,
+          "played": true,
+          "home": {
+            "name": "Lagarto Limón",
+            "logo": "https://www.malagaf7.com/upload/F8/93/y1zkt2nv.png",
+            "us": true
+          },
+          "away": {
+            "name": "Yeguada Borja Sousa",
+            "logo": "https://www.malagaf7.com/upload/32/8B/pfnj4yzg.png",
+            "us": false
+          },
+          "score": [
+            0,
+            1
+          ],
+          "shootout": null,
+          "url": "https://www.malagaf7.com/tournaments/21/matches/1730"
+        },
+        {
+          "id": 1723,
+          "round": "Jornada 7",
+          "stage": "FASE APERTURA",
+          "knockout": false,
+          "date": "2024-12-02T21:30",
+          "venue": null,
+          "isHome": false,
+          "bye": false,
+          "played": true,
+          "home": {
+            "name": "Vodka Juniors",
+            "logo": "https://www.malagaf7.com/upload/76/85/wdqfiuff.png",
+            "us": false
+          },
+          "away": {
+            "name": "Lagarto Limón",
+            "logo": "https://www.malagaf7.com/upload/F8/93/y1zkt2nv.png",
+            "us": true
+          },
+          "score": [
+            8,
+            2
+          ],
+          "shootout": null,
+          "url": "https://www.malagaf7.com/tournaments/21/matches/1723"
+        },
+        {
+          "id": 1737,
+          "round": "Jornada 10",
+          "stage": "FASE APERTURA",
+          "knockout": false,
+          "date": "2024-12-17T20:30",
+          "venue": null,
+          "isHome": true,
+          "bye": false,
+          "played": true,
+          "home": {
+            "name": "Lagarto Limón",
+            "logo": "https://www.malagaf7.com/upload/F8/93/y1zkt2nv.png",
+            "us": true
+          },
+          "away": {
+            "name": "Sporting Rincón",
+            "logo": "https://www.malagaf7.com/upload/7C/C0/ddacwwjh.png",
+            "us": false
+          },
+          "score": [
+            1,
+            4
+          ],
+          "shootout": null,
+          "url": "https://www.malagaf7.com/tournaments/21/matches/1737"
+        },
+        {
+          "id": 1734,
+          "round": "Jornada 9",
+          "stage": "FASE APERTURA",
+          "knockout": false,
+          "date": "2025-01-14T20:30",
+          "venue": null,
+          "isHome": false,
+          "bye": false,
+          "played": true,
+          "home": {
+            "name": "Rebalae FC",
+            "logo": "https://www.malagaf7.com/upload/22/BF/tpptuff3.png",
+            "us": false
+          },
+          "away": {
+            "name": "Lagarto Limón",
+            "logo": "https://www.malagaf7.com/upload/F8/93/y1zkt2nv.png",
+            "us": true
+          },
+          "score": [
+            2,
+            0
+          ],
+          "shootout": null,
+          "url": "https://www.malagaf7.com/tournaments/21/matches/1734"
+        },
+        {
+          "id": 1741,
+          "round": "Jornada 11",
+          "stage": "FASE APERTURA",
+          "knockout": false,
+          "date": "2025-01-23T21:30",
+          "venue": null,
+          "isHome": false,
+          "bye": false,
+          "played": true,
+          "home": {
+            "name": "404 El Palo CF",
+            "logo": "https://www.malagaf7.com/upload/4A/A2/np5jbob1.png",
+            "us": false
+          },
+          "away": {
+            "name": "Lagarto Limón",
+            "logo": "https://www.malagaf7.com/upload/F8/93/y1zkt2nv.png",
+            "us": true
+          },
+          "score": [
+            6,
+            3
+          ],
+          "shootout": null,
+          "url": "https://www.malagaf7.com/tournaments/21/matches/1741"
+        },
+        {
+          "id": 1744,
+          "round": "Jornada 12",
+          "stage": "FASE APERTURA",
+          "knockout": false,
+          "date": "2025-01-28T20:30",
+          "venue": null,
+          "isHome": true,
+          "bye": false,
+          "played": true,
+          "home": {
+            "name": "Lagarto Limón",
+            "logo": "https://www.malagaf7.com/upload/F8/93/y1zkt2nv.png",
+            "us": true
+          },
+          "away": {
+            "name": "Marena FC",
+            "logo": "https://www.malagaf7.com/upload/4E/95/rkpatnak.png",
+            "us": false
+          },
+          "score": [
+            3,
+            3
+          ],
+          "shootout": null,
+          "url": "https://www.malagaf7.com/tournaments/21/matches/1744"
+        },
+        {
+          "id": 1751,
+          "round": "Jornada 14",
+          "stage": "FASE APERTURA",
+          "knockout": false,
+          "date": "2025-03-03T20:30",
+          "venue": "Campo Nuevo San Ignacio F11",
+          "isHome": true,
+          "bye": false,
+          "played": true,
+          "home": {
+            "name": "Lagarto Limón",
+            "logo": "https://www.malagaf7.com/upload/F8/93/y1zkt2nv.png",
+            "us": true
+          },
+          "away": {
+            "name": "Vodka Juniors",
+            "logo": "https://www.malagaf7.com/upload/76/85/wdqfiuff.png",
+            "us": false
+          },
+          "score": [
+            2,
+            6
+          ],
+          "shootout": null,
+          "url": "https://www.malagaf7.com/tournaments/21/matches/1751"
+        },
+        {
+          "id": 1854,
+          "round": "Cuartos de final",
+          "stage": "PLAYOFFS",
+          "knockout": true,
+          "date": "2025-04-29T21:30",
+          "venue": "Campo Nuevo San Ignacio F11",
+          "isHome": false,
+          "bye": false,
+          "played": true,
+          "home": {
+            "name": "OrtegaTwins FC",
+            "logo": "https://www.malagaf7.com/upload/89/20/wfnc40el.png",
+            "us": false
+          },
+          "away": {
+            "name": "Lagarto Limón",
+            "logo": "https://www.malagaf7.com/upload/F8/93/y1zkt2nv.png",
+            "us": true
+          },
+          "score": [
+            4,
+            1
+          ],
+          "shootout": null,
+          "url": "https://www.malagaf7.com/tournaments/21/matches/1854"
+        },
+        {
+          "id": 1748,
+          "round": "Jornada 13",
+          "stage": "FASE APERTURA",
+          "knockout": false,
+          "date": null,
+          "venue": null,
+          "isHome": false,
+          "bye": false,
+          "played": true,
+          "home": {
+            "name": "Selección Española sub 40",
+            "logo": "https://www.malagaf7.com/upload/B8/79/abqnon0d.png",
+            "us": false
+          },
+          "away": {
+            "name": "Lagarto Limón",
+            "logo": "https://www.malagaf7.com/upload/F8/93/y1zkt2nv.png",
+            "us": true
+          },
+          "score": [
+            0,
+            3
+          ],
+          "shootout": null,
+          "url": "https://www.malagaf7.com/tournaments/21/matches/1748"
+        }
+      ]
+    },
+    {
+      "id": 20,
+      "idSeason": 4,
+      "name": "Liga Primavera Stocken Capital 2024",
+      "active": false,
+      "url": "https://www.malagaf7.com/tournaments/20",
+      "teamUrl": "https://www.malagaf7.com/tournaments/20/teams/177",
+      "teamId": 177,
+      "record": {
+        "pj": 6,
+        "g": 0,
+        "e": 0,
+        "p": 6,
+        "gf": 9,
+        "gc": 32
+      },
+      "tables": [
+        {
+          "stage": "FASE LIGA",
+          "group": "LIGUILLA",
+          "zones": [
+            {
+              "from": 1,
+              "to": 4,
+              "title": "SEMIFINALES",
+              "color": "#194d33"
+            }
+          ],
+          "rows": [
+            {
+              "pos": 1,
+              "team": "Vodka Juniors",
+              "logo": "https://www.malagaf7.com/upload/76/85/wdqfiuff.png",
+              "us": false,
+              "pj": 6,
+              "g": 4,
+              "e": 0,
+              "p": 2,
+              "gf": 22,
+              "gc": 10,
+              "dg": 12,
+              "pts": 12
+            },
+            {
+              "pos": 2,
+              "team": "Marena FC",
+              "logo": "https://www.malagaf7.com/upload/D0/6D/fl3lrdfg.jpg",
+              "us": false,
+              "pj": 6,
+              "g": 3,
+              "e": 2,
+              "p": 1,
+              "gf": 28,
+              "gc": 23,
+              "dg": 5,
+              "pts": 11
+            },
+            {
+              "pos": 3,
+              "team": "West Hamón",
+              "logo": "https://www.malagaf7.com/upload/6E/42/4y5bxdwr.jpg",
+              "us": false,
+              "pj": 6,
+              "g": 3,
+              "e": 1,
+              "p": 2,
+              "gf": 25,
+              "gc": 21,
+              "dg": 4,
+              "pts": 10
+            },
+            {
+              "pos": 4,
+              "team": "Inter Palo",
+              "logo": "https://www.malagaf7.com/upload/C6/18/pbfjplyl.jpg",
+              "us": false,
+              "pj": 6,
+              "g": 3,
+              "e": 1,
+              "p": 2,
+              "gf": 20,
+              "gc": 17,
+              "dg": 3,
+              "pts": 10
+            },
+            {
+              "pos": 5,
+              "team": "Yeguada Borja Sousa",
+              "logo": "https://www.malagaf7.com/upload/32/8B/pfnj4yzg.png",
+              "us": false,
+              "pj": 6,
+              "g": 2,
+              "e": 2,
+              "p": 2,
+              "gf": 21,
+              "gc": 22,
+              "dg": -1,
+              "pts": 8
+            },
+            {
+              "pos": 6,
+              "team": "FC Capitale",
+              "logo": "https://www.malagaf7.com/upload/E7/D8/xduphd1c.png",
+              "us": false,
+              "pj": 6,
+              "g": 2,
+              "e": 2,
+              "p": 2,
+              "gf": 16,
+              "gc": 16,
+              "dg": 0,
+              "pts": 6
+            },
+            {
+              "pos": 7,
+              "team": "Lagarto Limón",
+              "logo": "https://www.malagaf7.com/upload/AC/B5/5csc5ttm.jpg",
+              "us": true,
+              "pj": 6,
+              "g": 0,
+              "e": 0,
+              "p": 6,
+              "gf": 9,
+              "gc": 32,
+              "dg": -23,
+              "pts": 0
+            }
+          ]
+        }
+      ],
+      "matches": [
+        {
+          "id": 1569,
+          "round": "Jornada 1",
+          "stage": "FASE LIGA",
+          "knockout": false,
+          "date": "2024-04-29T21:30",
+          "venue": "Campo Nuevo San Ignacio F11",
+          "isHome": false,
+          "bye": false,
+          "played": true,
+          "home": {
+            "name": "Inter Palo",
+            "logo": "https://www.malagaf7.com/upload/C6/18/pbfjplyl.jpg",
+            "us": false
+          },
+          "away": {
+            "name": "Lagarto Limón",
+            "logo": "https://www.malagaf7.com/upload/AC/B5/5csc5ttm.jpg",
+            "us": true
+          },
+          "score": [
+            6,
+            1
+          ],
+          "shootout": null,
+          "url": "https://www.malagaf7.com/tournaments/20/matches/1569"
+        },
+        {
+          "id": 1581,
+          "round": "Jornada 4",
+          "stage": "FASE LIGA",
+          "knockout": false,
+          "date": "2024-05-23T21:00",
+          "venue": "Campo Nuevo San Ignacio F11",
+          "isHome": false,
+          "bye": false,
+          "played": true,
+          "home": {
+            "name": "FC Capitale",
+            "logo": "https://www.malagaf7.com/upload/E7/D8/xduphd1c.png",
+            "us": false
+          },
+          "away": {
+            "name": "Lagarto Limón",
+            "logo": "https://www.malagaf7.com/upload/AC/B5/5csc5ttm.jpg",
+            "us": true
+          },
+          "score": [
+            5,
+            1
+          ],
+          "shootout": null,
+          "url": "https://www.malagaf7.com/tournaments/20/matches/1581"
+        },
+        {
+          "id": 1577,
+          "round": "Jornada 3",
+          "stage": "FASE LIGA",
+          "knockout": false,
+          "date": "2024-05-27T21:30",
+          "venue": "Campo Nuevo San Ignacio F11",
+          "isHome": true,
+          "bye": false,
+          "played": true,
+          "home": {
+            "name": "Lagarto Limón",
+            "logo": "https://www.malagaf7.com/upload/AC/B5/5csc5ttm.jpg",
+            "us": true
+          },
+          "away": {
+            "name": "Vodka Juniors",
+            "logo": "https://www.malagaf7.com/upload/76/85/wdqfiuff.png",
+            "us": false
+          },
+          "score": [
+            1,
+            6
+          ],
+          "shootout": null,
+          "url": "https://www.malagaf7.com/tournaments/20/matches/1577"
+        },
+        {
+          "id": 1586,
+          "round": "Jornada 5",
+          "stage": "FASE LIGA",
+          "knockout": false,
+          "date": "2024-06-06T21:00",
+          "venue": "Campo Nuevo San Ignacio F11",
+          "isHome": true,
+          "bye": false,
+          "played": true,
+          "home": {
+            "name": "Lagarto Limón",
+            "logo": "https://www.malagaf7.com/upload/AC/B5/5csc5ttm.jpg",
+            "us": true
+          },
+          "away": {
+            "name": "Yeguada Borja Sousa",
+            "logo": "https://www.malagaf7.com/upload/32/8B/pfnj4yzg.png",
+            "us": false
+          },
+          "score": [
+            1,
+            3
+          ],
+          "shootout": null,
+          "url": "https://www.malagaf7.com/tournaments/20/matches/1586"
+        },
+        {
+          "id": 1590,
+          "round": "Jornada 6",
+          "stage": "FASE LIGA",
+          "knockout": false,
+          "date": "2024-06-10T21:30",
+          "venue": "Campo Nuevo San Ignacio F11",
+          "isHome": false,
+          "bye": false,
+          "played": true,
+          "home": {
+            "name": "Marena FC",
+            "logo": "https://www.malagaf7.com/upload/D0/6D/fl3lrdfg.jpg",
+            "us": false
+          },
+          "away": {
+            "name": "Lagarto Limón",
+            "logo": "https://www.malagaf7.com/upload/AC/B5/5csc5ttm.jpg",
+            "us": true
+          },
+          "score": [
+            8,
+            3
+          ],
+          "shootout": null,
+          "url": "https://www.malagaf7.com/tournaments/20/matches/1590"
+        },
+        {
+          "id": 1595,
+          "round": "Jornada 7",
+          "stage": "FASE LIGA",
+          "knockout": false,
+          "date": "2024-06-27T22:00",
+          "venue": "Campo Nuevo San Ignacio F11",
+          "isHome": true,
+          "bye": false,
+          "played": true,
+          "home": {
+            "name": "Lagarto Limón",
+            "logo": "https://www.malagaf7.com/upload/AC/B5/5csc5ttm.jpg",
+            "us": true
+          },
+          "away": {
+            "name": "West Hamón",
+            "logo": "https://www.malagaf7.com/upload/6E/42/4y5bxdwr.jpg",
+            "us": false
+          },
+          "score": [
+            2,
+            4
+          ],
+          "shootout": null,
+          "url": "https://www.malagaf7.com/tournaments/20/matches/1595"
+        },
+        {
+          "id": 1572,
+          "round": "Jornada 2",
+          "stage": "FASE LIGA",
+          "knockout": false,
+          "date": null,
+          "venue": "Campo Nuevo San Ignacio F7",
+          "isHome": true,
+          "bye": true,
+          "played": false,
+          "home": {
+            "name": "Lagarto Limón",
+            "logo": "https://www.malagaf7.com/upload/AC/B5/5csc5ttm.jpg",
+            "us": true
+          },
+          "away": {
+            "name": "Descansa",
+            "logo": null,
+            "us": false
+          },
+          "score": null,
+          "shootout": null,
+          "url": "https://www.malagaf7.com/tournaments/20/matches/1572"
+        }
+      ]
+    }
+  ]
+}

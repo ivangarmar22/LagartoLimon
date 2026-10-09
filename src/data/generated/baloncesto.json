@@ -1,0 +1,302 @@
+{
+  "updatedAt": "2026-10-09T11:19:41.829Z",
+  "source": {
+    "name": "Liga AFADE",
+    "url": "https://ligaafade.es/resultados?deporte=6"
+  },
+  "competitions": [
+    {
+      "id": "2026",
+      "name": "Liga AFADE",
+      "category": "Senior Masculino",
+      "stage": "Fase Previa",
+      "group": "Grupo C",
+      "url": "https://ligaafade.es/resultados?deporte=6",
+      "record": {
+        "pj": 0,
+        "g": 0,
+        "e": 0,
+        "p": 0,
+        "gf": 0,
+        "gc": 0
+      },
+      "tables": [
+        {
+          "stage": "Fase Previa",
+          "group": "Grupo C",
+          "zones": [],
+          "rows": [
+            {
+              "pos": 1,
+              "team": "La EME Club",
+              "logo": "https://ligaafade.es/uploads/colegio/f05ccc02267a74c6be184415de830fa1_120x120.jpg",
+              "us": false,
+              "pj": 0,
+              "g": 0,
+              "e": 0,
+              "p": 0,
+              "gf": 0,
+              "gc": 0,
+              "dg": 0,
+              "pts": 0
+            },
+            {
+              "pos": 2,
+              "team": "Lagarto Limón CB",
+              "logo": "https://ligaafade.es/uploads/colegio/7372c23b05e492a259231c44b4341947_120x120.png",
+              "us": true,
+              "pj": 0,
+              "g": 0,
+              "e": 0,
+              "p": 0,
+              "gf": 0,
+              "gc": 0,
+              "dg": 0,
+              "pts": 0
+            },
+            {
+              "pos": 3,
+              "team": "El Divino Pastor",
+              "logo": "https://ligaafade.es/uploads/colegio/3099075cb6e4b5b20615a5b1ad47588e_120x120.jpg",
+              "us": false,
+              "pj": 0,
+              "g": 0,
+              "e": 0,
+              "p": 0,
+              "gf": 0,
+              "gc": 0,
+              "dg": 0,
+              "pts": 0
+            },
+            {
+              "pos": 4,
+              "team": "Ciudad de Melilla",
+              "logo": "https://ligaafade.es/uploads/colegio/7b993e21d14ae7b876c07df1a3a3f55e_120x120.png",
+              "us": false,
+              "pj": 0,
+              "g": 0,
+              "e": 0,
+              "p": 0,
+              "gf": 0,
+              "gc": 0,
+              "dg": 0,
+              "pts": 0
+            },
+            {
+              "pos": 5,
+              "team": "CB Julián \"Chico\"",
+              "logo": "https://ligaafade.es/uploads/colegio/e3d7a0ecc0aceb4ec5caf34a354d122f_120x120.jpg",
+              "us": false,
+              "pj": 0,
+              "g": 0,
+              "e": 0,
+              "p": 0,
+              "gf": 0,
+              "gc": 0,
+              "dg": 0,
+              "pts": 0
+            },
+            {
+              "pos": 6,
+              "team": "Puerta Oscura C",
+              "logo": "https://ligaafade.es/uploads/colegio/744e7b306e595e6da9f5255663836dc8_120x120.png",
+              "us": false,
+              "pj": 0,
+              "g": 0,
+              "e": 0,
+              "p": 0,
+              "gf": 0,
+              "gc": 0,
+              "dg": 0,
+              "pts": 0
+            },
+            {
+              "pos": 7,
+              "team": "PIZZERÍA O´MAMMA MÍA",
+              "logo": "https://ligaafade.es/uploads/colegio/cfc1c7874261deaf12a629edec044aea_120x120.png",
+              "us": false,
+              "pj": 0,
+              "g": 0,
+              "e": 0,
+              "p": 0,
+              "gf": 0,
+              "gc": 0,
+              "dg": 0,
+              "pts": 0
+            }
+          ]
+        }
+      ],
+      "matches": [
+        {
+          "id": "2026-1-2213-2186",
+          "round": "Jornada 1",
+          "stage": "Fase Previa",
+          "knockout": false,
+          "date": "2026-10-14T18:30",
+          "venue": "Pistas Pepe Román (Girón)",
+          "address": "Calle Guadiaro, 6",
+          "isHome": false,
+          "bye": false,
+          "played": false,
+          "home": {
+            "name": "Ciudad de Melilla",
+            "logo": "https://ligaafade.es/uploads/colegio/7b993e21d14ae7b876c07df1a3a3f55e.png",
+            "us": false
+          },
+          "away": {
+            "name": "Lagarto Limón CB",
+            "logo": "https://ligaafade.es/uploads/colegio/7372c23b05e492a259231c44b4341947.png",
+            "us": true
+          },
+          "score": null,
+          "shootout": null
+        },
+        {
+          "id": "2026-2-2186-2212",
+          "round": "Jornada 2",
+          "stage": "Fase Previa",
+          "knockout": false,
+          "date": "2026-10-20T19:00",
+          "venue": "Pabellón Colegio San Estanislao",
+          "address": "Calle Valparaíso, s/n",
+          "isHome": true,
+          "bye": false,
+          "played": false,
+          "home": {
+            "name": "Lagarto Limón CB",
+            "logo": "https://ligaafade.es/uploads/colegio/7372c23b05e492a259231c44b4341947.png",
+            "us": true
+          },
+          "away": {
+            "name": "El Divino Pastor",
+            "logo": "https://ligaafade.es/uploads/colegio/3099075cb6e4b5b20615a5b1ad47588e.jpg",
+            "us": false
+          },
+          "score": null,
+          "shootout": null
+        },
+        {
+          "id": "2026-3-2180-2186",
+          "round": "Jornada 3",
+          "stage": "Fase Previa",
+          "knockout": false,
+          "date": "2026-10-28T20:00",
+          "venue": "Colegio La Asunción",
+          "address": "Calle Manuel de Palacio, 15, 29017",
+          "isHome": false,
+          "bye": false,
+          "played": false,
+          "home": {
+            "name": "La EME Club",
+            "logo": "https://ligaafade.es/uploads/colegio/f05ccc02267a74c6be184415de830fa1.jpg",
+            "us": false
+          },
+          "away": {
+            "name": "Lagarto Limón CB",
+            "logo": "https://ligaafade.es/uploads/colegio/7372c23b05e492a259231c44b4341947.png",
+            "us": true
+          },
+          "score": null,
+          "shootout": null
+        },
+        {
+          "id": "2026-4-null-2186",
+          "round": "Jornada 4",
+          "stage": "Fase Previa",
+          "knockout": false,
+          "date": null,
+          "venue": null,
+          "address": null,
+          "isHome": false,
+          "bye": true,
+          "played": false,
+          "home": {
+            "name": "Descansa",
+            "logo": null,
+            "us": false
+          },
+          "away": {
+            "name": "Lagarto Limón CB",
+            "logo": "https://ligaafade.es/uploads/colegio/7372c23b05e492a259231c44b4341947.png",
+            "us": true
+          },
+          "score": null,
+          "shootout": null
+        },
+        {
+          "id": "2026-5-2186-2292",
+          "round": "Jornada 5",
+          "stage": "Fase Previa",
+          "knockout": false,
+          "date": "2026-11-17T20:00",
+          "venue": "Pabellón Colegio San Estanislao",
+          "address": "Calle Valparaíso, s/n",
+          "isHome": true,
+          "bye": false,
+          "played": false,
+          "home": {
+            "name": "Lagarto Limón CB",
+            "logo": "https://ligaafade.es/uploads/colegio/7372c23b05e492a259231c44b4341947.png",
+            "us": true
+          },
+          "away": {
+            "name": "Puerta Oscura C",
+            "logo": "https://ligaafade.es/uploads/colegio/744e7b306e595e6da9f5255663836dc8.png",
+            "us": false
+          },
+          "score": null,
+          "shootout": null
+        },
+        {
+          "id": "2026-6-2270-2186",
+          "round": "Jornada 6",
+          "stage": "Fase Previa",
+          "knockout": false,
+          "date": "2026-11-26T20:20",
+          "venue": "Pabellón Polideportivo Blas Infante",
+          "address": "Avenida Reyes Católicos, 64, Alhaurín de la Torre",
+          "isHome": false,
+          "bye": false,
+          "played": false,
+          "home": {
+            "name": "CB Julián \"Chico\"",
+            "logo": "https://ligaafade.es/uploads/colegio/e3d7a0ecc0aceb4ec5caf34a354d122f.jpg",
+            "us": false
+          },
+          "away": {
+            "name": "Lagarto Limón CB",
+            "logo": "https://ligaafade.es/uploads/colegio/7372c23b05e492a259231c44b4341947.png",
+            "us": true
+          },
+          "score": null,
+          "shootout": null
+        },
+        {
+          "id": "2026-7-2186-2312",
+          "round": "Jornada 7",
+          "stage": "Fase Previa",
+          "knockout": false,
+          "date": "2026-12-01T20:00",
+          "venue": "Pabellón Colegio San Estanislao",
+          "address": "Calle Valparaíso, s/n",
+          "isHome": true,
+          "bye": false,
+          "played": false,
+          "home": {
+            "name": "Lagarto Limón CB",
+            "logo": "https://ligaafade.es/uploads/colegio/7372c23b05e492a259231c44b4341947.png",
+            "us": true
+          },
+          "away": {
+            "name": "PIZZERÍA O´MAMMA MÍA",
+            "logo": "https://ligaafade.es/uploads/colegio/cfc1c7874261deaf12a629edec044aea.png",
+            "us": false
+          },
+          "score": null,
+          "shootout": null
+        }
+      ]
+    }
+  ]
+}

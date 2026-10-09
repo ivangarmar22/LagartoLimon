@@ -1,0 +1,335 @@
+---
+import TeamLogo from './TeamLogo.astro';
+import Icon from './Icon.astro';
+import type { Match } from '../lib/data';
+import { dateBits, url } from '../lib/utils';
+import { secciones } from '../data/club';
+
+interface Props {
+  matches: Match[];
+  title?: string;
+  compact?: boolean;
+}
+const { matches, title = 'Próximo partido', compact = false } = Astro.props;
+const list = matches.filter((m) => m.iso).slice(0, 6);
+---
+
+{
+  list.length > 0 && (
+    <div class:list={['next', { 'next--compact': compact }]} data-next-group>
+      {list.map((m, i) => {
+        const d = dateBits(m.date)!;
+        const sport = m.sport ?? 'futbol';
+        const crest = url(secciones[sport].escudo);
+        const logo = (s: Match['home']) => (s.us ? crest : s.logo);
+        return (
+          <article class="ticket" data-next data-iso={m.iso} data-team={sport} hidden={i > 0}>
+            <div class="ticket__main">
+              <header class="ticket__head">
+                <span class="ticket__label">
+                  <span class="live-dot" />
+                  {title}
+                </span>
+                <span class="ticket__sport">
+                  <Icon name={sport === 'futbol' ? 'ball' : 'basket'} size={16} />
+                  {secciones[sport].nombre}
+                </span>
+              </header>
+
+              <div class="ticket__teams">
+                <div class="ticket__team">
+                  <TeamLogo name={m.home.name} logo={logo(m.home)} size={compact ? 64 : 84} />
+                  <span class:list={{ 'is-us': m.home.us }}>{m.home.name}</span>
+                </div>
+                <span class="ticket__vs">VS</span>
+                <div class="ticket__team">
+                  <TeamLogo name={m.away.name} logo={logo(m.away)} size={compact ? 64 : 84} />
+                  <span class:list={{ 'is-us': m.away.us }}>{m.away.name}</span>
+                </div>
+              </div>
+
+              <ul class="ticket__info">
+                <li>
+                  <Icon name="calendar" size={16} />
+                  {d.long}
+                </li>
+                <li>
+                  <Icon name="clock" size={16} />
+                  {d.time} h
+                </li>
+                <li class="ticket__venue" title={m.venue ?? undefined}>
+                  <Icon name="pin" size={16} />
+                  <span>{m.venue ?? 'Sede por confirmar'}</span>
+                </li>
+              </ul>
+            </div>
+
+            <div class="ticket__stub">
+              <span class="ticket__round">
+                {m.competition}
+                <br />
+                {m.round}
+              </span>
+              <div class="countdown" data-countdown={m.iso}>
+                <div>
+                  <b data-d>--</b>
+                  <small>días</small>
+                </div>
+                <div>
+                  <b data-h>--</b>
+                  <small>horas</small>
+                </div>
+                <div>
+                  <b data-m>--</b>
+                  <small>min</small>
+                </div>
+                <div>
+                  <b data-s>--</b>
+                  <small>seg</small>
+                </div>
+              </div>
+              <span class="ticket__where">{m.isHome ? 'En casa' : 'A domicilio'}</span>
+            </div>
+          </article>
+        );
+      })}
+    </div>
+  )
+}
+
+<style>
+  .ticket {
+    --notch: 22px;
+    position: relative;
+    display: grid;
+    grid-template-columns: 1fr 300px;
+    border-radius: var(--radius);
+    background:
+      radial-gradient(500px 260px at 0% 0%, color-mix(in srgb, var(--team) 26%, transparent), transparent 70%),
+      linear-gradient(135deg, rgba(255, 249, 232, 0.09), rgba(255, 249, 232, 0.025));
+    border: 1px solid var(--border);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+    overflow: hidden;
+  }
+  .ticket[hidden] {
+    display: none;
+  }
+  .ticket__main {
+    display: grid;
+    gap: 26px;
+    padding: clamp(22px, 3vw, 36px);
+  }
+  .ticket__head {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 10px;
+  }
+  .ticket__label {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-family: var(--font-display);
+    font-weight: 800;
+    font-size: 1.05rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--lemon);
+  }
+  .live-dot {
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    background: var(--lemon);
+    box-shadow: 0 0 0 0 rgba(255, 214, 10, 0.7);
+    animation: pulse 1.8s infinite;
+  }
+  @keyframes pulse {
+    70% {
+      box-shadow: 0 0 0 12px rgba(255, 214, 10, 0);
+    }
+    100% {
+      box-shadow: 0 0 0 0 rgba(255, 214, 10, 0);
+    }
+  }
+  .ticket__sport {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 5px 12px;
+    border-radius: 999px;
+    background: color-mix(in srgb, var(--team) 22%, transparent);
+    border: 1px solid color-mix(in srgb, var(--team) 50%, transparent);
+    font-size: 0.8rem;
+    font-weight: 700;
+  }
+  .ticket__teams {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+    gap: 16px;
+  }
+  .ticket__team {
+    display: grid;
+    justify-items: center;
+    gap: 12px;
+    text-align: center;
+    font-family: var(--font-display);
+    font-weight: 800;
+    font-size: clamp(1.15rem, 2.2vw, 1.7rem);
+    line-height: 1;
+    text-transform: uppercase;
+    color: var(--text-muted);
+  }
+  .ticket__team .is-us {
+    color: var(--cream);
+  }
+  .ticket__vs {
+    font-family: var(--font-display);
+    font-weight: 900;
+    font-size: clamp(2rem, 4vw, 3.4rem);
+    color: transparent;
+    -webkit-text-stroke: 1.5px var(--lemon);
+  }
+  .ticket__info {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px 22px;
+    font-size: 0.92rem;
+    font-weight: 600;
+    color: var(--text-muted);
+  }
+  .ticket__info li {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .ticket__info :global(svg) {
+    color: var(--team);
+  }
+
+  .ticket__stub {
+    position: relative;
+    display: grid;
+    align-content: center;
+    gap: 20px;
+    padding: 28px;
+    background: var(--lemon);
+    color: var(--jungle-950);
+    text-align: center;
+  }
+  /* muescas del ticket */
+  .ticket__stub::before,
+  .ticket__stub::after {
+    content: '';
+    position: absolute;
+    left: calc(var(--notch) / -2);
+    width: var(--notch);
+    height: var(--notch);
+    border-radius: 50%;
+    background: var(--bg);
+  }
+  .ticket__stub::before {
+    top: calc(var(--notch) / -2);
+  }
+  .ticket__stub::after {
+    bottom: calc(var(--notch) / -2);
+  }
+  .ticket__round {
+    font-family: var(--font-display);
+    font-weight: 800;
+    font-size: 1rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    line-height: 1.2;
+  }
+  .countdown {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 6px;
+  }
+  .countdown div {
+    display: grid;
+    padding: 8px 0;
+    border-radius: 10px;
+    background: rgba(5, 14, 7, 0.1);
+  }
+  .countdown b {
+    font-family: var(--font-display);
+    font-weight: 900;
+    font-size: 2rem;
+    line-height: 1;
+    font-variant-numeric: tabular-nums;
+  }
+  .countdown small {
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    opacity: 0.7;
+  }
+  .ticket__where {
+    justify-self: center;
+    padding: 6px 14px;
+    border-radius: 999px;
+    background: var(--jungle-950);
+    color: var(--lemon);
+    font-family: var(--font-display);
+    font-weight: 800;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  .next--compact .ticket {
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr auto;
+  }
+  .next--compact .ticket__stub::before,
+  .next--compact .ticket__stub::after {
+    display: none;
+  }
+
+  @media (max-width: 860px) {
+    .ticket {
+      grid-template-columns: 1fr;
+    }
+    .ticket__stub::before,
+    .ticket__stub::after {
+      display: none;
+    }
+  }
+  .next,
+  .ticket {
+    height: 100%;
+  }
+  .ticket__main {
+    align-content: start;
+  }
+  .ticket__team span {
+    display: grid;
+    align-items: center;
+    min-height: 2em;
+  }
+  .ticket__venue {
+    flex-basis: 100%;
+    min-width: 0;
+  }
+  .ticket__venue span {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  .next--compact .ticket__stub {
+    align-content: start;
+  }
+  .ticket__round {
+    display: block;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+</style>

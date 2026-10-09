@@ -1,0 +1,774 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Icon from '../components/Icon.astro';
+import Lemon from '../components/Lemon.astro';
+import Marquee from '../components/Marquee.astro';
+import NextMatch from '../components/NextMatch.astro';
+import MatchRow from '../components/MatchRow.astro';
+import { futbol, baloncesto, upcoming, results, ourRow } from '../lib/data';
+import { club, secciones } from '../data/club';
+import { url } from '../lib/utils';
+import { timeline, totals } from '../lib/timeline';
+
+const nextFut = upcoming(futbol.current.matches).filter((m) => m.iso);
+const nextCb = upcoming(baloncesto.current.matches).filter((m) => m.iso);
+
+// Agenda sin los dos partidos destacados; los que aún no tienen fecha, al final
+const featured = new Set([nextFut[0]?.id, nextCb[0]?.id]);
+const moreNext = [...upcoming(futbol.current.matches), ...upcoming(baloncesto.current.matches)]
+  .filter((m) => !featured.has(m.id))
+  .sort((a, b) => (a.date ?? '9999').localeCompare(b.date ?? '9999'))
+  .slice(0, 8);
+
+const allPlayed = [...futbol.seasons, ...baloncesto.seasons]
+  .flatMap((s) => results(s.matches))
+  .filter((m) => m.date)
+  .sort((a, b) => b.date!.localeCompare(a.date!))
+  .slice(0, 8);
+
+const years = new Date().getFullYear() - club.fundacion;
+
+const manifesto =
+  'Un lagarto, un limón y dos balones. Desde 2011 somos un club amateur de Málaga que compite como si fuera una final y celebra como si no hubiera mañana.';
+
+const teams = [
+  {
+    ...secciones.futbol,
+    competicion: futbol.current.name,
+    grupo: futbol.current.tables[0]?.group,
+    pos: ourRow(futbol.current.tables[0])?.pos,
+    total: futbol.current.tables[0]?.rows.length,
+    jugadores: futbol.roster.length,
+    icon: 'ball' as const,
+  },
+  {
+    ...secciones.baloncesto,
+    competicion: `Liga AFADE · ${baloncesto.current.category}`,
+    grupo: baloncesto.current.group,
+    pos: ourRow(baloncesto.current.tables[0])?.pos,
+    total: baloncesto.current.tables[0]?.rows.length,
+    jugadores: baloncesto.roster.length,
+    icon: 'basket' as const,
+  },
+];
+---
+
+<Layout>
+  <section class="hero" data-hero>
+    <div class="hero__glow" aria-hidden="true"></div>
+    <div class="hero__words" aria-hidden="true">
+      <span class="hero__word hero__word--top" data-hero-word="-1">Lagarto</span>
+      <span class="hero__word hero__word--bottom" data-hero-word="1">Limón</span>
+    </div>
+
+    <div class="hero__crests" data-hero-crests>
+      <img class="hero__crest hero__crest--fc" src={url('img/escudo-fc.webp')} alt="Escudo Lagarto Limón FC" width="367" height="412" />
+      <img class="hero__crest hero__crest--cb" src={url('img/escudo-cb.webp')} alt="Escudo Lagarto Limón CB" width="860" height="974" />
+    </div>
+
+    <Lemon class="hero-lemon hl-1" data-parallax="-0.5" />
+    <Lemon class="hero-lemon hl-2" data-parallax="0.4" />
+
+    <div class="hero__bottom container">
+      <h1 class="hero__title hero__meta">
+        <span class="sr-only">Lagarto Limón · </span>Club de fútbol 7 y baloncesto de Málaga
+      </h1>
+      <div class="hero__meta">
+        <span>Est. {club.fundacion}</span>
+        <span class="dot"></span>
+        <span>{club.zona}</span>
+      </div>
+    </div>
+  </section>
+
+  <Marquee items={['Desde 2011', 'Fútbol 7', 'Baloncesto', 'Málaga', 'Verde y limón', 'Ácido competitivo']} />
+  <Marquee items={['@lagartolimonfc', '@lagartolimoncb', 'MálagaF7', 'Liga AFADE']} variant="dark" reverse tilt={1.5} />
+
+  <section id="club" class="section manifesto">
+    <div class="container">
+      <p class="eyebrow" data-reveal>El club</p>
+      <p class="manifesto__text" data-scrub-words>{manifesto}</p>
+
+      <div class="counters">
+        <div class="counter" data-reveal>
+          <b><span data-count={club.fundacion}>{club.fundacion}</span></b>
+          <span>Año de fundación</span>
+        </div>
+        <div class="counter" data-reveal>
+          <b><span data-count={years}>{years}</span></b>
+          <span>Años mordiendo limones</span>
+        </div>
+        <div class="counter" data-reveal>
+          <b><span data-count="2">2</span></b>
+          <span>Secciones: FC y CB</span>
+        </div>
+        <div class="counter" data-reveal>
+          <b><span data-count={totals.partidos}>{totals.partidos}</span></b>
+          <span>Partidos oficiales registrados</span>
+        </div>
+        <div class="counter" data-reveal>
+          <b><span data-count={totals.goles}>{totals.goles}</span></b>
+          <span>Goles en MálagaF7</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--tight">
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <p class="eyebrow" data-reveal>Nuestros equipos</p>
+          <h2 class="title-lg" data-split>Dos balones,<br />una misma piel</h2>
+        </div>
+      </div>
+
+      <div class="teams">
+        {
+          teams.map((t, i) => (
+            <a class="team-card" href={url(t.slug)} data-team={t.slug} data-reveal style={`--d:${i * 0.1}s`}>
+              <div class="team-card__bg" aria-hidden="true" />
+              <span class="team-card__num" aria-hidden="true">
+                0{i + 1}
+              </span>
+              <img class="team-card__crest" src={url(t.escudo)} alt="" width="300" height="337" loading="lazy" />
+              <div class="team-card__body">
+                <span class="team-card__sport">
+                  <Icon name={t.icon} size={16} />
+                  {t.deporte}
+                </span>
+                <h3>{t.nombre}</h3>
+                <p>
+                  {t.competicion}
+                  {t.grupo && ` · ${t.grupo}`}
+                </p>
+                <ul class="team-card__facts">
+                  {t.pos && (
+                    <li>
+                      <b>{t.pos}º</b>
+                      <small>de {t.total}</small>
+                    </li>
+                  )}
+                  {t.jugadores > 0 && (
+                    <li>
+                      <b>{t.jugadores}</b>
+                      <small>jugadores</small>
+                    </li>
+                  )}
+                  <li>
+                    <b>{t.liga}</b>
+                    <small>competición</small>
+                  </li>
+                </ul>
+                <span class="team-card__cta">
+                  Ver equipo <Icon name="arrow" size={18} />
+                </span>
+              </div>
+            </a>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--tight">
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <p class="eyebrow" data-reveal>Agenda</p>
+          <h2 class="title-lg" data-split>Próximos partidos</h2>
+        </div>
+      </div>
+      <div class="nexts">
+        <div data-reveal>
+          {nextFut.length ? <NextMatch matches={nextFut} title="Próximo · FC" compact /> : <p class="none">Sin partidos de fútbol programados.</p>}
+        </div>
+        <div data-reveal>
+          {nextCb.length ? <NextMatch matches={nextCb} title="Próximo · CB" compact /> : <p class="none">Sin partidos de baloncesto programados.</p>}
+        </div>
+      </div>
+
+      {
+        moreNext.length > 0 && (
+          <div class="more">
+            <h3 class="more__title" data-reveal>
+              Y después…
+            </h3>
+            <div class="results">
+              {moreNext.map((m) => (
+                <div data-team={m.sport}>
+                  <MatchRow match={m} sport={m.sport!} showSport />
+                </div>
+              ))}
+            </div>
+          </div>
+        )
+      }
+    </div>
+  </section>
+
+  {
+    allPlayed.length > 0 && (
+      <section class="section section--tight">
+        <div class="container">
+          <div class="section-head">
+            <div>
+              <p class="eyebrow" data-reveal>
+                Lo último
+              </p>
+              <h2 class="title-lg" data-split>
+                Resultados
+              </h2>
+            </div>
+            <div class="head-links" data-reveal>
+              <a class="btn btn--ghost" href={url('futbol#temporadas')}>
+                Fútbol <Icon name="arrow" />
+              </a>
+              <a class="btn btn--ghost" href={url('baloncesto#calendario')}>
+                Baloncesto <Icon name="arrow" />
+              </a>
+            </div>
+          </div>
+          <div class="results">
+            {allPlayed.map((m) => (
+              <div data-team={m.sport}>
+                <MatchRow match={m} sport={m.sport!} showSport />
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+    )
+  }
+
+  <section class="hscroll" data-hscroll>
+    <div class="hscroll__pin">
+      <div class="hscroll__head container">
+        <p class="eyebrow">Nuestra historia</p>
+        <h2 class="title-lg">La muda de piel</h2>
+        <p class="hscroll__hint" aria-hidden="true">Desliza <Icon name="arrow" size={16} /></p>
+      </div>
+      <div class="hscroll__track" data-hscroll-track>
+        {
+          timeline.map((h) => (
+            <article class="hcard" data-team={h.deporte}>
+              <span class="hcard__year">{h.year}</span>
+              <h3>{h.titulo}</h3>
+              <p>{h.texto}</p>
+              {h.tag && <span class="hcard__tag">{h.tag}</span>}
+            </article>
+          ))
+        }
+        <a class="hcard hcard--cta" href={url('historia')}>
+          <Lemon class="hcard__lemon" />
+          <h3>Toda la historia</h3>
+          <span class="btn">
+            Descubrir <Icon name="arrow" />
+          </span>
+        </a>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .hero {
+    position: relative;
+    min-height: 100svh;
+    display: grid;
+    grid-template-rows: 1fr auto;
+    overflow: hidden;
+    padding-top: var(--nav-h);
+  }
+  .hero__glow {
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(50% 45% at 50% 48%, rgba(255, 214, 10, 0.22), transparent 70%),
+      radial-gradient(40% 60% at 15% 80%, rgba(58, 169, 53, 0.28), transparent 70%),
+      radial-gradient(35% 50% at 90% 20%, rgba(215, 38, 30, 0.18), transparent 70%);
+    pointer-events: none;
+  }
+  .hero__words {
+    position: absolute;
+    inset: 0;
+    display: grid;
+    align-content: center;
+    pointer-events: none;
+    user-select: none;
+  }
+  .hero__word {
+    display: block;
+    font-family: var(--font-display);
+    font-weight: 900;
+    font-size: clamp(5rem, 24vw, 26rem);
+    line-height: 0.78;
+    text-transform: uppercase;
+    white-space: nowrap;
+    will-change: transform;
+  }
+  .hero__word--top {
+    padding-left: 3vw;
+    color: transparent;
+    -webkit-text-stroke: clamp(1.5px, 0.25vw, 3px) var(--cream);
+  }
+  .hero__word--bottom {
+    text-align: right;
+    padding-right: 3vw;
+    color: var(--lemon);
+    text-shadow: 0 30px 80px rgba(255, 214, 10, 0.25);
+  }
+
+  .hero__crests {
+    position: relative;
+    z-index: 2;
+    align-self: center;
+    justify-self: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: clamp(12px, 3vw, 48px);
+    will-change: transform;
+  }
+  .hero__crest {
+    width: clamp(140px, 24vw, 340px);
+    height: auto;
+    filter: drop-shadow(0 40px 70px rgba(0, 0, 0, 0.7));
+  }
+  .hero__crest--fc {
+    rotate: -6deg;
+    animation: bob 6s ease-in-out infinite;
+  }
+  .hero__crest--cb {
+    rotate: 6deg;
+    animation: bob 6s 1.5s ease-in-out infinite;
+  }
+  @keyframes bob {
+    50% {
+      translate: 0 -16px;
+    }
+  }
+
+  .hero :global(.hero-lemon) {
+    position: absolute;
+    z-index: 3;
+    pointer-events: none;
+    filter: drop-shadow(0 25px 40px rgba(0, 0, 0, 0.55));
+  }
+  .hero :global(.hl-1) {
+    width: clamp(60px, 9vw, 130px);
+    left: 10%;
+    top: 20%;
+    rotate: -20deg;
+  }
+  .hero :global(.hl-2) {
+    width: clamp(40px, 5vw, 80px);
+    right: 14%;
+    bottom: 22%;
+    rotate: 35deg;
+  }
+  .hero__bottom {
+    position: relative;
+    z-index: 4;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+    padding-bottom: clamp(24px, 4vw, 44px);
+    max-width: none;
+    padding-left: max(16px, 3.6vw);
+  }
+  .hero__title {
+    margin: 0;
+    line-height: 1.2;
+  }
+  .hero__meta {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    font-family: var(--font-display);
+    font-weight: 800;
+    font-size: 1.2rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--lemon);
+  }
+  .hero__meta .dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--cream);
+  }
+
+  .manifesto .container {
+    display: grid;
+    gap: 28px;
+  }
+  .manifesto__text {
+    font-family: var(--font-display);
+    font-weight: 800;
+    font-size: clamp(2.2rem, 5.6vw, 5rem);
+    line-height: 1.02;
+    text-transform: uppercase;
+    max-width: 22ch;
+  }
+  .manifesto__text :global(.sw) {
+    opacity: 0.16;
+    transition: opacity 0.2s;
+  }
+  :global(html:not(.js)) .manifesto__text :global(.sw) {
+    opacity: 1;
+  }
+  .counters {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 1px;
+    margin-top: clamp(32px, 5vw, 60px);
+    border-radius: var(--radius);
+    overflow: hidden;
+    background: var(--border);
+    border: 1px solid var(--border);
+  }
+  .counter {
+    display: grid;
+    gap: 6px;
+    padding: clamp(18px, 2.4vw, 30px);
+    background: var(--jungle-900);
+  }
+  .counter b {
+    font-family: var(--font-display);
+    font-weight: 900;
+    font-size: clamp(2.6rem, 5vw, 4.4rem);
+    line-height: 1;
+    color: var(--lemon);
+    font-variant-numeric: tabular-nums;
+  }
+  .counter > span {
+    font-size: 0.82rem;
+    font-weight: 700;
+    color: var(--text-muted);
+  }
+
+  .teams {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: clamp(14px, 2vw, 24px);
+  }
+  .team-card {
+    position: relative;
+    display: grid;
+    min-height: clamp(460px, 52vw, 620px);
+    padding: clamp(22px, 3vw, 40px);
+    border-radius: 28px;
+    overflow: hidden;
+    isolation: isolate;
+    container-type: inline-size;
+    border: 1px solid var(--border);
+    background: var(--jungle-850);
+  }
+  .team-card__bg {
+    position: absolute;
+    inset: 0;
+    z-index: -2;
+    background:
+      radial-gradient(80% 70% at 70% 25%, color-mix(in srgb, var(--team) 55%, transparent), transparent 70%),
+      linear-gradient(180deg, transparent 40%, rgba(5, 14, 7, 0.95));
+    transition: transform 1s var(--ease-out), opacity 0.6s;
+    opacity: 0.7;
+  }
+  .team-card:hover .team-card__bg {
+    transform: scale(1.12);
+    opacity: 1;
+  }
+  .team-card__num {
+    position: absolute;
+    left: 24px;
+    top: 10px;
+    z-index: -1;
+    font-family: var(--font-display);
+    font-weight: 900;
+    font-size: clamp(7rem, 14vw, 12rem);
+    line-height: 1;
+    color: transparent;
+    -webkit-text-stroke: 1.5px rgba(255, 249, 232, 0.14);
+  }
+  .team-card__crest {
+    position: absolute;
+    right: 6%;
+    top: 7%;
+    z-index: -1;
+    width: auto;
+    height: min(54%, 340px);
+    filter: drop-shadow(0 30px 50px rgba(0, 0, 0, 0.6));
+    transition: transform 0.9s var(--ease-out);
+  }
+  .team-card:hover .team-card__crest {
+    transform: rotate(-8deg) scale(1.08) translateY(-10px);
+  }
+  .team-card__body {
+    align-self: end;
+    display: grid;
+    gap: 12px;
+  }
+  .team-card__sport {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    width: fit-content;
+    padding: 6px 12px;
+    border-radius: 999px;
+    background: var(--team);
+    color: var(--jungle-950);
+    font-size: 0.8rem;
+    font-weight: 800;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+  .team-card h3 {
+    font-size: min(4.4rem, 10.5cqi);
+    white-space: nowrap;
+  }
+  .team-card p {
+    color: var(--text-muted);
+    font-weight: 600;
+  }
+  .team-card__facts {
+    list-style: none;
+    margin: 6px 0 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .team-card__facts li {
+    display: grid;
+    padding: 10px 14px;
+    border-radius: 14px;
+    background: rgba(5, 14, 7, 0.5);
+    border: 1px solid var(--border);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+  }
+  .team-card__facts b {
+    font-family: var(--font-display);
+    font-weight: 900;
+    font-size: 1.5rem;
+    line-height: 1;
+  }
+  .team-card__facts small {
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+  }
+  .team-card__cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 10px;
+    font-family: var(--font-display);
+    font-weight: 800;
+    font-size: 1.3rem;
+    text-transform: uppercase;
+    color: var(--lemon);
+  }
+  .team-card__cta :global(svg) {
+    transition: transform 0.5s var(--ease-out);
+  }
+  .team-card:hover .team-card__cta :global(svg) {
+    transform: translateX(8px);
+  }
+
+  .nexts > div {
+    display: grid;
+  }
+  .more {
+    display: grid;
+    gap: 18px;
+    margin-top: clamp(32px, 4vw, 48px);
+  }
+  .more__title {
+    font-size: clamp(1.6rem, 2.6vw, 2.2rem);
+    color: var(--text-muted);
+  }
+  .head-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  .nexts {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: clamp(14px, 2vw, 24px);
+  }
+  .none {
+    padding: 28px;
+    border-radius: var(--radius);
+    border: 1px dashed var(--border-strong);
+    color: var(--text-muted);
+  }
+  .results {
+    display: grid;
+    gap: 10px;
+  }
+
+  .hscroll {
+    position: relative;
+    overflow: hidden;
+    padding-block: clamp(60px, 8vw, 100px);
+  }
+  .hscroll__pin {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: clamp(28px, 4vw, 48px);
+  }
+  .hscroll__head {
+    display: grid;
+    gap: 16px;
+  }
+  .hscroll__hint {
+    display: none;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.8rem;
+    font-weight: 800;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+  }
+  .hscroll__hint :global(svg) {
+    animation: nudge 1.6s ease-in-out infinite;
+  }
+  @keyframes nudge {
+    50% {
+      transform: translateX(6px);
+    }
+  }
+  :global(html:not(.has-hscroll)) .hscroll__hint {
+    display: inline-flex;
+  }
+  .hscroll__track {
+    display: flex;
+    gap: clamp(14px, 2vw, 24px);
+    padding-inline: var(--gutter);
+    width: max-content;
+    will-change: transform;
+  }
+  :global(html:not(.has-hscroll)) .hscroll__track {
+    width: auto;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    padding-bottom: 12px;
+  }
+  .hcard {
+    position: relative;
+    flex: none;
+    width: clamp(280px, 34vw, 440px);
+    min-height: clamp(340px, 40vw, 440px);
+    display: grid;
+    align-content: start;
+    gap: 16px;
+    padding: clamp(24px, 3vw, 36px);
+    border-radius: 26px;
+    background:
+      radial-gradient(80% 60% at 100% 0%, color-mix(in srgb, var(--team, var(--lizard)) 30%, transparent), transparent 70%),
+      var(--jungle-850);
+    border: 1px solid var(--border);
+    scroll-snap-align: start;
+  }
+  .hcard__year {
+    font-family: var(--font-display);
+    font-weight: 900;
+    font-size: clamp(4rem, 7vw, 6rem);
+    line-height: 0.85;
+    color: var(--lemon);
+  }
+  .hcard h3 {
+    font-size: clamp(1.8rem, 2.6vw, 2.4rem);
+  }
+  .hcard p {
+    color: var(--text-muted);
+  }
+  .hcard__tag {
+    align-self: end;
+    width: fit-content;
+    margin-top: auto;
+    padding: 6px 12px;
+    border-radius: 999px;
+    border: 1px solid var(--border-strong);
+    font-size: 0.75rem;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+  }
+  .hcard--cta {
+    align-content: center;
+    justify-items: start;
+    background: var(--lemon);
+    color: var(--jungle-950);
+    border: 0;
+  }
+  .hcard--cta .btn {
+    --btn-bg: var(--jungle-950);
+    --btn-fg: var(--lemon);
+  }
+  .hcard--cta :global(.hcard__lemon) {
+    position: absolute;
+    right: -40px;
+    top: -40px;
+    width: 180px;
+    opacity: 0.5;
+    animation: spin 20s linear infinite;
+  }
+  @keyframes spin {
+    to {
+      rotate: 360deg;
+    }
+  }
+
+  @media (max-width: 960px) {
+    .counters {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    .counter:first-child {
+      grid-column: span 2;
+    }
+  }
+  @media (max-width: 860px) {
+    .teams,
+    .nexts {
+      grid-template-columns: 1fr;
+    }
+    .hero__crests {
+      gap: 4vw;
+    }
+  }
+  /* móvil y tablet vertical: LAGARTO arriba, escudos en medio y LIMÓN abajo */
+  @media (max-width: 700px), (max-width: 1024px) and (orientation: portrait) {
+    .hero__words {
+      align-content: space-between;
+      padding: calc(var(--nav-h) + 3svh) 0 clamp(140px, 19svh, 230px);
+    }
+    .hero__word {
+      font-size: 27vw;
+    }
+    .hero__word--top {
+      padding-left: 4vw;
+    }
+    .hero__crests {
+      gap: 5vw;
+      margin-bottom: 2svh;
+    }
+    .hero__crest {
+      width: 35vw;
+    }
+  }
+  @media (max-width: 600px) {
+    .team-card__crest {
+      height: min(40%, 210px);
+      top: 5%;
+    }
+  }
+</style>

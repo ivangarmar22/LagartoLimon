@@ -1,0 +1,228 @@
+---
+import TeamLogo from './TeamLogo.astro';
+import type { Table } from '../lib/data';
+import { url } from '../lib/utils';
+import { secciones } from '../data/club';
+
+interface Props {
+  table: Table;
+  sport: 'futbol' | 'baloncesto';
+}
+const { table, sport } = Astro.props;
+const crest = url(secciones[sport].escudo);
+const isBasket = sport === 'baloncesto';
+const zoneOf = (pos: number) => table.zones.find((z) => pos >= z.from && pos < z.to);
+const played = table.rows.some((r) => r.pj > 0);
+---
+
+<div class="standings glass" data-reveal>
+  <div class="standings__head">
+    <h3>{table.group || table.stage}</h3>
+    {table.group && table.stage && table.group !== table.stage && <span>{table.stage}</span>}
+  </div>
+  <div class="standings__scroll">
+    <table>
+      <thead>
+        <tr>
+          <th class="c-pos" scope="col">#</th>
+          <th class="c-team" scope="col">Equipo</th>
+          <th scope="col" title="Partidos jugados">PJ</th>
+          <th scope="col" class="c-sm" title="Ganados">G</th>
+          {!isBasket && <th scope="col" class="c-sm" title="Empatados">E</th>}
+          <th scope="col" class="c-sm" title="Perdidos">P</th>
+          <th scope="col" class="c-hide" title={isBasket ? 'Puntos a favor' : 'Goles a favor'}>{isBasket ? 'PF' : 'GF'}</th>
+          <th scope="col" class="c-hide" title={isBasket ? 'Puntos en contra' : 'Goles en contra'}>{isBasket ? 'PC' : 'GC'}</th>
+          <th scope="col" title="Diferencia">DIF</th>
+          <th scope="col" class="c-pts">PTS</th>
+        </tr>
+      </thead>
+      <tbody>
+        {
+          table.rows.map((r) => {
+            const z = played ? zoneOf(r.pos) : undefined;
+            return (
+              <tr class:list={{ 'is-us': r.us }} style={z ? `--zone:${z.color}` : undefined}>
+                <td class="c-pos">
+                  <span class:list={['pos', { 'has-zone': z }]} title={z?.title}>
+                    {r.pos}
+                  </span>
+                </td>
+                <td class="c-team">
+                  <span class="team">
+                    <TeamLogo name={r.team} logo={r.us ? crest : r.logo} size={30} />
+                    <span>{r.team}</span>
+                  </span>
+                </td>
+                <td>{r.pj}</td>
+                <td class="c-sm">{r.g}</td>
+                {!isBasket && <td class="c-sm">{r.e}</td>}
+                <td class="c-sm">{r.p}</td>
+                <td class="c-hide">{r.gf}</td>
+                <td class="c-hide">{r.gc}</td>
+                <td>{r.dg > 0 ? `+${r.dg}` : r.dg}</td>
+                <td class="c-pts">{r.pts}</td>
+              </tr>
+            );
+          })
+        }
+      </tbody>
+    </table>
+  </div>
+  {
+    played && table.zones.length > 0 && (
+      <div class="standings__legend">
+        {table.zones.map((z) => (
+          <span>
+            <i style={`background:${z.color}`} />
+            {z.title}
+          </span>
+        ))}
+      </div>
+    )
+  }
+  {!played && <p class="standings__note">La competición aún no ha empezado: todos los equipos a cero.</p>}
+</div>
+
+<style>
+  .standings {
+    padding: clamp(18px, 2.5vw, 28px);
+  }
+  .standings__head {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 8px 16px;
+    margin-bottom: 16px;
+  }
+  .standings__head h3 {
+    font-size: 1.8rem;
+  }
+  .standings__head span {
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+  }
+  .standings__scroll {
+    overflow-x: auto;
+    margin-inline: -8px;
+  }
+  table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0 4px;
+    font-variant-numeric: tabular-nums;
+    font-size: 0.95rem;
+  }
+  th {
+    padding: 6px 8px;
+    font-size: 0.72rem;
+    font-weight: 800;
+    letter-spacing: 0.1em;
+    color: var(--text-dim);
+    text-align: center;
+  }
+  td {
+    padding: 10px 8px;
+    text-align: center;
+    color: var(--text-muted);
+    background: rgba(255, 249, 232, 0.025);
+  }
+  td:first-child {
+    border-radius: 10px 0 0 10px;
+  }
+  td:last-child {
+    border-radius: 0 10px 10px 0;
+  }
+  .c-team {
+    text-align: left;
+    width: 100%;
+  }
+  .team {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 700;
+    color: var(--cream);
+    min-width: 170px;
+  }
+  .pos {
+    display: inline-grid;
+    place-items: center;
+    width: 28px;
+    height: 28px;
+    border-radius: 8px;
+    font-weight: 800;
+  }
+  .pos.has-zone {
+    box-shadow: inset 3px 0 0 var(--zone);
+  }
+  .c-pts {
+    font-weight: 900;
+    color: var(--cream);
+  }
+  tr.is-us td {
+    background: color-mix(in srgb, var(--team) 22%, transparent);
+    color: var(--cream);
+  }
+  tr.is-us td:first-child {
+    box-shadow: inset 4px 0 0 var(--team);
+  }
+  tr.is-us .pos {
+    background: var(--team);
+    color: var(--jungle-950);
+  }
+  tbody tr {
+    transition: transform 0.3s var(--ease-out);
+  }
+  tbody tr:hover td {
+    background: var(--surface-2);
+  }
+  .standings__legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px 20px;
+    margin-top: 14px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: var(--text-muted);
+  }
+  .standings__legend span {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .standings__legend i {
+    width: 12px;
+    height: 12px;
+    border-radius: 3px;
+  }
+  .standings__note {
+    margin-top: 12px;
+    font-size: 0.85rem;
+    color: var(--text-dim);
+  }
+  @media (max-width: 600px) {
+    .c-hide {
+      display: none;
+    }
+    table {
+      font-size: 0.88rem;
+    }
+    .team {
+      min-width: 0;
+    }
+  }
+  /* en móvil: equipo, jugados, diferencia y puntos */
+  @media (max-width: 480px) {
+    .c-sm {
+      display: none;
+    }
+    td,
+    th {
+      padding-inline: 6px;
+    }
+  }
+</style>

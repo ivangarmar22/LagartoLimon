@@ -1,0 +1,296 @@
+---
+import Icon from './Icon.astro';
+import { url, isActive } from '../lib/utils';
+import { club } from '../data/club';
+
+const links = [
+  { href: '', label: 'Inicio', n: '01' },
+  { href: 'futbol', label: 'Fútbol', n: '02' },
+  { href: 'baloncesto', label: 'Baloncesto', n: '03' },
+  { href: 'historia', label: 'Historia', n: '04' },
+];
+const path = Astro.url.pathname;
+const isHome = isActive(path, '');
+---
+
+<header class:list={["nav", { "nav--home": isHome }]} data-nav>
+  <div class="nav__bar glass">
+    <a class="brand" href={url('')} aria-label="Lagarto Limón, inicio">
+      <span class="brand__crests">
+        <img src={url('img/escudo-fc.webp')} alt="" width="36" height="40" />
+        <img src={url('img/escudo-cb.webp')} alt="" width="36" height="40" />
+      </span>
+      <span class="brand__name">Lagarto<b>Limón</b></span>
+    </a>
+
+    <nav class="nav__links" aria-label="Principal">
+      {
+        links.map((l) => (
+          <a href={url(l.href)} class:list={['nav__link', { 'is-active': isActive(path, l.href) }]} aria-current={isActive(path, l.href) ? 'page' : undefined}>
+            {l.label}
+          </a>
+        ))
+      }
+    </nav>
+
+    <button class="nav__burger" aria-label="Abrir menú" aria-expanded="false" aria-controls="menu" data-menu-toggle>
+      <span></span><span></span>
+    </button>
+  </div>
+
+  <div class="menu" id="menu" data-menu aria-hidden="true">
+    <div class="menu__bg"></div>
+    <nav class="menu__links" aria-label="Menú móvil">
+      {
+        links.map((l) => (
+          <a href={url(l.href)} class:list={['menu__link', { 'is-active': isActive(path, l.href) }]} tabindex="-1">
+            <small>{l.n}</small>
+            {l.label}
+          </a>
+        ))
+      }
+    </nav>
+    <div class="menu__social">
+      <a href={club.redes.futbol.instagram} target="_blank" rel="noopener" tabindex="-1"><Icon name="instagram" size={18} /> {club.redes.futbol.handle}</a>
+      <a href={club.redes.baloncesto.instagram} target="_blank" rel="noopener" tabindex="-1"><Icon name="instagram" size={18} /> {club.redes.baloncesto.handle}</a>
+    </div>
+  </div>
+</header>
+
+<style>
+  .nav {
+    position: fixed;
+    inset: 14px 0 auto 0;
+    z-index: 110;
+    padding-inline: var(--gutter);
+    transition: transform 0.6s var(--ease-out);
+    pointer-events: none;
+  }
+  .nav.is-hidden {
+    transform: translateY(calc(-100% - 24px));
+  }
+  .nav__bar {
+    pointer-events: auto;
+    position: relative;
+    z-index: 2;
+    max-width: var(--maxw);
+    margin-inline: auto;
+    height: 62px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 0 10px 0 12px;
+    border-radius: 999px;
+    background: rgba(8, 22, 12, 0.55);
+    transition: background 0.4s, box-shadow 0.4s;
+  }
+  .nav.is-scrolled .nav__bar {
+    background: rgba(8, 22, 12, 0.78);
+    box-shadow: 0 20px 50px -25px rgba(0, 0, 0, 0.8);
+  }
+
+  .brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-right: auto;
+  }
+  .brand__crests {
+    display: flex;
+    align-items: center;
+  }
+  .brand__crests img {
+    height: 40px;
+    width: auto;
+    filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.5));
+    transition: transform 0.5s var(--ease-out);
+  }
+  .brand__crests img + img {
+    margin-left: -14px;
+    transform: scale(0.9) rotate(8deg);
+  }
+  .brand:hover .brand__crests img:first-child {
+    transform: rotate(-10deg) translateX(-3px);
+  }
+  .brand:hover .brand__crests img + img {
+    transform: scale(0.95) rotate(14deg) translateX(6px);
+  }
+  .brand__name {
+    font-family: var(--font-display);
+    font-weight: 900;
+    font-size: 1.45rem;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+    line-height: 1;
+  }
+  .brand__name b {
+    color: var(--lemon);
+    margin-left: 4px;
+  }
+
+  .nav__links {
+    display: flex;
+    gap: 4px;
+  }
+  .nav__link {
+    position: relative;
+    padding: 8px 16px;
+    border-radius: 999px;
+    font-weight: 700;
+    font-size: 0.95rem;
+    color: var(--text-muted);
+    transition: color 0.3s, background 0.3s;
+  }
+  .nav__link:hover {
+    color: var(--cream);
+    background: var(--surface-2);
+  }
+  .nav__link.is-active {
+    color: var(--jungle-950);
+    background: var(--lemon);
+  }
+
+  .nav__burger {
+    display: none;
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+    background: var(--lemon);
+    position: relative;
+  }
+  .nav__burger span {
+    position: absolute;
+    left: 13px;
+    right: 13px;
+    height: 2.5px;
+    border-radius: 2px;
+    background: var(--jungle-950);
+    transition: transform 0.45s var(--ease-out);
+  }
+  .nav__burger span:first-child {
+    transform: translateY(-4px);
+  }
+  .nav__burger span:last-child {
+    transform: translateY(4px);
+  }
+  :global(.menu-open) .nav__burger span:first-child {
+    transform: rotate(45deg);
+  }
+  :global(.menu-open) .nav__burger span:last-child {
+    transform: rotate(-45deg);
+  }
+
+  /* Menú móvil */
+  .menu {
+    position: fixed;
+    inset: 0;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 110px var(--gutter) 40px;
+    visibility: hidden;
+    pointer-events: none;
+  }
+  .menu__bg {
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(600px 400px at 100% 0%, rgba(255, 214, 10, 0.18), transparent 70%),
+      var(--jungle-950);
+    clip-path: circle(0 at calc(100% - 50px) 45px);
+    transition: clip-path 0.8s var(--ease-out);
+  }
+  :global(.menu-open) .menu {
+    visibility: visible;
+    pointer-events: auto;
+  }
+  :global(.menu-open) .menu__bg {
+    clip-path: circle(150% at calc(100% - 50px) 45px);
+  }
+  .menu__links {
+    position: relative;
+    display: grid;
+    gap: 6px;
+  }
+  .menu__link {
+    display: flex;
+    align-items: baseline;
+    gap: 14px;
+    font-family: var(--font-display);
+    font-weight: 900;
+    font-size: clamp(3rem, 15vw, 5.5rem);
+    line-height: 1;
+    text-transform: uppercase;
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 0.5s, transform 0.7s var(--ease-out), color 0.3s;
+  }
+  .menu__link small {
+    font-size: 0.9rem;
+    color: var(--lemon);
+    letter-spacing: 0.1em;
+  }
+  .menu__link.is-active {
+    color: var(--lemon);
+  }
+  :global(.menu-open) .menu__link {
+    opacity: 1;
+    transform: none;
+  }
+  :global(.menu-open) .menu__link:nth-child(2) {
+    transition-delay: 0.06s;
+  }
+  :global(.menu-open) .menu__link:nth-child(3) {
+    transition-delay: 0.12s;
+  }
+  :global(.menu-open) .menu__link:nth-child(4) {
+    transition-delay: 0.18s;
+  }
+  .menu__social {
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px 22px;
+    margin-top: 44px;
+    color: var(--text-muted);
+    font-weight: 600;
+    opacity: 0;
+    transition: opacity 0.5s 0.25s;
+  }
+  .menu__social a {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+  }
+  :global(.menu-open) .menu__social {
+    opacity: 1;
+  }
+
+  @media (max-width: 860px) {
+    .nav__links {
+      display: none;
+    }
+    .nav__burger {
+      display: block;
+    }
+  }
+  @media (max-width: 380px) {
+    .brand__name {
+      font-size: 1.2rem;
+    }
+  }
+  /* Portada: menú translúcido para que se vean las letras de detrás */
+  .nav.nav--home .nav__bar,
+  .nav.nav--home.is-scrolled .nav__bar {
+    background: linear-gradient(135deg, rgba(255, 249, 232, 0.1), rgba(255, 249, 232, 0.03));
+    border-color: rgba(255, 249, 232, 0.16);
+    backdrop-filter: blur(7px) saturate(150%);
+    -webkit-backdrop-filter: blur(7px) saturate(150%);
+    box-shadow: none;
+  }
+  .nav.nav--home .brand__name,
+  .nav.nav--home .nav__link:not(.is-active) {
+    text-shadow: 0 1px 10px rgba(5, 14, 7, 0.9), 0 0 2px rgba(5, 14, 7, 0.8);
+  }
+</style>

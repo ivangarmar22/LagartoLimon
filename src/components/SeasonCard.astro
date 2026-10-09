@@ -1,0 +1,286 @@
+---
+import MatchRow from './MatchRow.astro';
+import Icon from './Icon.astro';
+import { ourRow as findOurRow, type Season } from '../lib/data';
+
+interface Props {
+  season: Season;
+  sport: 'futbol' | 'baloncesto';
+  index?: number;
+}
+const { season: s, sport, index = 0 } = Astro.props;
+
+const table = s.tables[0];
+const ourRow = findOurRow(table);
+const ko = s.matches.filter((m) => m.knockout && m.played);
+const lastKo = ko.at(-1);
+const year = s.yearLabel ?? s.name.match(/(\d{2}-\d{2}|20\d{2})/)?.[1] ?? '';
+const titleName = s.name.replace(/\s*\d{2}-\d{2}\s*$/, '').trim();
+const label = s.active ? 'En juego' : 'Finalizada';
+const sign = (n: number) => (n > 0 ? `+${n}` : `${n}`);
+---
+
+<article class:list={['season', { 'is-active': s.active }]} data-reveal style={`--i:${index}`}>
+  <div class="season__top">
+    <span class="season__year">{year || '—'}</span>
+    <span class:list={['season__status', { live: s.active }]}>{label}</span>
+  </div>
+  <h3 class="season__name">{titleName}</h3>
+  {table && <p class="season__group">{[table.stage, table.group].filter((x, i, a) => x && a.indexOf(x) === i).join(' · ')}</p>}
+
+  <div class="season__highlights">
+    {
+      ourRow && (
+        <div class="hl hl--pos">
+          <b>{ourRow.pos}º</b>
+          <span>de {table.rows.length}</span>
+        </div>
+      )
+    }
+    {
+      lastKo && (
+        <div class="hl hl--ko">
+          <Icon name="trophy" size={18} />
+          <span>
+            {lastKo.round}
+            <small>{lastKo.stage}</small>
+          </span>
+        </div>
+      )
+    }
+  </div>
+
+  <dl class="season__record">
+    <div><dt>PJ</dt><dd>{s.record.pj}</dd></div>
+    <div><dt>G</dt><dd class="w">{s.record.g}</dd></div>
+    {sport === 'futbol' && <div><dt>E</dt><dd class="d">{s.record.e}</dd></div>}
+    <div><dt>P</dt><dd class="l">{s.record.p}</dd></div>
+    <div><dt>{sport === 'futbol' ? 'Goles' : 'Puntos'}</dt><dd>{s.record.gf}:{s.record.gc}</dd></div>
+    <div><dt>Dif.</dt><dd>{sign(s.record.gf - s.record.gc)}</dd></div>
+  </dl>
+
+  {
+    s.matches.length > 0 && (
+      <details class="season__details">
+        <summary>
+          Ver partidos ({s.matches.filter((m) => !m.bye).length})
+          <Icon name="arrow" size={16} />
+        </summary>
+        <div class="season__matches">
+          {s.matches.map((m) => (
+            <MatchRow match={m} sport={sport} />
+          ))}
+        </div>
+      </details>
+    )
+  }
+
+  <a class="season__link" href={s.teamUrl ?? s.url} target="_blank" rel="noopener">
+    Ver en la web de la liga <Icon name="external" size={14} />
+  </a>
+</article>
+
+<style>
+  .season {
+    position: relative;
+    display: grid;
+    align-content: start;
+    gap: 14px;
+    padding: clamp(20px, 2.6vw, 30px);
+    border-radius: var(--radius);
+    background: var(--surface);
+    border: 1px solid var(--border);
+    overflow: hidden;
+    transition: border-color 0.3s, background 0.3s;
+  }
+  .season::before {
+    content: '';
+    position: absolute;
+    inset: 0 0 auto 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--team), var(--lemon));
+    transform: scaleX(0.15);
+    transform-origin: left;
+    transition: transform 0.7s var(--ease-out);
+  }
+  .season:hover {
+    border-color: var(--border-strong);
+    background: var(--surface-2);
+  }
+  .season:hover::before,
+  .season.is-active::before {
+    transform: scaleX(1);
+  }
+  .season__top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .season__year {
+    font-family: var(--font-display);
+    font-weight: 900;
+    font-size: 2.6rem;
+    line-height: 1;
+    color: transparent;
+    -webkit-text-stroke: 1.5px var(--lemon);
+  }
+  .season__status {
+    padding: 4px 12px;
+    border-radius: 999px;
+    border: 1px solid var(--border-strong);
+    font-size: 0.72rem;
+    font-weight: 800;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+  }
+  .season__status.live {
+    background: var(--team);
+    border-color: var(--team);
+    color: var(--jungle-950);
+  }
+  .season__name {
+    font-size: clamp(1.6rem, 2.6vw, 2.1rem);
+  }
+  .season__group {
+    font-size: 0.82rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+  }
+
+  .season__highlights {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  .hl {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 8px 14px;
+    border-radius: 14px;
+    background: var(--jungle-950);
+    border: 1px solid var(--border);
+  }
+  .hl--pos b {
+    font-family: var(--font-display);
+    font-weight: 900;
+    font-size: 2rem;
+    line-height: 1;
+    color: var(--team);
+  }
+  .hl--pos span {
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--text-muted);
+  }
+  .hl--ko {
+    color: var(--lemon);
+  }
+  .hl--ko span {
+    display: grid;
+    font-family: var(--font-display);
+    font-weight: 800;
+    font-size: 1.1rem;
+    line-height: 1.05;
+    text-transform: uppercase;
+    color: var(--cream);
+  }
+  .hl--ko small {
+    font-family: var(--font-body);
+    font-size: 0.66rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    color: var(--text-dim);
+  }
+
+  .season__record {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(40px, 1fr));
+    gap: 6px;
+    margin: 0;
+  }
+  .season__record div {
+    display: grid;
+    justify-items: center;
+    padding: 8px 4px;
+    border-radius: 10px;
+    background: rgba(255, 249, 232, 0.03);
+  }
+  .season__record dt {
+    font-size: 0.66rem;
+    font-weight: 800;
+    letter-spacing: 0.1em;
+    color: var(--text-dim);
+    text-transform: uppercase;
+  }
+  .season__record dd {
+    margin: 0;
+    font-family: var(--font-display);
+    font-weight: 900;
+    font-size: clamp(1.1rem, 4.2vw, 1.45rem);
+    line-height: 1.1;
+  }
+  .w {
+    color: var(--lizard-bright);
+  }
+  .d {
+    color: var(--lemon);
+  }
+  .l {
+    color: #ff6b5e;
+  }
+
+  .season__details summary {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 14px;
+    border-radius: 12px;
+    border: 1px solid var(--border);
+    font-weight: 700;
+    font-size: 0.92rem;
+    cursor: pointer;
+    list-style: none;
+    transition: background 0.3s;
+  }
+  .season__details summary::-webkit-details-marker {
+    display: none;
+  }
+  .season__details summary:hover {
+    background: var(--surface-2);
+  }
+  .season__details summary :global(svg) {
+    transition: transform 0.4s var(--ease-out);
+  }
+  .season__details[open] summary :global(svg) {
+    transform: rotate(90deg);
+  }
+  .season__matches {
+    display: grid;
+    gap: 8px;
+    margin-top: 10px;
+    max-height: 520px;
+    overflow: auto;
+    padding-right: 4px;
+  }
+  .season__matches :global([data-reveal]) {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+  .season__link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    width: fit-content;
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--text-muted);
+    transition: color 0.25s;
+  }
+  .season__link:hover {
+    color: var(--lemon);
+  }
+</style>

@@ -1,0 +1,24 @@
+---
+interface Props {
+  class?: string;
+  style?: string;
+  [key: string]: unknown;
+}
+const { class: cls, style, ...rest } = Astro.props;
+const segments = 9;
+const segs = Array.from({ length: segments }, (_, i) => {
+  const a0 = (i / segments) * Math.PI * 2 + 0.06;
+  const a1 = ((i + 1) / segments) * Math.PI * 2 - 0.06;
+  const r = 40;
+  const c = 50;
+  const p = (a: number, rr: number) => `${(c + Math.cos(a) * rr).toFixed(2)} ${(c + Math.sin(a) * rr).toFixed(2)}`;
+  return `M${p((a0 + a1) / 2, 6)} L${p(a0, r)} A${r} ${r} 0 0 1 ${p(a1, r)} Z`;
+});
+---
+
+<svg class={cls} style={style} viewBox="0 0 100 100" aria-hidden="true" {...rest}>
+  <circle cx="50" cy="50" r="49" fill="#f2c200" />
+  <circle cx="50" cy="50" r="45.5" fill="#fff3b0" />
+  {segs.map((d) => <path d={d} fill="#ffd60a" stroke="#ffe46b" stroke-width="0.8" stroke-linejoin="round" />)}
+  <circle cx="50" cy="50" r="5" fill="#fff6cf" />
+</svg>

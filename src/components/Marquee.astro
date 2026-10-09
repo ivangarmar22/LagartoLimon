@@ -1,0 +1,88 @@
+---
+import Lemon from './Lemon.astro';
+interface Props {
+  items: string[];
+  variant?: 'lemon' | 'green' | 'dark';
+  reverse?: boolean;
+  tilt?: number;
+}
+const { items, variant = 'lemon', reverse = false, tilt = -2.5 } = Astro.props;
+const loop = [...items, ...items, ...items];
+---
+
+<div class:list={['marquee', `marquee--${variant}`]} style={`--tilt:${tilt}deg`} aria-hidden="true">
+  <div class="marquee__track" data-marquee={reverse ? '-1' : '1'}>
+    {
+      [0, 1].map(() => (
+        <div class="marquee__group">
+          {loop.map((t) => (
+            <span class="marquee__item">
+              {t}
+              <Lemon class="marquee__lemon" />
+            </span>
+          ))}
+        </div>
+      ))
+    }
+  </div>
+</div>
+
+<style>
+  .marquee {
+    position: relative;
+    z-index: 3;
+    overflow: hidden;
+    rotate: var(--tilt);
+    margin-inline: -4vw;
+    padding-block: 14px;
+    box-shadow: 0 20px 60px -30px rgba(0, 0, 0, 0.8);
+  }
+  .marquee--lemon {
+    background: var(--lemon);
+    color: var(--jungle-950);
+  }
+  .marquee--green {
+    background: var(--lizard);
+    color: var(--jungle-950);
+  }
+  .marquee--dark {
+    background: var(--jungle-950);
+    color: var(--cream);
+    border-block: 1px solid var(--border);
+  }
+  .marquee__track {
+    display: flex;
+    width: max-content;
+    will-change: transform;
+  }
+  .marquee__group {
+    display: flex;
+    flex: none;
+  }
+  .marquee__item {
+    display: inline-flex;
+    align-items: center;
+    gap: 28px;
+    padding-right: 28px;
+    font-family: var(--font-display);
+    font-weight: 900;
+    font-size: clamp(1.6rem, 3.6vw, 2.9rem);
+    line-height: 1;
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
+  .marquee__item :global(.marquee__lemon) {
+    width: 0.9em;
+    height: 0.9em;
+    flex: none;
+  }
+  /* respaldo sin JavaScript */
+  :global(html:not(.js)) .marquee__track {
+    animation: marquee 40s linear infinite;
+  }
+  @keyframes marquee {
+    to {
+      transform: translateX(-50%);
+    }
+  }
+</style>
