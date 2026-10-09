@@ -42,14 +42,14 @@ export const secciones = {
 
 // Edad, foto o apodo de los jugadores de fútbol, por su id de MálagaF7 (ver src/data/generated/futbol.json).
 // Las fotos van en public/jugadores/, en vertical (3:4).
-export type ExtraJugador = { edad?: number; foto?: string; apodo?: string };
+type ExtraJugador = { edad?: number; foto?: string; apodo?: string };
 
 export const extrasFutbol: Record<number, ExtraJugador> = {
   // 1347: { edad: 29, foto: 'jugadores/rafa.jpg', apodo: 'Rafa' },
 };
 
 // La Liga AFADE no publica las plantillas.
-export type JugadorManual = {
+type JugadorManual = {
   nombre: string;
   apellidos?: string;
   dorsal?: number;
@@ -76,9 +76,11 @@ export const plantillaBaloncesto: JugadorManual[] = [
   { nombre: 'José', apellidos: 'Durán', dorsal: 8, posicion: 'Escolta' },
 ];
 
-export const staff: Record<'futbol' | 'baloncesto', { nombre: string; rol: string }[]> = {
+type Tecnico = { nombre: string; apellidos?: string; apodo?: string; rol: string; foto?: string };
+
+export const staff: Record<'futbol' | 'baloncesto', Tecnico[]> = {
   futbol: [],
-  baloncesto: [{ nombre: 'Carlos García «Charly»', rol: 'Entrenador' }],
+  baloncesto: [{ nombre: 'Carlos', apellidos: 'García', apodo: 'Charly', rol: 'Entrenador' }],
 };
 
 // Las temporadas de cada liga se añaden solas a la línea de tiempo.
@@ -91,7 +93,8 @@ export const hitos = [
   {
     year: String(secciones.baloncesto.desde),
     titulo: 'El lagarto también bota',
-    texto: 'Nace la sección de baloncesto: el mismo lagarto, ahora con un balón naranja entre las garras. El Lagarto Limón CB empieza a competir.',
+    texto:
+      'Nace la sección de baloncesto: el mismo lagarto, ahora con un balón naranja entre las garras. El Lagarto Limón CB empieza a competir.',
     deporte: 'baloncesto' as const,
   },
 ];

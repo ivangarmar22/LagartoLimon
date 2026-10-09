@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-09T11:19:43.672Z",
+  "updatedAt": "2026-10-09T16:02:18.261Z",
   "source": {
     "name": "MálagaF7",
     "url": "https://www.malagaf7.com"
@@ -167,7 +167,6 @@
       "active": true,
       "url": "https://www.malagaf7.com/tournaments/25",
       "teamUrl": "https://www.malagaf7.com/tournaments/25/teams/288",
-      "teamId": 288,
       "record": {
         "pj": 2,
         "g": 1,
@@ -570,7 +569,6 @@
       "active": false,
       "url": "https://www.malagaf7.com/tournaments/24",
       "teamUrl": "https://www.malagaf7.com/tournaments/24/teams/268",
-      "teamId": 268,
       "record": {
         "pj": 5,
         "g": 3,
@@ -827,7 +825,6 @@
       "active": false,
       "url": "https://www.malagaf7.com/tournaments/23",
       "teamUrl": "https://www.malagaf7.com/tournaments/23/teams/228",
-      "teamId": 228,
       "record": {
         "pj": 14,
         "g": 4,
@@ -1352,7 +1349,6 @@
       "active": false,
       "url": "https://www.malagaf7.com/tournaments/22",
       "teamUrl": "https://www.malagaf7.com/tournaments/22/teams/208",
-      "teamId": 208,
       "record": {
         "pj": 7,
         "g": 3,
@@ -1698,7 +1694,6 @@
       "active": false,
       "url": "https://www.malagaf7.com/tournaments/21",
       "teamUrl": "https://www.malagaf7.com/tournaments/21/teams/188",
-      "teamId": 188,
       "record": {
         "pj": 15,
         "g": 2,
@@ -2243,7 +2238,6 @@
       "active": false,
       "url": "https://www.malagaf7.com/tournaments/20",
       "teamUrl": "https://www.malagaf7.com/tournaments/20/teams/177",
-      "teamId": 177,
       "record": {
         "pj": 6,
         "g": 0,

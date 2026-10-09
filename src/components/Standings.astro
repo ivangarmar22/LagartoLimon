@@ -24,62 +24,80 @@ const played = table.rows.some((r) => r.pj > 0);
     <table>
       <thead>
         <tr>
-          <th class="c-pos" scope="col">#</th>
-          <th class="c-team" scope="col">Equipo</th>
-          <th scope="col" title="Partidos jugados">PJ</th>
-          <th scope="col" class="c-sm" title="Ganados">G</th>
-          {!isBasket && <th scope="col" class="c-sm" title="Empatados">E</th>}
-          <th scope="col" class="c-sm" title="Perdidos">P</th>
-          <th scope="col" class="c-hide" title={isBasket ? 'Puntos a favor' : 'Goles a favor'}>{isBasket ? 'PF' : 'GF'}</th>
-          <th scope="col" class="c-hide" title={isBasket ? 'Puntos en contra' : 'Goles en contra'}>{isBasket ? 'PC' : 'GC'}</th>
-          <th scope="col" title="Diferencia">DIF</th>
-          <th scope="col" class="c-pts">PTS</th>
+          <th class="c-pos" scope="col">
+            #
+          </th>
+          <th class="c-team" scope="col">
+            Equipo
+          </th>
+          <th scope="col" title="Partidos jugados">
+            PJ
+          </th>
+          <th scope="col" class="c-sm" title="Ganados">
+            G
+          </th>
+          {!isBasket && (
+            <th scope="col" class="c-sm" title="Empatados">
+              E
+            </th>
+          )}
+          <th scope="col" class="c-sm" title="Perdidos">
+            P
+          </th>
+          <th scope="col" class="c-hide" title={isBasket ? 'Puntos a favor' : 'Goles a favor'}>
+            {isBasket ? 'PF' : 'GF'}
+          </th>
+          <th scope="col" class="c-hide" title={isBasket ? 'Puntos en contra' : 'Goles en contra'}>
+            {isBasket ? 'PC' : 'GC'}
+          </th>
+          <th scope="col" title="Diferencia">
+            DIF
+          </th>
+          <th scope="col" class="c-pts">
+            PTS
+          </th>
         </tr>
       </thead>
       <tbody>
-        {
-          table.rows.map((r) => {
-            const z = played ? zoneOf(r.pos) : undefined;
-            return (
-              <tr class:list={{ 'is-us': r.us }} style={z ? `--zone:${z.color}` : undefined}>
-                <td class="c-pos">
-                  <span class:list={['pos', { 'has-zone': z }]} title={z?.title}>
-                    {r.pos}
-                  </span>
-                </td>
-                <td class="c-team">
-                  <span class="team">
-                    <TeamLogo name={r.team} logo={r.us ? crest : r.logo} size={30} />
-                    <span>{r.team}</span>
-                  </span>
-                </td>
-                <td>{r.pj}</td>
-                <td class="c-sm">{r.g}</td>
-                {!isBasket && <td class="c-sm">{r.e}</td>}
-                <td class="c-sm">{r.p}</td>
-                <td class="c-hide">{r.gf}</td>
-                <td class="c-hide">{r.gc}</td>
-                <td>{r.dg > 0 ? `+${r.dg}` : r.dg}</td>
-                <td class="c-pts">{r.pts}</td>
-              </tr>
-            );
-          })
-        }
+        {table.rows.map((r) => {
+          const z = played ? zoneOf(r.pos) : undefined;
+          return (
+            <tr class:list={{ 'is-us': r.us }} style={z ? `--zone:${z.color}` : undefined}>
+              <td class="c-pos">
+                <span class:list={['pos', { 'has-zone': z }]} title={z?.title}>
+                  {r.pos}
+                </span>
+              </td>
+              <td class="c-team">
+                <span class="team">
+                  <TeamLogo name={r.team} logo={r.us ? crest : r.logo} size={30} />
+                  <span>{r.team}</span>
+                </span>
+              </td>
+              <td>{r.pj}</td>
+              <td class="c-sm">{r.g}</td>
+              {!isBasket && <td class="c-sm">{r.e}</td>}
+              <td class="c-sm">{r.p}</td>
+              <td class="c-hide">{r.gf}</td>
+              <td class="c-hide">{r.gc}</td>
+              <td>{r.dg > 0 ? `+${r.dg}` : r.dg}</td>
+              <td class="c-pts">{r.pts}</td>
+            </tr>
+          );
+        })}
       </tbody>
     </table>
   </div>
-  {
-    played && table.zones.length > 0 && (
-      <div class="standings__legend">
-        {table.zones.map((z) => (
-          <span>
-            <i style={`background:${z.color}`} />
-            {z.title}
-          </span>
-        ))}
-      </div>
-    )
-  }
+  {played && table.zones.length > 0 && (
+    <div class="standings__legend">
+      {table.zones.map((z) => (
+        <span>
+          <i style={`background:${z.color}`} />
+          {z.title}
+        </span>
+      ))}
+    </div>
+  )}
   {!played && <p class="standings__note">La competición aún no ha empezado: todos los equipos a cero.</p>}
 </div>
 

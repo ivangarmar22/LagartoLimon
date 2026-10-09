@@ -22,14 +22,28 @@ export function madridISO(naive: string | null) {
   if (!p) return null;
   const offset = new Intl.DateTimeFormat('en-US', { timeZone: 'Europe/Madrid', timeZoneName: 'longOffset' })
     .formatToParts(new Date(Date.UTC(p.y, p.mo - 1, p.d, p.h, p.mi)))
-    .find((x) => x.type === 'timeZoneName')!.value.replace('GMT', '');
+    .find((x) => x.type === 'timeZoneName')!
+    .value.replace('GMT', '');
   return `${naive!.slice(0, 16)}:00${offset || '+00:00'}`;
 }
 
 const DAYS = ['Dom', 'Lun', 'Mar', 'Mié', 'Jue', 'Vie', 'Sáb'];
 const DAYS_LONG = ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'];
 const MONTHS = ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'];
-const MONTHS_LONG = ['enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio', 'julio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre'];
+const MONTHS_LONG = [
+  'enero',
+  'febrero',
+  'marzo',
+  'abril',
+  'mayo',
+  'junio',
+  'julio',
+  'agosto',
+  'septiembre',
+  'octubre',
+  'noviembre',
+  'diciembre',
+];
 
 export function dateBits(naive: string | null) {
   const p = naive ? parts(naive) : null;

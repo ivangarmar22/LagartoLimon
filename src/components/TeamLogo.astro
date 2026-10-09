@@ -10,7 +10,18 @@ const { name, logo, size = 44, class: cls } = Astro.props;
 ---
 
 <span class:list={['tlogo', cls]} style={`--s:${size}px`} data-initials={initials(name)}>
-  {logo && <img src={logo} alt="" width={size} height={size} loading="lazy" decoding="async" referrerpolicy="no-referrer" onerror="this.remove()" />}
+  {logo && (
+    <img
+      src={logo}
+      alt=""
+      width={size}
+      height={size}
+      loading="lazy"
+      decoding="async"
+      referrerpolicy="no-referrer"
+      onerror="this.remove()"
+    />
+  )}
 </span>
 
 <style>

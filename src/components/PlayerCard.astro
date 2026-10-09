@@ -8,11 +8,11 @@ interface Props {
   placeholder?: boolean;
   index?: number;
   stat?: 'edad' | 'altura';
+  staff?: boolean;
 }
-const { player: p, crest, placeholder = false, index = 0, stat = 'edad' } = Astro.props;
+const { player: p, crest, placeholder = false, index = 0, stat = 'edad', staff = false } = Astro.props;
 const statLabel = stat === 'altura' ? 'Altura' : 'Edad';
-const statValue =
-  stat === 'altura' ? (p?.altura ? `${p.altura.toFixed(2).replace('.', ',')} m` : '—') : (p?.edad ?? '—');
+const statValue = stat === 'altura' ? (p?.altura ? `${p.altura.toFixed(2).replace('.', ',')} m` : '—') : (p?.edad ?? '—');
 
 const ABBR: Record<string, string> = {
   Portero: 'POR',
@@ -25,70 +25,75 @@ const ABBR: Record<string, string> = {
   'Ala-pívot': 'ALP',
   Pívot: 'PIV',
   Jugador: 'JUG',
+  Entrenador: 'ENT',
 };
 const SHORT: Record<string, string> = { Centrocampista: 'Medio' };
 const abbr = p ? (ABBR[p.posicion] ?? p.posicion.slice(0, 3).toUpperCase()) : '???';
 const dorsal = p?.dorsal ?? '–';
+// Técnicos: el cargo ocupa el sitio del dorsal y el apodo acompaña al nombre
+const firstName = staff && p?.apodo ? `${p.nombre} «${p.apodo}»` : p?.apellidos ? (p.apodo ?? p.nombre) : ' ';
 ---
 
 <article class:list={['pcard', { 'is-placeholder': placeholder }]} data-tilt data-reveal style={`--i:${index % 6}`}>
   <div class="pcard__inner">
     <div class="pcard__bg" aria-hidden="true">
-      <span class="pcard__ghost">{dorsal}</span>
+      {!staff && <span class="pcard__ghost">{dorsal}</span>}
     </div>
 
     <div class="pcard__photo">
-      {
-        p?.foto ? (
-          <img src={url(p.foto)} alt={`${p.nombre} ${p.apellidos}`} loading="lazy" decoding="async" />
-        ) : (
-          <svg class="pcard__silhouette" viewBox="0 0 200 240" aria-hidden="true">
-            <defs>
-              <linearGradient id="sil" x1="0" x2="0" y1="0" y2="1">
-                <stop offset="0" stop-color="currentColor" stop-opacity="0.38" />
-                <stop offset="1" stop-color="currentColor" stop-opacity="0.08" />
-              </linearGradient>
-            </defs>
-            <circle cx="100" cy="78" r="38" fill="url(#sil)" />
-            <path d="M28 240c0-62 30-104 72-104s72 42 72 104Z" fill="url(#sil)" />
-          </svg>
-        )
-      }
+      {p?.foto ? (
+        <img src={url(p.foto)} alt={`${p.nombre} ${p.apellidos}`} loading="lazy" decoding="async" />
+      ) : (
+        <svg class="pcard__silhouette" viewBox="0 0 200 240" aria-hidden="true">
+          <defs>
+            <linearGradient id="sil" x1="0" x2="0" y1="0" y2="1">
+              <stop offset="0" stop-color="currentColor" stop-opacity="0.38" />
+              <stop offset="1" stop-color="currentColor" stop-opacity="0.08" />
+            </linearGradient>
+          </defs>
+          <circle cx="100" cy="78" r="38" fill="url(#sil)" />
+          <path d="M28 240c0-62 30-104 72-104s72 42 72 104Z" fill="url(#sil)" />
+        </svg>
+      )}
     </div>
 
     <header class="pcard__top">
       <div class="pcard__num">
-        <b>{dorsal}</b>
-        <span>{abbr}</span>
+        <b>{staff ? abbr : dorsal}</b>
+        {!staff && <span>{abbr}</span>}
       </div>
       <img class="pcard__crest" src={crest} alt="" width="44" height="44" loading="lazy" />
     </header>
 
-    {p?.capitan && <span class="pcard__captain" title="Capitán">C</span>}
+    {p?.capitan && (
+      <span class="pcard__captain" title="Capitán">
+        C
+      </span>
+    )}
 
     <footer class="pcard__info">
-      {
-        placeholder ? (
-          <>
-            <p class="pcard__first">Plantilla</p>
-            <h3 class="pcard__last">Próximamente</h3>
-          </>
-        ) : (
-          <>
-            <p class="pcard__first">{p!.apellidos ? (p!.apodo ?? p!.nombre) : ' '}</p>
-            <h3 class="pcard__last">{p!.apellidos || p!.nombre}</h3>
-          </>
-        )
-      }
+      {placeholder ? (
+        <>
+          <p class="pcard__first">Plantilla</p>
+          <h3 class="pcard__last">Próximamente</h3>
+        </>
+      ) : (
+        <>
+          <p class="pcard__first">{firstName}</p>
+          <h3 class="pcard__last">{p!.apellidos || p!.nombre}</h3>
+        </>
+      )}
       <dl class="pcard__stats">
         <div>
-          <dt>Posición</dt>
+          <dt>{staff ? 'Cargo' : 'Posición'}</dt>
           <dd>{p ? (SHORT[p.posicion] ?? p.posicion) : '—'}</dd>
         </div>
-        <div class="pcard__dorsal">
-          <dt>Dorsal</dt>
-          <dd>{p?.dorsal ?? '—'}</dd>
-        </div>
+        {!staff && (
+          <div class="pcard__dorsal">
+            <dt>Dorsal</dt>
+            <dd>{p?.dorsal ?? '—'}</dd>
+          </div>
+        )}
         <div>
           <dt>{statLabel}</dt>
           <dd>{statValue}</dd>
@@ -114,15 +119,16 @@ const dorsal = p?.dorsal ?? '–';
     border-radius: 24px;
     overflow: hidden;
     isolation: isolate;
-    background:
-      linear-gradient(165deg, color-mix(in srgb, var(--team) 55%, #0a1b0f) 0%, #0b1d10 55%, #050e07 100%);
+    background: linear-gradient(165deg, color-mix(in srgb, var(--team) 55%, #0a1b0f) 0%, #0b1d10 55%, #050e07 100%);
     border: 1px solid rgba(255, 249, 232, 0.14);
     box-shadow:
       0 30px 60px -30px rgba(0, 0, 0, 0.9),
       inset 0 1px 0 rgba(255, 255, 255, 0.12);
     transform: rotateX(var(--ry)) rotateY(var(--rx));
     transform-style: preserve-3d;
-    transition: transform 0.6s var(--ease-out), box-shadow 0.4s;
+    transition:
+      transform 0.6s var(--ease-out),
+      box-shadow 0.4s;
   }
   .pcard:hover .pcard__inner {
     box-shadow:
@@ -130,15 +136,16 @@ const dorsal = p?.dorsal ?? '–';
       inset 0 1px 0 rgba(255, 255, 255, 0.18);
   }
   .pcard.is-tilting .pcard__inner {
-    transition: transform 0.12s linear, box-shadow 0.4s;
+    transition:
+      transform 0.12s linear,
+      box-shadow 0.4s;
   }
 
   .pcard__bg {
     position: absolute;
     inset: 0;
     z-index: -1;
-    background:
-      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='30' height='26' viewBox='0 0 30 26'%3E%3Cpath d='M0 13 Q7.5 3 15 13 Q22.5 3 30 13 M-15 26 Q-7.5 16 0 26 Q7.5 16 15 26 Q22.5 16 30 26 Q37.5 16 45 26' fill='none' stroke='%23fff9e8' stroke-opacity='0.07' stroke-width='1'/%3E%3C/svg%3E");
+    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='30' height='26' viewBox='0 0 30 26'%3E%3Cpath d='M0 13 Q7.5 3 15 13 Q22.5 3 30 13 M-15 26 Q-7.5 16 0 26 Q7.5 16 15 26 Q22.5 16 30 26 Q37.5 16 45 26' fill='none' stroke='%23fff9e8' stroke-opacity='0.07' stroke-width='1'/%3E%3C/svg%3E");
     mask-image: linear-gradient(180deg, #000 0%, transparent 70%);
   }
   .pcard__ghost {
@@ -300,8 +307,12 @@ const dorsal = p?.dorsal ?? '–';
     background:
       radial-gradient(420px circle at var(--mx) var(--my), rgba(255, 246, 194, 0.22), transparent 45%),
       linear-gradient(115deg, transparent 30%, rgba(255, 214, 10, 0.08) 45%, rgba(111, 220, 74, 0.08) 55%, transparent 70%);
-    background-size: 100% 100%, 250% 250%;
-    background-position: center, var(--mx) var(--my);
+    background-size:
+      100% 100%,
+      250% 250%;
+    background-position:
+      center,
+      var(--mx) var(--my);
     mix-blend-mode: screen;
     opacity: 0;
     transition: opacity 0.4s;

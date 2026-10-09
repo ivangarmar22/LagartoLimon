@@ -27,78 +27,74 @@ const Tag = m.url ? 'a' : 'div';
   data-reveal
 >
   <div class="mrow__date">
-    {
-      d ? (
-        <>
-          <span class="mrow__dow">{d.dow}</span>
-          <span class="mrow__day">{d.day}</span>
-          <span class="mrow__month">{d.month}</span>
-        </>
-      ) : (
-        <span class="mrow__tbd">{m.bye ? '—' : 'Por fijar'}</span>
-      )
-    }
+    {d ? (
+      <>
+        <span class="mrow__dow">{d.dow}</span>
+        <span class="mrow__day">{d.day}</span>
+        <span class="mrow__month">{d.month}</span>
+      </>
+    ) : (
+      <span class="mrow__tbd">{m.bye ? '—' : 'Por fijar'}</span>
+    )}
   </div>
 
   <div class="mrow__body">
     <div class="mrow__meta">
-      {
-        showSport && (
-          <span class="mrow__sport">
-            <Icon name={sport === 'futbol' ? 'ball' : 'basket'} size={12} />
-            {secciones[sport].corto}
-          </span>
-        )
-      }
+      {showSport && (
+        <span class="mrow__sport">
+          <Icon name={sport === 'futbol' ? 'ball' : 'basket'} size={12} />
+          {secciones[sport].corto}
+        </span>
+      )}
       {showSport && m.competition && <span class="mrow__comp">{m.competition}</span>}
       <span class="mrow__round">{m.round}</span>
       {m.knockout && <span class="mrow__ko">{m.stage}</span>}
-      {
-        m.venue && (
-          <span class="mrow__venue">
-            <Icon name="pin" size={13} />
-            {m.venue}
-          </span>
-        )
-      }
+      {m.venue && (
+        <span class="mrow__venue">
+          <Icon name="pin" size={13} />
+          {m.venue}
+        </span>
+      )}
     </div>
 
-    {
-      m.bye ? (
-        <div class="mrow__bye">Jornada de descanso</div>
-      ) : (
-        <div class="mrow__teams">
-          <div class:list={['mrow__team mrow__team--home', { 'is-us': m.home.us }]}>
-            <span class="mrow__name">{m.home.name}</span>
-            <TeamLogo name={m.home.name} logo={logoOf(m.home)} size={40} />
-          </div>
-          <div class="mrow__score">
-            {m.played && m.score ? (
-              <>
-                <b class:list={['mrow__hs', { 'is-us': m.isHome }]}>{m.score[0]}</b>
-                <i>-</i>
-                <b class:list={['mrow__as', { 'is-us': !m.isHome }]}>{m.score[1]}</b>
-              </>
-            ) : (
-              <span class="mrow__time">{d?.time ?? 'vs'}</span>
-            )}
-            {m.shootout && (
-              <small class="mrow__pens">
-                pen. {m.shootout[0]}-{m.shootout[1]}
-              </small>
-            )}
-          </div>
-          <div class:list={['mrow__team mrow__team--away', { 'is-us': m.away.us }]}>
-            <TeamLogo name={m.away.name} logo={logoOf(m.away)} size={40} />
-            <span class="mrow__name">{m.away.name}</span>
-          </div>
+    {m.bye ? (
+      <div class="mrow__bye">Jornada de descanso</div>
+    ) : (
+      <div class="mrow__teams">
+        <div class:list={['mrow__team mrow__team--home', { 'is-us': m.home.us }]}>
+          <span class="mrow__name">{m.home.name}</span>
+          <TeamLogo name={m.home.name} logo={logoOf(m.home)} size={40} />
         </div>
-      )
-    }
+        <div class="mrow__score">
+          {m.played && m.score ? (
+            <>
+              <b class:list={['mrow__hs', { 'is-us': m.isHome }]}>{m.score[0]}</b>
+              <i>-</i>
+              <b class:list={['mrow__as', { 'is-us': !m.isHome }]}>{m.score[1]}</b>
+            </>
+          ) : (
+            <span class="mrow__time">{d?.time ?? 'vs'}</span>
+          )}
+          {m.shootout && (
+            <small class="mrow__pens">
+              pen. {m.shootout[0]}-{m.shootout[1]}
+            </small>
+          )}
+        </div>
+        <div class:list={['mrow__team mrow__team--away', { 'is-us': m.away.us }]}>
+          <TeamLogo name={m.away.name} logo={logoOf(m.away)} size={40} />
+          <span class="mrow__name">{m.away.name}</span>
+        </div>
+      </div>
+    )}
   </div>
 
   <div class="mrow__res">
-    {res && <span class:list={['pill', `pill--${res}`]} title={resLabel[res]}>{res === 'W' ? 'V' : res === 'D' ? 'E' : 'D'}</span>}
+    {res && (
+      <span class:list={['pill', `pill--${res}`]} title={resLabel[res]}>
+        {res === 'W' ? 'V' : res === 'D' ? 'E' : 'D'}
+      </span>
+    )}
     {!res && !m.bye && <span class="pill pill--next">{m.isHome ? 'Casa' : 'Fuera'}</span>}
   </div>
 </Tag>
@@ -113,7 +109,10 @@ const Tag = m.url ? 'a' : 'div';
     border-radius: var(--radius-sm);
     background: var(--surface);
     border: 1px solid var(--border);
-    transition: background 0.3s, border-color 0.3s, transform 0.5s var(--ease-out);
+    transition:
+      background 0.3s,
+      border-color 0.3s,
+      transform 0.5s var(--ease-out);
   }
   a.mrow:hover {
     background: var(--surface-2);
@@ -312,7 +311,7 @@ const Tag = m.url ? 'a' : 'div';
     .mrow__day {
       font-size: 1.6rem;
     }
-    /* marcador en dos filas: escudo, nombre y tanteo de cada equipo */
+    /* marcador en dos filas, una por equipo */
     .mrow__teams {
       grid-template-columns: 1fr auto;
       grid-template-areas: 'home hs' 'away as' 'pens pens';

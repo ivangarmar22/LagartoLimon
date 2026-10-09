@@ -1,7 +1,7 @@
 import { hitos } from '../data/club';
 import { futbol, baloncesto, ourRow, type Season } from './data';
 
-export type Hito = {
+type Hito = {
   year: string;
   sort: number;
   titulo: string;
@@ -13,8 +13,7 @@ export type Hito = {
 const plural = (n: number, one: string, many: string) => `${n} ${n === 1 ? one : many}`;
 const capitalize = (s: string) => s.charAt(0).toUpperCase() + s.slice(1);
 // Las ligas a veces escriben los grupos en mayúsculas: "MÁLAGA ESTE" -> "Málaga Este"
-const soft = (s: string) =>
-  s === s.toUpperCase() ? s.toLowerCase().replace(/(^|\s)(\p{L})/gu, (_, a, b) => a + b.toUpperCase()) : s;
+const soft = (s: string) => (s === s.toUpperCase() ? s.toLowerCase().replace(/(^|\s)(\p{L})/gu, (_, a, b) => a + b.toUpperCase()) : s);
 
 function futbolHito(s: Season, first: boolean): Hito {
   const table = s.tables[0];

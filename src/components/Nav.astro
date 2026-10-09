@@ -13,46 +13,53 @@ const path = Astro.url.pathname;
 const isHome = isActive(path, '');
 ---
 
-<header class:list={["nav", { "nav--home": isHome }]} data-nav>
+<header class:list={['nav', { 'nav--home': isHome }]} data-nav>
   <div class="nav__bar glass">
     <a class="brand" href={url('')} aria-label="Lagarto Limón, inicio">
       <span class="brand__crests">
         <img src={url('img/escudo-fc.webp')} alt="" width="36" height="40" />
         <img src={url('img/escudo-cb.webp')} alt="" width="36" height="40" />
       </span>
-      <span class="brand__name">Lagarto<b>Limón</b></span>
+      <span class="brand__name">
+        Lagarto<b>Limón</b>
+      </span>
     </a>
 
     <nav class="nav__links" aria-label="Principal">
-      {
-        links.map((l) => (
-          <a href={url(l.href)} class:list={['nav__link', { 'is-active': isActive(path, l.href) }]} aria-current={isActive(path, l.href) ? 'page' : undefined}>
-            {l.label}
-          </a>
-        ))
-      }
+      {links.map((l) => (
+        <a
+          href={url(l.href)}
+          class:list={['nav__link', { 'is-active': isActive(path, l.href) }]}
+          aria-current={isActive(path, l.href) ? 'page' : undefined}
+        >
+          {l.label}
+        </a>
+      ))}
     </nav>
 
     <button class="nav__burger" aria-label="Abrir menú" aria-expanded="false" aria-controls="menu" data-menu-toggle>
-      <span></span><span></span>
+      <span></span>
+      <span></span>
     </button>
   </div>
 
   <div class="menu" id="menu" data-menu aria-hidden="true">
     <div class="menu__bg"></div>
     <nav class="menu__links" aria-label="Menú móvil">
-      {
-        links.map((l) => (
-          <a href={url(l.href)} class:list={['menu__link', { 'is-active': isActive(path, l.href) }]} tabindex="-1">
-            <small>{l.n}</small>
-            {l.label}
-          </a>
-        ))
-      }
+      {links.map((l) => (
+        <a href={url(l.href)} class:list={['menu__link', { 'is-active': isActive(path, l.href) }]} tabindex="-1">
+          <small>{l.n}</small>
+          {l.label}
+        </a>
+      ))}
     </nav>
     <div class="menu__social">
-      <a href={club.redes.futbol.instagram} target="_blank" rel="noopener" tabindex="-1"><Icon name="instagram" size={18} /> {club.redes.futbol.handle}</a>
-      <a href={club.redes.baloncesto.instagram} target="_blank" rel="noopener" tabindex="-1"><Icon name="instagram" size={18} /> {club.redes.baloncesto.handle}</a>
+      <a href={club.redes.futbol.instagram} target="_blank" rel="noopener" tabindex="-1">
+        <Icon name="instagram" size={18} /> {club.redes.futbol.handle}
+      </a>
+      <a href={club.redes.baloncesto.instagram} target="_blank" rel="noopener" tabindex="-1">
+        <Icon name="instagram" size={18} /> {club.redes.baloncesto.handle}
+      </a>
     </div>
   </div>
 </header>
@@ -82,7 +89,9 @@ const isHome = isActive(path, '');
     padding: 0 10px 0 12px;
     border-radius: 999px;
     background: rgba(8, 22, 12, 0.55);
-    transition: background 0.4s, box-shadow 0.4s;
+    transition:
+      background 0.4s,
+      box-shadow 0.4s;
   }
   .nav.is-scrolled .nav__bar {
     background: rgba(8, 22, 12, 0.78);
@@ -139,7 +148,9 @@ const isHome = isActive(path, '');
     font-weight: 700;
     font-size: 0.95rem;
     color: var(--text-muted);
-    transition: color 0.3s, background 0.3s;
+    transition:
+      color 0.3s,
+      background 0.3s;
   }
   .nav__link:hover {
     color: var(--cream);
@@ -180,7 +191,6 @@ const isHome = isActive(path, '');
     transform: rotate(-45deg);
   }
 
-  /* Menú móvil */
   .menu {
     position: fixed;
     inset: 0;
@@ -195,9 +205,7 @@ const isHome = isActive(path, '');
   .menu__bg {
     position: absolute;
     inset: 0;
-    background:
-      radial-gradient(600px 400px at 100% 0%, rgba(255, 214, 10, 0.18), transparent 70%),
-      var(--jungle-950);
+    background: radial-gradient(600px 400px at 100% 0%, rgba(255, 214, 10, 0.18), transparent 70%), var(--jungle-950);
     clip-path: circle(0 at calc(100% - 50px) 45px);
     transition: clip-path 0.8s var(--ease-out);
   }
@@ -224,7 +232,10 @@ const isHome = isActive(path, '');
     text-transform: uppercase;
     opacity: 0;
     transform: translateY(40px);
-    transition: opacity 0.5s, transform 0.7s var(--ease-out), color 0.3s;
+    transition:
+      opacity 0.5s,
+      transform 0.7s var(--ease-out),
+      color 0.3s;
   }
   .menu__link small {
     font-size: 0.9rem;
@@ -280,7 +291,7 @@ const isHome = isActive(path, '');
       font-size: 1.2rem;
     }
   }
-  /* Portada: menú translúcido para que se vean las letras de detrás */
+  /* En la portada, menú translúcido sobre las letras gigantes */
   .nav.nav--home .nav__bar,
   .nav.nav--home.is-scrolled .nav__bar {
     background: linear-gradient(135deg, rgba(255, 249, 232, 0.1), rgba(255, 249, 232, 0.03));
@@ -290,6 +301,8 @@ const isHome = isActive(path, '');
   }
   .nav.nav--home .brand__name,
   .nav.nav--home .nav__link:not(.is-active) {
-    text-shadow: 0 1px 10px rgba(5, 14, 7, 0.9), 0 0 2px rgba(5, 14, 7, 0.8);
+    text-shadow:
+      0 1px 10px rgba(5, 14, 7, 0.9),
+      0 0 2px rgba(5, 14, 7, 0.8);
   }
 </style>

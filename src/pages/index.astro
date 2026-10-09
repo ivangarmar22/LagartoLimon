@@ -57,8 +57,12 @@ const teams = [
   <section class="hero" data-hero>
     <div class="hero__glow" aria-hidden="true"></div>
     <div class="hero__words" aria-hidden="true">
-      <span class="hero__word hero__word--top" data-hero-word="-1">Lagarto</span>
-      <span class="hero__word hero__word--bottom" data-hero-word="1">Limón</span>
+      <span class="hero__word hero__word--top" data-hero-word="-1">
+        Lagarto
+      </span>
+      <span class="hero__word hero__word--bottom" data-hero-word="1">
+        Limón
+      </span>
     </div>
 
     <div class="hero__crests" data-hero-crests>
@@ -86,28 +90,42 @@ const teams = [
 
   <section id="club" class="section manifesto">
     <div class="container">
-      <p class="eyebrow" data-reveal>El club</p>
-      <p class="manifesto__text" data-scrub-words>{manifesto}</p>
+      <p class="eyebrow" data-reveal>
+        El club
+      </p>
+      <p class="manifesto__text" data-scrub-words>
+        {manifesto}
+      </p>
 
       <div class="counters">
         <div class="counter" data-reveal>
-          <b><span data-count={club.fundacion}>{club.fundacion}</span></b>
+          <b>
+            <span data-count={club.fundacion}>{club.fundacion}</span>
+          </b>
           <span>Año de fundación</span>
         </div>
         <div class="counter" data-reveal>
-          <b><span data-count={years}>{years}</span></b>
+          <b>
+            <span data-count={years}>{years}</span>
+          </b>
           <span>Años mordiendo limones</span>
         </div>
         <div class="counter" data-reveal>
-          <b><span data-count="2">2</span></b>
+          <b>
+            <span data-count="2">2</span>
+          </b>
           <span>Secciones: FC y CB</span>
         </div>
         <div class="counter" data-reveal>
-          <b><span data-count={totals.partidos}>{totals.partidos}</span></b>
+          <b>
+            <span data-count={totals.partidos}>{totals.partidos}</span>
+          </b>
           <span>Partidos oficiales registrados</span>
         </div>
         <div class="counter" data-reveal>
-          <b><span data-count={totals.goles}>{totals.goles}</span></b>
+          <b>
+            <span data-count={totals.goles}>{totals.goles}</span>
+          </b>
           <span>Goles en MálagaF7</span>
         </div>
       </div>
@@ -118,55 +136,59 @@ const teams = [
     <div class="container">
       <div class="section-head">
         <div>
-          <p class="eyebrow" data-reveal>Nuestros equipos</p>
-          <h2 class="title-lg" data-split>Dos balones,<br />una misma piel</h2>
+          <p class="eyebrow" data-reveal>
+            Nuestros equipos
+          </p>
+          <h2 class="title-lg" data-split>
+            Dos balones,
+            <br />
+            una misma piel
+          </h2>
         </div>
       </div>
 
       <div class="teams">
-        {
-          teams.map((t, i) => (
-            <a class="team-card" href={url(t.slug)} data-team={t.slug} data-reveal style={`--d:${i * 0.1}s`}>
-              <div class="team-card__bg" aria-hidden="true" />
-              <span class="team-card__num" aria-hidden="true">
-                0{i + 1}
+        {teams.map((t, i) => (
+          <a class="team-card" href={url(t.slug)} data-team={t.slug} data-reveal style={`--d:${i * 0.1}s`}>
+            <div class="team-card__bg" aria-hidden="true" />
+            <span class="team-card__num" aria-hidden="true">
+              0{i + 1}
+            </span>
+            <img class="team-card__crest" src={url(t.escudo)} alt="" width="300" height="337" loading="lazy" />
+            <div class="team-card__body">
+              <span class="team-card__sport">
+                <Icon name={t.icon} size={16} />
+                {t.deporte}
               </span>
-              <img class="team-card__crest" src={url(t.escudo)} alt="" width="300" height="337" loading="lazy" />
-              <div class="team-card__body">
-                <span class="team-card__sport">
-                  <Icon name={t.icon} size={16} />
-                  {t.deporte}
-                </span>
-                <h3>{t.nombre}</h3>
-                <p>
-                  {t.competicion}
-                  {t.grupo && ` · ${t.grupo}`}
-                </p>
-                <ul class="team-card__facts">
-                  {t.pos && (
-                    <li>
-                      <b>{t.pos}º</b>
-                      <small>de {t.total}</small>
-                    </li>
-                  )}
-                  {t.jugadores > 0 && (
-                    <li>
-                      <b>{t.jugadores}</b>
-                      <small>jugadores</small>
-                    </li>
-                  )}
+              <h3>{t.nombre}</h3>
+              <p>
+                {t.competicion}
+                {t.grupo && ` · ${t.grupo}`}
+              </p>
+              <ul class="team-card__facts">
+                {t.pos && (
                   <li>
-                    <b>{t.liga}</b>
-                    <small>competición</small>
+                    <b>{t.pos}º</b>
+                    <small>de {t.total}</small>
                   </li>
-                </ul>
-                <span class="team-card__cta">
-                  Ver equipo <Icon name="arrow" size={18} />
-                </span>
-              </div>
-            </a>
-          ))
-        }
+                )}
+                {t.jugadores > 0 && (
+                  <li>
+                    <b>{t.jugadores}</b>
+                    <small>jugadores</small>
+                  </li>
+                )}
+                <li>
+                  <b>{t.liga}</b>
+                  <small>competición</small>
+                </li>
+              </ul>
+              <span class="team-card__cta">
+                Ver equipo <Icon name="arrow" size={18} />
+              </span>
+            </div>
+          </a>
+        ))}
       </div>
     </div>
   </section>
@@ -175,90 +197,98 @@ const teams = [
     <div class="container">
       <div class="section-head">
         <div>
-          <p class="eyebrow" data-reveal>Agenda</p>
-          <h2 class="title-lg" data-split>Próximos partidos</h2>
+          <p class="eyebrow" data-reveal>
+            Agenda
+          </p>
+          <h2 class="title-lg" data-split>
+            Próximos partidos
+          </h2>
         </div>
       </div>
       <div class="nexts">
         <div data-reveal>
-          {nextFut.length ? <NextMatch matches={nextFut} title="Próximo · FC" compact /> : <p class="none">Sin partidos de fútbol programados.</p>}
+          {nextFut.length ? (
+            <NextMatch matches={nextFut} title="Próximo · FC" compact />
+          ) : (
+            <p class="none">Sin partidos de fútbol programados.</p>
+          )}
         </div>
         <div data-reveal>
-          {nextCb.length ? <NextMatch matches={nextCb} title="Próximo · CB" compact /> : <p class="none">Sin partidos de baloncesto programados.</p>}
+          {nextCb.length ? (
+            <NextMatch matches={nextCb} title="Próximo · CB" compact />
+          ) : (
+            <p class="none">Sin partidos de baloncesto programados.</p>
+          )}
         </div>
       </div>
 
-      {
-        moreNext.length > 0 && (
-          <div class="more">
-            <h3 class="more__title" data-reveal>
-              Y después…
-            </h3>
-            <div class="results">
-              {moreNext.map((m) => (
-                <div data-team={m.sport}>
-                  <MatchRow match={m} sport={m.sport!} showSport />
-                </div>
-              ))}
-            </div>
-          </div>
-        )
-      }
-    </div>
-  </section>
-
-  {
-    allPlayed.length > 0 && (
-      <section class="section section--tight">
-        <div class="container">
-          <div class="section-head">
-            <div>
-              <p class="eyebrow" data-reveal>
-                Lo último
-              </p>
-              <h2 class="title-lg" data-split>
-                Resultados
-              </h2>
-            </div>
-            <div class="head-links" data-reveal>
-              <a class="btn btn--ghost" href={url('futbol#temporadas')}>
-                Fútbol <Icon name="arrow" />
-              </a>
-              <a class="btn btn--ghost" href={url('baloncesto#calendario')}>
-                Baloncesto <Icon name="arrow" />
-              </a>
-            </div>
-          </div>
+      {moreNext.length > 0 && (
+        <div class="more">
+          <h3 class="more__title" data-reveal>
+            Y después…
+          </h3>
           <div class="results">
-            {allPlayed.map((m) => (
+            {moreNext.map((m) => (
               <div data-team={m.sport}>
                 <MatchRow match={m} sport={m.sport!} showSport />
               </div>
             ))}
           </div>
         </div>
-      </section>
-    )
-  }
+      )}
+    </div>
+  </section>
+
+  {allPlayed.length > 0 && (
+    <section class="section section--tight">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow" data-reveal>
+              Lo último
+            </p>
+            <h2 class="title-lg" data-split>
+              Resultados
+            </h2>
+          </div>
+          <div class="head-links" data-reveal>
+            <a class="btn btn--ghost" href={url('futbol#temporadas')}>
+              Fútbol <Icon name="arrow" />
+            </a>
+            <a class="btn btn--ghost" href={url('baloncesto#calendario')}>
+              Baloncesto <Icon name="arrow" />
+            </a>
+          </div>
+        </div>
+        <div class="results">
+          {allPlayed.map((m) => (
+            <div data-team={m.sport}>
+              <MatchRow match={m} sport={m.sport!} showSport />
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
 
   <section class="hscroll" data-hscroll>
     <div class="hscroll__pin">
       <div class="hscroll__head container">
         <p class="eyebrow">Nuestra historia</p>
         <h2 class="title-lg">La muda de piel</h2>
-        <p class="hscroll__hint" aria-hidden="true">Desliza <Icon name="arrow" size={16} /></p>
+        <p class="hscroll__hint" aria-hidden="true">
+          Desliza <Icon name="arrow" size={16} />
+        </p>
       </div>
       <div class="hscroll__track" data-hscroll-track>
-        {
-          timeline.map((h) => (
-            <article class="hcard" data-team={h.deporte}>
-              <span class="hcard__year">{h.year}</span>
-              <h3>{h.titulo}</h3>
-              <p>{h.texto}</p>
-              {h.tag && <span class="hcard__tag">{h.tag}</span>}
-            </article>
-          ))
-        }
+        {timeline.map((h) => (
+          <article class="hcard" data-team={h.deporte}>
+            <span class="hcard__year">{h.year}</span>
+            <h3>{h.titulo}</h3>
+            <p>{h.texto}</p>
+            {h.tag && <span class="hcard__tag">{h.tag}</span>}
+          </article>
+        ))}
         <a class="hcard hcard--cta" href={url('historia')}>
           <Lemon class="hcard__lemon" />
           <h3>Toda la historia</h3>
@@ -473,7 +503,9 @@ const teams = [
     background:
       radial-gradient(80% 70% at 70% 25%, color-mix(in srgb, var(--team) 55%, transparent), transparent 70%),
       linear-gradient(180deg, transparent 40%, rgba(5, 14, 7, 0.95));
-    transition: transform 1s var(--ease-out), opacity 0.6s;
+    transition:
+      transform 1s var(--ease-out),
+      opacity 0.6s;
     opacity: 0.7;
   }
   .team-card:hover .team-card__bg {
@@ -744,7 +776,7 @@ const teams = [
       gap: 4vw;
     }
   }
-  /* móvil y tablet vertical: LAGARTO, escudos y LIMÓN apilados en un bloque compacto */
+  /* móvil y tablet vertical: palabras y escudos apilados */
   @media (max-width: 700px), (max-width: 1024px) and (orientation: portrait) {
     .hero {
       --crest-w: 35vw;
@@ -760,7 +792,7 @@ const teams = [
     .hero__words {
       position: relative;
       inset: auto;
-      /* hueco = alto de los escudos (≈1,12 × ancho), con las letras rozándolos */
+      /* el alto de los escudos es ≈1,12 veces su ancho */
       gap: calc(var(--crest-w) * 1.02);
     }
     .hero__word {

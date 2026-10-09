@@ -19,6 +19,8 @@ const segs = Array.from({ length: segments }, (_, i) => {
 <svg class={cls} style={style} viewBox="0 0 100 100" aria-hidden="true" {...rest}>
   <circle cx="50" cy="50" r="49" fill="#f2c200" />
   <circle cx="50" cy="50" r="45.5" fill="#fff3b0" />
-  {segs.map((d) => <path d={d} fill="#ffd60a" stroke="#ffe46b" stroke-width="0.8" stroke-linejoin="round" />)}
+  {segs.map((d) => (
+    <path d={d} fill="#ffd60a" stroke="#ffe46b" stroke-width="0.8" stroke-linejoin="round" />
+  ))}
   <circle cx="50" cy="50" r="5" fill="#fff6cf" />
 </svg>

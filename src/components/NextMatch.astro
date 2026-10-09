@@ -14,88 +14,86 @@ const { matches, title = 'Próximo partido', compact = false } = Astro.props;
 const list = matches.filter((m) => m.iso).slice(0, 6);
 ---
 
-{
-  list.length > 0 && (
-    <div class:list={['next', { 'next--compact': compact }]} data-next-group>
-      {list.map((m, i) => {
-        const d = dateBits(m.date)!;
-        const sport = m.sport ?? 'futbol';
-        const crest = url(secciones[sport].escudo);
-        const logo = (s: Match['home']) => (s.us ? crest : s.logo);
-        return (
-          <article class="ticket" data-next data-iso={m.iso} data-team={sport} hidden={i > 0}>
-            <div class="ticket__main">
-              <header class="ticket__head">
-                <span class="ticket__label">
-                  <span class="live-dot" />
-                  {title}
-                </span>
-                <span class="ticket__sport">
-                  <Icon name={sport === 'futbol' ? 'ball' : 'basket'} size={16} />
-                  {secciones[sport].nombre}
-                </span>
-              </header>
-
-              <div class="ticket__teams">
-                <div class="ticket__team">
-                  <TeamLogo name={m.home.name} logo={logo(m.home)} size={compact ? 64 : 84} />
-                  <span class:list={{ 'is-us': m.home.us }}>{m.home.name}</span>
-                </div>
-                <span class="ticket__vs">VS</span>
-                <div class="ticket__team">
-                  <TeamLogo name={m.away.name} logo={logo(m.away)} size={compact ? 64 : 84} />
-                  <span class:list={{ 'is-us': m.away.us }}>{m.away.name}</span>
-                </div>
-              </div>
-
-              <ul class="ticket__info">
-                <li>
-                  <Icon name="calendar" size={16} />
-                  {d.long}
-                </li>
-                <li>
-                  <Icon name="clock" size={16} />
-                  {d.time} h
-                </li>
-                <li class="ticket__venue" title={m.venue ?? undefined}>
-                  <Icon name="pin" size={16} />
-                  <span>{m.venue ?? 'Sede por confirmar'}</span>
-                </li>
-              </ul>
-            </div>
-
-            <div class="ticket__stub">
-              <span class="ticket__round">
-                {m.competition}
-                <br />
-                {m.round}
+{list.length > 0 && (
+  <div class:list={['next', { 'next--compact': compact }]} data-next-group>
+    {list.map((m, i) => {
+      const d = dateBits(m.date)!;
+      const sport = m.sport ?? 'futbol';
+      const crest = url(secciones[sport].escudo);
+      const logo = (s: Match['home']) => (s.us ? crest : s.logo);
+      return (
+        <article class="ticket" data-next data-iso={m.iso} data-team={sport} hidden={i > 0}>
+          <div class="ticket__main">
+            <header class="ticket__head">
+              <span class="ticket__label">
+                <span class="live-dot" />
+                {title}
               </span>
-              <div class="countdown" data-countdown={m.iso}>
-                <div>
-                  <b data-d>--</b>
-                  <small>días</small>
-                </div>
-                <div>
-                  <b data-h>--</b>
-                  <small>horas</small>
-                </div>
-                <div>
-                  <b data-m>--</b>
-                  <small>min</small>
-                </div>
-                <div>
-                  <b data-s>--</b>
-                  <small>seg</small>
-                </div>
+              <span class="ticket__sport">
+                <Icon name={sport === 'futbol' ? 'ball' : 'basket'} size={16} />
+                {secciones[sport].nombre}
+              </span>
+            </header>
+
+            <div class="ticket__teams">
+              <div class="ticket__team">
+                <TeamLogo name={m.home.name} logo={logo(m.home)} size={compact ? 64 : 84} />
+                <span class:list={{ 'is-us': m.home.us }}>{m.home.name}</span>
               </div>
-              <span class="ticket__where">{m.isHome ? 'En casa' : 'A domicilio'}</span>
+              <span class="ticket__vs">VS</span>
+              <div class="ticket__team">
+                <TeamLogo name={m.away.name} logo={logo(m.away)} size={compact ? 64 : 84} />
+                <span class:list={{ 'is-us': m.away.us }}>{m.away.name}</span>
+              </div>
             </div>
-          </article>
-        );
-      })}
-    </div>
-  )
-}
+
+            <ul class="ticket__info">
+              <li>
+                <Icon name="calendar" size={16} />
+                {d.long}
+              </li>
+              <li>
+                <Icon name="clock" size={16} />
+                {d.time} h
+              </li>
+              <li class="ticket__venue" title={m.venue ?? undefined}>
+                <Icon name="pin" size={16} />
+                <span>{m.venue ?? 'Sede por confirmar'}</span>
+              </li>
+            </ul>
+          </div>
+
+          <div class="ticket__stub">
+            <span class="ticket__round">
+              {m.competition}
+              <br />
+              {m.round}
+            </span>
+            <div class="countdown" data-countdown={m.iso}>
+              <div>
+                <b data-d>--</b>
+                <small>días</small>
+              </div>
+              <div>
+                <b data-h>--</b>
+                <small>horas</small>
+              </div>
+              <div>
+                <b data-m>--</b>
+                <small>min</small>
+              </div>
+              <div>
+                <b data-s>--</b>
+                <small>seg</small>
+              </div>
+            </div>
+            <span class="ticket__where">{m.isHome ? 'En casa' : 'A domicilio'}</span>
+          </div>
+        </article>
+      );
+    })}
+  </div>
+)}
 
 <style>
   .ticket {

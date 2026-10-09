@@ -223,7 +223,9 @@ p {
   text-transform: uppercase;
   overflow: hidden;
   isolation: isolate;
-  transition: transform 0.4s var(--ease-out), box-shadow 0.4s var(--ease-out);
+  transition:
+    transform 0.4s var(--ease-out),
+    box-shadow 0.4s var(--ease-out);
 }
 .btn::before {
   content: '';

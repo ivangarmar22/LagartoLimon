@@ -40,8 +40,12 @@ const ogImage = new URL(url(image), Astro.site ?? Astro.url).href;
     </script>
   </head>
   <body>
-    <a class="skip" href="#main">Saltar al contenido</a>
-    <div class="progress" aria-hidden="true"><span></span></div>
+    <a class="skip" href="#main">
+      Saltar al contenido
+    </a>
+    <div class="progress" aria-hidden="true">
+      <span></span>
+    </div>
     <Nav />
     <main id="main">
       <slot />

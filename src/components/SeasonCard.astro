@@ -29,51 +29,67 @@ const sign = (n: number) => (n > 0 ? `+${n}` : `${n}`);
   {table && <p class="season__group">{[table.stage, table.group].filter((x, i, a) => x && a.indexOf(x) === i).join(' · ')}</p>}
 
   <div class="season__highlights">
-    {
-      ourRow && (
-        <div class="hl hl--pos">
-          <b>{ourRow.pos}º</b>
-          <span>de {table.rows.length}</span>
-        </div>
-      )
-    }
-    {
-      lastKo && (
-        <div class="hl hl--ko">
-          <Icon name="trophy" size={18} />
-          <span>
-            {lastKo.round}
-            <small>{lastKo.stage}</small>
-          </span>
-        </div>
-      )
-    }
+    {ourRow && (
+      <div class="hl hl--pos">
+        <b>{ourRow.pos}º</b>
+        <span>de {table.rows.length}</span>
+      </div>
+    )}
+    {lastKo && (
+      <div class="hl hl--ko">
+        <Icon name="trophy" size={18} />
+        <span>
+          {lastKo.round}
+          <small>{lastKo.stage}</small>
+        </span>
+      </div>
+    )}
   </div>
 
   <dl class="season__record">
-    <div><dt>PJ</dt><dd>{s.record.pj}</dd></div>
-    <div><dt>G</dt><dd class="w">{s.record.g}</dd></div>
-    {sport === 'futbol' && <div><dt>E</dt><dd class="d">{s.record.e}</dd></div>}
-    <div><dt>P</dt><dd class="l">{s.record.p}</dd></div>
-    <div><dt>{sport === 'futbol' ? 'Goles' : 'Puntos'}</dt><dd>{s.record.gf}:{s.record.gc}</dd></div>
-    <div><dt>Dif.</dt><dd>{sign(s.record.gf - s.record.gc)}</dd></div>
+    <div>
+      <dt>PJ</dt>
+      <dd>{s.record.pj}</dd>
+    </div>
+    <div>
+      <dt>G</dt>
+      <dd class="w">{s.record.g}</dd>
+    </div>
+    {sport === 'futbol' && (
+      <div>
+        <dt>E</dt>
+        <dd class="d">{s.record.e}</dd>
+      </div>
+    )}
+    <div>
+      <dt>P</dt>
+      <dd class="l">{s.record.p}</dd>
+    </div>
+    <div>
+      <dt>{sport === 'futbol' ? 'Goles' : 'Puntos'}</dt>
+      <dd>
+        {s.record.gf}:{s.record.gc}
+      </dd>
+    </div>
+    <div>
+      <dt>Dif.</dt>
+      <dd>{sign(s.record.gf - s.record.gc)}</dd>
+    </div>
   </dl>
 
-  {
-    s.matches.length > 0 && (
-      <details class="season__details">
-        <summary>
-          Ver partidos ({s.matches.filter((m) => !m.bye).length})
-          <Icon name="arrow" size={16} />
-        </summary>
-        <div class="season__matches">
-          {s.matches.map((m) => (
-            <MatchRow match={m} sport={sport} />
-          ))}
-        </div>
-      </details>
-    )
-  }
+  {s.matches.length > 0 && (
+    <details class="season__details">
+      <summary>
+        Ver partidos ({s.matches.filter((m) => !m.bye).length})
+        <Icon name="arrow" size={16} />
+      </summary>
+      <div class="season__matches">
+        {s.matches.map((m) => (
+          <MatchRow match={m} sport={sport} />
+        ))}
+      </div>
+    </details>
+  )}
 
   <a class="season__link" href={s.teamUrl ?? s.url} target="_blank" rel="noopener">
     Ver en la web de la liga <Icon name="external" size={14} />
@@ -91,7 +107,9 @@ const sign = (n: number) => (n > 0 ? `+${n}` : `${n}`);
     background: var(--surface);
     border: 1px solid var(--border);
     overflow: hidden;
-    transition: border-color 0.3s, background 0.3s;
+    transition:
+      border-color 0.3s,
+      background 0.3s;
   }
   .season::before {
     content: '';

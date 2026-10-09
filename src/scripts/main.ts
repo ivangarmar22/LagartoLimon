@@ -10,7 +10,6 @@ const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 const finePointer = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
 const root = document.documentElement;
 
-// Scroll suave
 let lenis: Lenis | null = null;
 if (!reduced) {
   lenis = new Lenis({ lerp: 0.1, smoothWheel: true });
@@ -41,7 +40,7 @@ if (location.hash) {
   if (t) window.addEventListener('load', () => setTimeout(() => scrollToTarget(t), 150));
 }
 
-// Menú superior: se oculta al bajar y se muestra al subir
+// El menú se oculta al bajar y reaparece al subir
 const nav = $('[data-nav]');
 let lastY = window.scrollY;
 function onScroll() {
@@ -64,7 +63,6 @@ function onScroll() {
 window.addEventListener('scroll', onScroll, { passive: true });
 onScroll();
 
-// Menú móvil
 const toggle = $('[data-menu-toggle]');
 const menu = $('[data-menu]');
 function openMenu() {
@@ -87,7 +85,6 @@ function closeMenu() {
 toggle?.addEventListener('click', () => (root.classList.contains('menu-open') ? closeMenu() : openMenu()));
 document.addEventListener('keydown', (e) => e.key === 'Escape' && closeMenu());
 
-// Texto dividido en palabras
 function splitWords(el: HTMLElement, wrapClass: string) {
   const walk = (node: Node) => {
     for (const child of [...node.childNodes]) {
@@ -140,7 +137,6 @@ $$('[data-split]').forEach((el) => {
   );
 });
 
-// Apariciones al hacer scroll
 if (!reduced) {
   ScrollTrigger.batch('[data-reveal]', {
     start: 'top 92%',
@@ -163,7 +159,6 @@ if (!reduced) {
   });
 }
 
-// Parallax
 if (!reduced) {
   $$('[data-parallax]').forEach((el) => {
     const speed = parseFloat(el.dataset.parallax || '0.2');
@@ -171,12 +166,17 @@ if (!reduced) {
       y: () => speed * 300,
       ease: 'none',
       // clamp: si la sección ya se ve al cargar, el parallax empieza en 0
-      scrollTrigger: { trigger: el.closest('section') ?? el, start: 'clamp(top bottom)', end: 'bottom top', scrub: true, invalidateOnRefresh: true },
+      scrollTrigger: {
+        trigger: el.closest('section') ?? el,
+        start: 'clamp(top bottom)',
+        end: 'bottom top',
+        scrub: true,
+        invalidateOnRefresh: true,
+      },
     });
   });
 }
 
-// Contadores
 $$('[data-count]').forEach((el) => {
   const end = Number(el.dataset.count);
   if (!Number.isFinite(end) || reduced) return;
@@ -188,12 +188,12 @@ $$('[data-count]').forEach((el) => {
     v: end,
     duration: isYear ? 1.6 : 1.8,
     ease: 'power3.out',
-    scrollTrigger: { trigger: el, start: 'top 92%', once: true },
+    scrollTrigger: { trigger: el, start: 'top bottom', once: true },
     onUpdate: () => (el.textContent = String(Math.round(obj.v))),
   });
 });
 
-// Cintas de texto: aceleran con la velocidad del scroll
+// Las cintas aceleran con la velocidad del scroll
 $$('[data-marquee]').forEach((track) => {
   const dir = Number(track.dataset.marquee) || 1;
   let x = 0;
@@ -202,7 +202,6 @@ $$('[data-marquee]').forEach((track) => {
   const half = () => track.scrollWidth / 2;
   gsap.ticker.add((_, dt) => {
     const base = reduced ? 0 : 0.045 * dt;
-    // funciona igual con rueda (Lenis) que con el dedo
     boost = reduced ? 0 : Math.max(boost * 0.92, Math.min(Math.abs(window.scrollY - prevY) * 0.6, 14));
     prevY = window.scrollY;
     x -= (base + boost * 0.35) * dir;
@@ -215,7 +214,6 @@ $$('[data-marquee]').forEach((track) => {
   });
 });
 
-// Tarjetas con inclinación 3D
 if (finePointer && !reduced) {
   $$('[data-tilt]').forEach((card) => {
     card.addEventListener('pointermove', (e) => {
@@ -236,7 +234,6 @@ if (finePointer && !reduced) {
   });
 }
 
-// Próximo partido + cuenta atrás
 $$('[data-next-group]').forEach((group) => {
   const cards = $$('[data-next]', group);
   const now = Date.now();
@@ -270,7 +267,6 @@ $$('[data-next-group]').forEach((group) => {
   tick();
 });
 
-// Filtros (calendario / plantilla)
 $$('[data-filter-group]').forEach((group) => {
   const target = $(`[data-filter-target="${group.dataset.filterGroup}"]`);
   if (!target) return;
@@ -287,7 +283,11 @@ $$('[data-filter-group]').forEach((group) => {
       });
       const visible = items.filter((i) => !i.hidden);
       if (!reduced) {
-        gsap.fromTo(visible, { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.6, ease: 'expo.out', stagger: 0.03, clearProps: 'transform' });
+        gsap.fromTo(
+          visible,
+          { opacity: 0, y: 20 },
+          { opacity: 1, y: 0, duration: 0.6, ease: 'expo.out', stagger: 0.03, clearProps: 'transform' },
+        );
       }
       visible.forEach((v) =>
         $$('[data-reveal]', v)
@@ -302,7 +302,6 @@ $$('[data-filter-group]').forEach((group) => {
   );
 });
 
-// Sub-navegación activa
 const subLinks = $$('[data-subnav-link]');
 subLinks.forEach((link) => {
   const sec = document.getElementById(link.dataset.subnavLink!);
@@ -319,7 +318,6 @@ subLinks.forEach((link) => {
   });
 });
 
-// Portada
 const hero = $('[data-hero]');
 if (hero && !reduced) {
   const words = $$('[data-hero-word]', hero);
@@ -338,7 +336,6 @@ if (hero && !reduced) {
   gsap.to(crests, { scale: 1.25, rotate: 8, yPercent: 18, opacity: 0.2, ease: 'none', scrollTrigger: st });
 }
 
-// Manifiesto: las palabras se iluminan al hacer scroll
 $$('[data-scrub-words]').forEach((el) => {
   splitWords(el, 'sw');
   const words = $$('.sw', el);
@@ -354,7 +351,6 @@ $$('[data-scrub-words]').forEach((el) => {
   });
 });
 
-// Historia en scroll horizontal (solo escritorio)
 const hs = $('[data-hscroll]');
 if (hs && !reduced) {
   const mm = gsap.matchMedia();
@@ -388,7 +384,6 @@ if (hs && !reduced) {
   });
 }
 
-// Línea de tiempo que se dibuja
 const tl = $('[data-timeline]');
 if (tl) {
   const fill = $('[data-timeline-fill]', tl)!;
@@ -401,6 +396,6 @@ if (tl) {
     );
 }
 
-// Las fuentes e imágenes cambian las alturas al cargar
+// Las fuentes y las imágenes cambian las alturas al cargar
 window.addEventListener('load', () => ScrollTrigger.refresh());
 document.fonts?.ready.then(() => ScrollTrigger.refresh());

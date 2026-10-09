@@ -3,7 +3,7 @@ import baloncestoRaw from '../data/generated/baloncesto.json';
 import { extrasFutbol, plantillaBaloncesto } from '../data/club';
 import { madridISO } from './utils';
 
-export type Side = { name: string; logo: string | null; us: boolean };
+type Side = { name: string; logo: string | null; us: boolean };
 export type Match = {
   id: string | number;
   round: string;
@@ -24,16 +24,29 @@ export type Match = {
   sport?: 'futbol' | 'baloncesto';
   iso?: string | null;
 };
-export type Row = { pos: number; team: string; logo: string | null; us: boolean; pj: number; g: number; e: number; p: number; gf: number; gc: number; dg: number; pts: number };
+type Row = {
+  pos: number;
+  team: string;
+  logo: string | null;
+  us: boolean;
+  pj: number;
+  g: number;
+  e: number;
+  p: number;
+  gf: number;
+  gc: number;
+  dg: number;
+  pts: number;
+};
 export type Table = { stage: string; group: string; zones: { from: number; to: number; title: string; color: string }[]; rows: Row[] };
-export type Record_ = { pj: number; g: number; e: number; p: number; gf: number; gc: number };
+type Stats = { pj: number; g: number; e: number; p: number; gf: number; gc: number };
 export type Season = {
   id: number | string;
   name: string;
   active: boolean;
   url: string;
   teamUrl?: string;
-  record: Record_;
+  record: Stats;
   tables: Table[];
   matches: Match[];
   category?: string;

@@ -11,21 +11,23 @@ const year = new Date().getFullYear();
   <div class="footer__top container">
     <div class="footer__cta" data-reveal>
       <p class="eyebrow">Síguenos</p>
-      <h2 class="title-lg">Únete a la<br /><span class="text-lemon">manada verde</span></h2>
+      <h2 class="title-lg">
+        Únete a la
+        <br />
+        <span class="text-lemon">manada verde</span>
+      </h2>
     </div>
     <div class="footer__socials" data-reveal>
-      {
-        Object.values(secciones).map((s) => (
-          <a class="social glass" href={s.instagram.instagram} target="_blank" rel="noopener">
-            <img src={url(s.escudo)} alt="" width="56" height="56" loading="lazy" />
-            <span>
-              <small>{s.deporte}</small>
-              {s.instagram.handle}
-            </span>
-            <Icon name="instagram" size={22} class="social__ig" />
-          </a>
-        ))
-      }
+      {Object.values(secciones).map((s) => (
+        <a class="social glass" href={s.instagram.instagram} target="_blank" rel="noopener">
+          <img src={url(s.escudo)} alt="" width="56" height="56" loading="lazy" />
+          <span>
+            <small>{s.deporte}</small>
+            {s.instagram.handle}
+          </span>
+          <Icon name="instagram" size={22} class="social__ig" />
+        </a>
+      ))}
     </div>
   </div>
 
@@ -42,13 +44,21 @@ const year = new Date().getFullYear();
     </div>
     <div>
       <h3>Competiciones</h3>
-      <a href={secciones.futbol.ligaUrl} target="_blank" rel="noopener">MálagaF7 <Icon name="external" size={14} /></a>
-      <a href={secciones.baloncesto.ligaUrl} target="_blank" rel="noopener">Liga AFADE <Icon name="external" size={14} /></a>
+      <a href={secciones.futbol.ligaUrl} target="_blank" rel="noopener">
+        MálagaF7 <Icon name="external" size={14} />
+      </a>
+      <a href={secciones.baloncesto.ligaUrl} target="_blank" rel="noopener">
+        Liga AFADE <Icon name="external" size={14} />
+      </a>
     </div>
     <div>
       <h3>Instagram</h3>
-      <a href={club.redes.futbol.instagram} target="_blank" rel="noopener"><Icon name="instagram" size={15} /> {club.redes.futbol.handle}</a>
-      <a href={club.redes.baloncesto.instagram} target="_blank" rel="noopener"><Icon name="instagram" size={15} /> {club.redes.baloncesto.handle}</a>
+      <a href={club.redes.futbol.instagram} target="_blank" rel="noopener">
+        <Icon name="instagram" size={15} /> {club.redes.futbol.handle}
+      </a>
+      <a href={club.redes.baloncesto.instagram} target="_blank" rel="noopener">
+        <Icon name="instagram" size={15} /> {club.redes.baloncesto.handle}
+      </a>
     </div>
     <div>
       <h3>Datos</h3>
@@ -64,7 +74,9 @@ const year = new Date().getFullYear();
   </div>
 
   <div class="footer__bottom container">
-    <p>© {year} {club.nombre} · {club.ciudad} · Desde {club.fundacion}</p>
+    <p>
+      © {year} {club.nombre} · {club.ciudad} · Desde {club.fundacion}
+    </p>
     <p class="dim">{club.lema}</p>
   </div>
 </footer>
@@ -100,7 +112,10 @@ const year = new Date().getFullYear();
     font-weight: 800;
     font-size: 1.5rem;
     text-transform: uppercase;
-    transition: transform 0.5s var(--ease-out), border-color 0.3s, background 0.3s;
+    transition:
+      transform 0.5s var(--ease-out),
+      border-color 0.3s,
+      background 0.3s;
   }
   .social img {
     width: 56px;

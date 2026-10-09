@@ -1,5 +1,5 @@
-// Descarga calendarios, resultados y clasificaciones de MálagaF7 (fútbol 7) y la Liga AFADE
-// (baloncesto) en src/data/generated. Si una liga falla se conserva el JSON anterior.
+// Descarga los datos de MálagaF7 y la Liga AFADE en src/data/generated.
+// Si una liga falla se conserva el JSON anterior.
 
 import { writeFile, mkdir } from 'node:fs/promises';
 import { fileURLToPath } from 'node:url';
@@ -91,7 +91,12 @@ async function fetchFutbol() {
       const stage = stageById.get(tg.idStage);
       if (!stage || stage.type !== 1) continue;
       const cls = await getJSON(`${MF7_API}/tournaments/stageclassification/${stage.id}`);
-      const zones = safeParse(stage.colorConfig, []).map((z) => ({ from: Number(z.start), to: Number(z.end), title: clean(z.title), color: z.color }));
+      const zones = safeParse(stage.colorConfig, []).map((z) => ({
+        from: Number(z.start),
+        to: Number(z.end),
+        title: clean(z.title),
+        color: z.color,
+      }));
       const rows = (cls.leagueClassification ?? [])
         .filter((r) => r.idGroup === tg.idGroup)
         .map((r, i) => ({
@@ -163,6 +168,7 @@ async function fetchFutbol() {
     capitan: !!p.teamData?.isCaptainTeam,
   }));
   roster.sort((a, b) => (a.dorsal ?? 999) - (b.dorsal ?? 999));
+  for (const s of seasons) delete s.teamId;
 
   return {
     updatedAt: new Date().toISOString(),

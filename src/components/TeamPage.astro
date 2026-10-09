@@ -27,7 +27,9 @@ const ourRow = findOurRow(season.tables[0]);
 const last5 = form(matches);
 const crest = url(info.escudo);
 
-const ORDER = isFut ? ['Portero', 'Defensa', 'Centrocampista', 'Delantero', 'Jugador'] : ['Base', 'Escolta', 'Alero', 'Ala-pívot', 'Pívot', 'Jugador'];
+const ORDER = isFut
+  ? ['Portero', 'Defensa', 'Centrocampista', 'Delantero', 'Jugador']
+  : ['Base', 'Escolta', 'Alero', 'Ala-pívot', 'Pívot', 'Jugador'];
 const PLURAL: Record<string, string> = {
   Portero: 'Porteros',
   Defensa: 'Defensas',
@@ -85,11 +87,9 @@ const marquee = isFut
           Lagarto Limón <span class="text-team">{info.corto}</span>
         </h1>
         <p class="lead" data-reveal>
-          {
-            isFut
-              ? `Compitiendo en la ${season.name} de MálagaF7${season.tables[0]?.group ? ` (${season.tables[0].group})` : ''}. Siete contra siete, escamas contra todo.`
-              : `Compitiendo en la Liga AFADE · ${season.category}, ${season.stage} ${season.group}. Botes, triples y mucho limón.`
-          }
+          {isFut
+            ? `Compitiendo en la ${season.name} de MálagaF7${season.tables[0]?.group ? ` (${season.tables[0].group})` : ''}. Siete contra siete, escamas contra todo.`
+            : `Compitiendo en la Liga AFADE · ${season.category}, ${season.stage} ${season.group}. Botes, triples y mucho limón.`}
         </p>
         <div class="thero__chips" data-reveal>
           <a class="chip" href={info.ligaUrl} target="_blank" rel="noopener">
@@ -111,59 +111,55 @@ const marquee = isFut
 
     <div class="container">
       <div class="thero__stats glass" data-reveal>
-        {
-          ourRow && (
-            <div class="stat stat--pos">
-              <b>{ourRow.pos}º</b>
-              <span>{season.tables[0].group || 'Clasificación'}</span>
+        {ourRow && (
+          <div class="stat stat--pos">
+            <b>{ourRow.pos}º</b>
+            <span>{season.tables[0].group || 'Clasificación'}</span>
+          </div>
+        )}
+        {stats.map((s) => (
+          <div class="stat">
+            <b data-count={s.value}>{s.value}</b>
+            <span>{s.label}</span>
+          </div>
+        ))}
+        {last5.length > 0 && (
+          <div class="stat stat--form">
+            <div class="form">
+              {last5.map((m) => {
+                const r = outcome(m);
+                return <i class:list={[`f-${r}`]} title={`${m.home.name} ${m.score?.join('-')} ${m.away.name}`} />;
+              })}
             </div>
-          )
-        }
-        {
-          stats.map((s) => (
-            <div class="stat">
-              <b data-count={s.value}>{s.value}</b>
-              <span>{s.label}</span>
-            </div>
-          ))
-        }
-        {
-          last5.length > 0 && (
-            <div class="stat stat--form">
-              <div class="form">
-                {last5.map((m) => {
-                  const r = outcome(m);
-                  return <i class:list={[`f-${r}`]} title={`${m.home.name} ${m.score?.join('-')} ${m.away.name}`} />;
-                })}
-              </div>
-              <span>Racha</span>
-            </div>
-          )
-        }
+            <span>Racha</span>
+          </div>
+        )}
       </div>
     </div>
   </section>
 
   <nav class="subnav" aria-label="Secciones del equipo" data-subnav>
     <div class="subnav__inner glass">
-      {subnav.map((s) => <a href={`#${s.id}`} data-subnav-link={s.id}>{s.label}</a>)}
+      {subnav.map((s) => (
+        <a href={`#${s.id}`} data-subnav-link={s.id}>
+          {s.label}
+        </a>
+      ))}
     </div>
   </nav>
 
   <section id="proximo" class="section section--tight">
     <div class="container">
-      {
-        next.length ? (
-          <div data-reveal>
-            <NextMatch matches={next} />
-          </div>
-        ) : (
-          <div class="empty glass" data-reveal>
-            <Icon name="calendar" size={28} />
-            <p>Sin partidos programados ahora mismo. Vuelve pronto: el lagarto nunca hiberna mucho tiempo.</p>
-          </div>
-        )
-      }
+      {next.length ? (
+        <div data-reveal>
+          <NextMatch matches={next} />
+        </div>
+      ) : (
+        <div class="empty glass" data-reveal>
+          <Icon name="calendar" size={28} />
+          <p>Sin partidos programados ahora mismo. Vuelve pronto: el lagarto nunca hiberna mucho tiempo.</p>
+        </div>
+      )}
     </div>
   </section>
 
@@ -174,25 +170,35 @@ const marquee = isFut
       <div class="section-head">
         <div>
           <p class="eyebrow">Temporada {season.yearLabel}</p>
-          <h2 class="title-lg" data-split>Calendario y resultados</h2>
+          <h2 class="title-lg" data-split>
+            Calendario y resultados
+          </h2>
         </div>
         <div class="filters" role="group" aria-label="Filtrar partidos" data-filter-group="cal">
-          <button class="filter is-active" data-filter="all">Todos</button>
-          <button class="filter" data-filter="next">Próximos</button>
-          <button class="filter" data-filter="played">Jugados</button>
+          <button class="filter is-active" data-filter="all">
+            Todos
+          </button>
+          <button class="filter" data-filter="next">
+            Próximos
+          </button>
+          <button class="filter" data-filter="played">
+            Jugados
+          </button>
         </div>
       </div>
       <div class="cal" data-filter-target="cal">
-        {
-          matches.map((m) => (
-            <div data-kind={m.bye ? 'bye' : m.played ? 'played' : 'next'}>
-              <MatchRow match={m} sport={sport} />
-            </div>
-          ))
-        }
+        {matches.map((m) => (
+          <div data-kind={m.bye ? 'bye' : m.played ? 'played' : 'next'}>
+            <MatchRow match={m} sport={sport} />
+          </div>
+        ))}
       </div>
       <p class="updated">
-        Datos de <a href={data.source.url} target="_blank" rel="noopener">{data.source.name}</a> · actualizados el {formatUpdated(data.updatedAt)}
+        Datos de{' '}
+        <a href={data.source.url} target="_blank" rel="noopener">
+          {data.source.name}
+        </a>{' '}
+        · actualizados el {formatUpdated(data.updatedAt)}
       </p>
     </div>
   </section>
@@ -202,11 +208,15 @@ const marquee = isFut
       <div class="section-head">
         <div>
           <p class="eyebrow">{season.name}</p>
-          <h2 class="title-lg" data-split>Clasificación</h2>
+          <h2 class="title-lg" data-split>
+            Clasificación
+          </h2>
         </div>
       </div>
       <div class="tables">
-        {season.tables.map((t) => <Standings table={t} sport={sport} />)}
+        {season.tables.map((t) => (
+          <Standings table={t} sport={sport} />
+        ))}
       </div>
     </div>
   </section>
@@ -216,50 +226,62 @@ const marquee = isFut
       <div class="section-head">
         <div>
           <p class="eyebrow">{data.roster.length ? `${data.roster.length} jugadores` : 'La manada'}</p>
-          <h2 class="title-lg" data-split>Plantilla</h2>
+          <h2 class="title-lg" data-split>
+            Plantilla
+          </h2>
         </div>
-        {
-          filters.length > 1 && (
-            <div class="filters" role="group" aria-label="Filtrar por posición" data-filter-group="squad">
-              <button class="filter is-active" data-filter="all">
-                Todos
+        {filters.length > 1 && (
+          <div class="filters" role="group" aria-label="Filtrar por posición" data-filter-group="squad">
+            <button class="filter is-active" data-filter="all">
+              Todos
+            </button>
+            {filters.map((p) => (
+              <button class="filter" data-filter={p}>
+                {PLURAL[p] ?? p}
               </button>
-              {filters.map((p) => (
-                <button class="filter" data-filter={p}>
-                  {PLURAL[p] ?? p}
-                </button>
-              ))}
-            </div>
-          )
-        }
+            ))}
+          </div>
+        )}
       </div>
 
       <div class="squad" data-filter-target="squad">
-        {
-          data.roster.map((p, i) => (
-            <div data-kind={p.posicion}>
-              <PlayerCard player={p} crest={crest} index={i} stat={isFut ? 'edad' : 'altura'} />
-            </div>
-          ))
-        }
-        {Array.from({ length: placeholders }, (_, i) => <PlayerCard crest={crest} placeholder index={i} stat={isFut ? 'edad' : 'altura'} />)}
+        {data.roster.map((p, i) => (
+          <div data-kind={p.posicion}>
+            <PlayerCard player={p} crest={crest} index={i} stat={isFut ? 'edad' : 'altura'} />
+          </div>
+        ))}
+        {Array.from({ length: placeholders }, (_, i) => (
+          <PlayerCard crest={crest} placeholder index={i} stat={isFut ? 'edad' : 'altura'} />
+        ))}
       </div>
 
-      {
-        staff[sport].length > 0 && (
-          <div class="staff">
-            <h3>Cuerpo técnico</h3>
-            <ul>
-              {staff[sport].map((s) => (
-                <li class="glass">
-                  <b>{s.nombre}</b>
-                  <span>{s.rol}</span>
-                </li>
-              ))}
-            </ul>
+      {staff[sport].length > 0 && (
+        <div class="staff">
+          <h3>Cuerpo técnico</h3>
+          <div class="squad">
+            {staff[sport].map((s, i) => (
+              <PlayerCard
+                player={{
+                  id: `staff-${i}`,
+                  nombre: s.nombre,
+                  apellidos: s.apellidos ?? '',
+                  apodo: s.apodo,
+                  dorsal: null,
+                  posicion: s.rol,
+                  capitan: false,
+                  edad: null,
+                  altura: null,
+                  foto: s.foto ?? null,
+                }}
+                crest={crest}
+                index={i}
+                stat={isFut ? 'edad' : 'altura'}
+                staff
+              />
+            ))}
           </div>
-        )
-      }
+        </div>
+      )}
     </div>
   </section>
 
@@ -268,18 +290,20 @@ const marquee = isFut
       <div class="section-head">
         <div>
           <p class="eyebrow">Historial</p>
-          <h2 class="title-lg" data-split>Temporadas</h2>
+          <h2 class="title-lg" data-split>
+            Temporadas
+          </h2>
         </div>
         <p class="lead">
-          {
-            data.seasons.length > 1
-              ? `${data.seasons.length} competiciones registradas en ${info.liga}. Cada una, una muda de piel.`
-              : `El ${info.nombre} compite desde ${info.desde}. La web de la liga sólo publica la temporada actual.`
-          }
+          {data.seasons.length > 1
+            ? `${data.seasons.length} competiciones registradas en ${info.liga}. Cada una, una muda de piel.`
+            : `El ${info.nombre} compite desde ${info.desde}. La web de la liga sólo publica la temporada actual.`}
         </p>
       </div>
       <div class="seasons">
-        {data.seasons.map((s, i) => <SeasonCard season={s} sport={sport} index={i} />)}
+        {data.seasons.map((s, i) => (
+          <SeasonCard season={s} sport={sport} index={i} />
+        ))}
       </div>
     </div>
   </section>
@@ -333,7 +357,10 @@ const marquee = isFut
     border: 1px solid var(--border-strong);
     font-weight: 700;
     font-size: 0.9rem;
-    transition: background 0.3s, color 0.3s, border-color 0.3s;
+    transition:
+      background 0.3s,
+      color 0.3s,
+      border-color 0.3s;
   }
   .chip:hover {
     background: var(--lemon);
@@ -478,7 +505,9 @@ const marquee = isFut
     font-size: 0.88rem;
     font-weight: 700;
     color: var(--text-muted);
-    transition: background 0.3s, color 0.3s;
+    transition:
+      background 0.3s,
+      color 0.3s;
   }
   .subnav a:hover {
     color: var(--cream);
@@ -512,7 +541,10 @@ const marquee = isFut
     font-weight: 700;
     font-size: 0.88rem;
     color: var(--text-muted);
-    transition: background 0.3s, color 0.3s, border-color 0.3s;
+    transition:
+      background 0.3s,
+      color 0.3s,
+      border-color 0.3s;
   }
   .filter:hover {
     color: var(--cream);
@@ -558,22 +590,6 @@ const marquee = isFut
   .staff h3 {
     font-size: 1.8rem;
     margin-bottom: 16px;
-  }
-  .staff ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-    gap: 12px;
-  }
-  .staff li {
-    display: grid;
-    padding: 16px 20px;
-  }
-  .staff span {
-    font-size: 0.85rem;
-    color: var(--text-muted);
   }
 
   .seasons {

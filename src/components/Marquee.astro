@@ -12,18 +12,16 @@ const loop = [...items, ...items, ...items];
 
 <div class:list={['marquee', `marquee--${variant}`]} style={`--tilt:${tilt}deg`} aria-hidden="true">
   <div class="marquee__track" data-marquee={reverse ? '-1' : '1'}>
-    {
-      [0, 1].map(() => (
-        <div class="marquee__group">
-          {loop.map((t) => (
-            <span class="marquee__item">
-              {t}
-              <Lemon class="marquee__lemon" />
-            </span>
-          ))}
-        </div>
-      ))
-    }
+    {[0, 1].map(() => (
+      <div class="marquee__group">
+        {loop.map((t) => (
+          <span class="marquee__item">
+            {t}
+            <Lemon class="marquee__lemon" />
+          </span>
+        ))}
+      </div>
+    ))}
   </div>
 </div>
 
