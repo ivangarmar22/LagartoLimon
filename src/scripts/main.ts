@@ -313,7 +313,9 @@ subLinks.forEach((link) => {
     onToggle: (self) => {
       if (!self.isActive) return;
       subLinks.forEach((l) => l.classList.toggle('is-active', l === link));
-      link.scrollIntoView({ block: 'nearest', inline: 'center' });
+      const bar = link.parentElement!;
+      const offset = link.getBoundingClientRect().left - bar.getBoundingClientRect().left;
+      bar.scrollTo({ left: bar.scrollLeft + offset - (bar.clientWidth - link.offsetWidth) / 2, behavior: 'smooth' });
     },
   });
 });

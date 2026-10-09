@@ -83,7 +83,7 @@ const sign = (n: number) => (n > 0 ? `+${n}` : `${n}`);
         Ver partidos ({s.matches.filter((m) => !m.bye).length})
         <Icon name="arrow" size={16} />
       </summary>
-      <div class="season__matches">
+      <div class="season__matches" data-lenis-prevent>
         {s.matches.map((m) => (
           <MatchRow match={m} sport={sport} />
         ))}
@@ -97,6 +97,9 @@ const sign = (n: number) => (n > 0 ? `+${n}` : `${n}`);
 </article>
 
 <style>
+  .season:has(.season__details[open]) {
+    grid-column: 1 / -1;
+  }
   .season {
     position: relative;
     display: grid;
