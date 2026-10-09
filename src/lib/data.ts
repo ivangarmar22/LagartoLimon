@@ -61,7 +61,6 @@ export type Player = {
   dorsal: number | null;
   posicion: string;
   capitan: boolean;
-  edad: number | null;
   altura: number | null;
   foto: string | null;
   apodo?: string;
@@ -84,7 +83,7 @@ export const futbol = (() => {
   const current = seasons.find((s) => s.id === futbolRaw.currentId) ?? seasons[0];
   const roster: Player[] = futbolRaw.roster.map((p) => {
     const extra = extrasFutbol[p.id] ?? {};
-    return { ...p, edad: extra.edad ?? null, altura: null, foto: extra.foto ?? null, apodo: extra.apodo };
+    return { ...p, altura: null, foto: extra.foto ?? null, apodo: extra.apodo };
   });
   return { updatedAt: futbolRaw.updatedAt, source: futbolRaw.source, current, seasons, roster };
 })();
@@ -104,7 +103,6 @@ export const baloncesto = (() => {
     dorsal: p.dorsal ?? null,
     posicion: p.posicion ?? 'Jugador',
     capitan: !!p.capitan,
-    edad: null,
     altura: p.altura ?? null,
     foto: p.foto ?? null,
   }));

@@ -119,7 +119,7 @@ Todo lo que no publican las ligas está en [`src/data/club.ts`](src/data/club.ts
 
 - **Datos del club:** fundación, lema y redes sociales.
 - **Plantilla de baloncesto:** nombre, dorsal, posición y altura de cada jugador.
-- **Extras del fútbol:** edad, foto o apodo de cada jugador, usando su id de MálagaF7.
+- **Extras del fútbol:** foto o apodo de cada jugador, usando su id de MálagaF7.
 - **Cuerpo técnico e hitos** de la historia.
 
 ```ts

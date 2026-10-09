@@ -247,11 +247,11 @@ const marquee = isFut
       <div class="squad" data-filter-target="squad">
         {data.roster.map((p, i) => (
           <div data-kind={p.posicion}>
-            <PlayerCard player={p} crest={crest} index={i} stat={isFut ? 'edad' : 'altura'} />
+            <PlayerCard player={p} crest={crest} index={i} showHeight={!isFut} />
           </div>
         ))}
         {Array.from({ length: placeholders }, (_, i) => (
-          <PlayerCard crest={crest} placeholder index={i} stat={isFut ? 'edad' : 'altura'} />
+          <PlayerCard crest={crest} placeholder index={i} showHeight={!isFut} />
         ))}
       </div>
 
@@ -269,13 +269,12 @@ const marquee = isFut
                   dorsal: null,
                   posicion: s.rol,
                   capitan: false,
-                  edad: null,
                   altura: null,
                   foto: s.foto ?? null,
                 }}
                 crest={crest}
                 index={i}
-                stat={isFut ? 'edad' : 'altura'}
+                showHeight={!isFut}
                 staff
               />
             ))}

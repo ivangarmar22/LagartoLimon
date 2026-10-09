@@ -40,12 +40,12 @@ export const secciones = {
   },
 } as const;
 
-// Edad, foto o apodo de los jugadores de fútbol, por su id de MálagaF7 (ver src/data/generated/futbol.json).
+// Foto o apodo de los jugadores de fútbol, por su id de MálagaF7 (ver src/data/generated/futbol.json).
 // Las fotos van en public/jugadores/, en vertical (3:4).
-type ExtraJugador = { edad?: number; foto?: string; apodo?: string };
+type ExtraJugador = { foto?: string; apodo?: string };
 
 export const extrasFutbol: Record<number, ExtraJugador> = {
-  // 1347: { edad: 29, foto: 'jugadores/rafa.jpg', apodo: 'Rafa' },
+  // 1347: { foto: 'jugadores/rafa.jpg', apodo: 'Rafa' },
 };
 
 // La Liga AFADE no publica las plantillas.

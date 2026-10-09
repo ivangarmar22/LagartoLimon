@@ -7,12 +7,11 @@ interface Props {
   crest: string;
   placeholder?: boolean;
   index?: number;
-  stat?: 'edad' | 'altura';
+  showHeight?: boolean;
   staff?: boolean;
 }
-const { player: p, crest, placeholder = false, index = 0, stat = 'edad', staff = false } = Astro.props;
-const statLabel = stat === 'altura' ? 'Altura' : 'Edad';
-const statValue = stat === 'altura' ? (p?.altura ? `${p.altura.toFixed(2).replace('.', ',')} m` : '—') : (p?.edad ?? '—');
+const { player: p, crest, placeholder = false, index = 0, showHeight = false, staff = false } = Astro.props;
+const height = p?.altura ? `${p.altura.toFixed(2).replace('.', ',')} m` : '—';
 
 const ABBR: Record<string, string> = {
   Portero: 'POR',
@@ -83,7 +82,7 @@ const firstName = staff && p?.apodo ? `${p.nombre} «${p.apodo}»` : p?.apellido
           <h3 class="pcard__last">{p!.apellidos || p!.nombre}</h3>
         </>
       )}
-      <dl class="pcard__stats">
+      <dl class:list={['pcard__stats', { 'has-height': showHeight }]}>
         <div>
           <dt>{staff ? 'Cargo' : 'Posición'}</dt>
           <dd>{p ? (SHORT[p.posicion] ?? p.posicion) : '—'}</dd>
@@ -94,10 +93,12 @@ const firstName = staff && p?.apodo ? `${p.nombre} «${p.apodo}»` : p?.apellido
             <dd>{p?.dorsal ?? '—'}</dd>
           </div>
         )}
-        <div>
-          <dt>{statLabel}</dt>
-          <dd>{statValue}</dd>
-        </div>
+        {showHeight && (
+          <div>
+            <dt>Altura</dt>
+            <dd>{height}</dd>
+          </div>
+        )}
       </dl>
     </footer>
     <div class="pcard__shine" aria-hidden="true"></div>
@@ -262,7 +263,9 @@ const firstName = staff && p?.apodo ? `${p.nombre} «${p.apodo}»` : p?.apellido
   }
   .pcard__stats {
     display: grid;
-    grid-template-columns: 1.6fr 1fr 1fr;
+    grid-auto-flow: column;
+    grid-template-columns: 1.6fr;
+    grid-auto-columns: 1fr;
     gap: 6px;
     margin: 12px 0 0;
     padding-top: 10px;
@@ -270,10 +273,7 @@ const firstName = staff && p?.apodo ? `${p.nombre} «${p.apodo}»` : p?.apellido
   }
   /* en fichas estrechas el dorsal ya se ve arriba en grande */
   @container (max-width: 230px) {
-    .pcard__stats {
-      grid-template-columns: 1.4fr 1fr;
-    }
-    .pcard__dorsal {
+    .has-height .pcard__dorsal {
       display: none;
     }
     .pcard__info {
