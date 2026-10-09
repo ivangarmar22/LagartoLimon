@@ -547,7 +547,6 @@ const teams = [
     background: rgba(5, 14, 7, 0.5);
     border: 1px solid var(--border);
     backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
   }
   .team-card__facts b {
     font-family: var(--font-display);
@@ -745,11 +744,24 @@ const teams = [
       gap: 4vw;
     }
   }
-  /* móvil y tablet vertical: LAGARTO arriba, escudos en medio y LIMÓN abajo */
+  /* móvil y tablet vertical: LAGARTO, escudos y LIMÓN apilados en un bloque compacto */
   @media (max-width: 700px), (max-width: 1024px) and (orientation: portrait) {
+    .hero {
+      --crest-w: 35vw;
+      min-height: 0;
+      row-gap: clamp(28px, 7vw, 56px);
+      padding-top: calc(var(--nav-h) + clamp(28px, 7vw, 56px));
+    }
+    .hero__words,
+    .hero__crests {
+      grid-area: 1 / 1;
+      align-self: center;
+    }
     .hero__words {
-      align-content: space-between;
-      padding: calc(var(--nav-h) + 3svh) 0 clamp(140px, 19svh, 230px);
+      position: relative;
+      inset: auto;
+      /* hueco = alto de los escudos (≈1,12 × ancho), con las letras rozándolos */
+      gap: calc(var(--crest-w) * 1.02);
     }
     .hero__word {
       font-size: 27vw;
@@ -759,10 +771,18 @@ const teams = [
     }
     .hero__crests {
       gap: 5vw;
-      margin-bottom: 2svh;
     }
     .hero__crest {
-      width: 35vw;
+      width: var(--crest-w);
+    }
+    .hero__bottom {
+      grid-row: 2;
+      padding-bottom: clamp(28px, 7vw, 48px);
+    }
+    .hero :global(.hl-1) {
+      top: calc(var(--nav-h) + 3vw);
+      left: 3vw;
+      width: 14vw;
     }
   }
   @media (max-width: 600px) {

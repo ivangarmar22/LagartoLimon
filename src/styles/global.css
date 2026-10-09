@@ -267,7 +267,6 @@ p {
   background: linear-gradient(135deg, rgba(255, 249, 232, 0.08), rgba(255, 249, 232, 0.02));
   border: 1px solid var(--border);
   backdrop-filter: blur(18px) saturate(140%);
-  -webkit-backdrop-filter: blur(18px) saturate(140%);
   border-radius: var(--radius);
 }
 

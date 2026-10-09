@@ -170,7 +170,8 @@ if (!reduced) {
     gsap.to(el, {
       y: () => speed * 300,
       ease: 'none',
-      scrollTrigger: { trigger: el.closest('section') ?? el, start: 'top bottom', end: 'bottom top', scrub: true, invalidateOnRefresh: true },
+      // clamp: si la sección ya se ve al cargar, el parallax empieza en 0
+      scrollTrigger: { trigger: el.closest('section') ?? el, start: 'clamp(top bottom)', end: 'bottom top', scrub: true, invalidateOnRefresh: true },
     });
   });
 }

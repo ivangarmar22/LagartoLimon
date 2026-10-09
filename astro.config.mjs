@@ -9,4 +9,6 @@ export default defineConfig({
   base: repo && !isUserSite ? `/${repo}` : '/',
   trailingSlash: 'ignore',
   devToolbar: { enabled: false },
+  // Safari anterior a 18 necesita -webkit-backdrop-filter para el efecto de cristal
+  vite: { build: { cssTarget: ['chrome111', 'edge111', 'firefox114', 'safari15'] } },
 });
