@@ -1,6 +1,6 @@
 import futbolRaw from '../data/generated/futbol.json';
 import baloncestoRaw from '../data/generated/baloncesto.json';
-import { extrasFutbol, plantillaBaloncesto } from '../data/club';
+import { club, extrasFutbol, plantillaBaloncesto } from '../data/club';
 import { madridISO } from './utils';
 
 type Side = { name: string; logo: string | null; us: boolean };
@@ -12,7 +12,8 @@ export type Match = {
   date: string | null;
   venue: string | null;
   address?: string | null;
-  isHome: boolean;
+  isHome: boolean; // el Lagarto figura como local en la liga
+  atHome?: boolean; // se juega en su pista
   bye: boolean;
   played: boolean;
   home: Side;
@@ -71,6 +72,7 @@ const withIso = (m: Match, sport: 'futbol' | 'baloncesto', competition: string):
   sport,
   competition,
   iso: madridISO(m.date),
+  atHome: m.venue ? m.venue.toLowerCase().includes(club.pistaLocal.toLowerCase()) : m.isHome,
 });
 
 export const futbol = (() => {

@@ -12,7 +12,7 @@ type Hito = {
 
 const plural = (n: number, one: string, many: string) => `${n} ${n === 1 ? one : many}`;
 const capitalize = (s: string) => s.charAt(0).toUpperCase() + s.slice(1);
-// Las ligas a veces escriben los grupos en mayúsculas: "MÁLAGA ESTE" -> "Málaga Este"
+// "MÁLAGA ESTE" -> "Málaga Este"
 const soft = (s: string) => (s === s.toUpperCase() ? s.toLowerCase().replace(/(^|\s)(\p{L})/gu, (_, a, b) => a + b.toUpperCase()) : s);
 
 function futbolHito(s: Season, first: boolean): Hito {
@@ -47,7 +47,7 @@ function futbolHito(s: Season, first: boolean): Hito {
 function baloncestoHito(s: Season): Hito {
   const table = s.tables[0];
   const row = ourRow(table);
-  const home = s.matches.find((m) => m.isHome && m.venue)?.venue;
+  const home = s.matches.find((m) => m.atHome && m.venue)?.venue;
   const parts = [`${s.category}, ${s.stage} · ${s.group}`];
   if (row) parts.push(`${row.pos}º de ${table.rows.length}`);
   if (s.record.pj) parts.push(`${plural(s.record.g, 'victoria', 'victorias')} y ${plural(s.record.p, 'derrota', 'derrotas')}`);

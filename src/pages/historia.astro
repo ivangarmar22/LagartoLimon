@@ -8,27 +8,23 @@ import { futbol, baloncesto } from '../lib/data';
 import { timeline, totals } from '../lib/timeline';
 import { url } from '../lib/utils';
 
-// Campos donde ha jugado como local, los más recientes primero
-const venueMap = new Map<string, { name: string; sports: Set<string>; seasons: Set<string>; address?: string | null }>();
+// Cada liga nombra la pista de casa a su manera: se usa el nombre más completo
+const home = { name: '', address: null as string | null, sports: new Set<string>(), seasons: new Set<string>() };
 for (const [sport, d] of [
   ['Fútbol 7', futbol],
   ['Baloncesto', baloncesto],
 ] as const) {
   for (const s of d.seasons) {
     for (const m of s.matches) {
-      if (!m.isHome || m.bye || !m.venue) continue;
-      const key = m.venue.toLowerCase();
-      const v = venueMap.get(key) ?? { name: m.venue, sports: new Set(), seasons: new Set(), address: m.address };
-      v.sports.add(sport);
-      if (s.yearLabel) v.seasons.add(s.yearLabel);
-      venueMap.set(key, v);
+      if (!m.atHome || m.bye || !m.venue) continue;
+      if (m.venue.length > home.name.length) home.name = m.venue;
+      home.address ??= m.address ?? null;
+      home.sports.add(sport);
+      if (s.yearLabel) home.seasons.add(s.yearLabel);
     }
   }
 }
-const venues = [...venueMap.values()]
-  .map((v) => ({ ...v, seasons: [...v.seasons].sort().reverse(), sports: [...v.sports] }))
-  .sort((a, b) => (b.seasons[0] ?? '').localeCompare(a.seasons[0] ?? ''))
-  .slice(0, 4);
+const venues = home.name ? [{ ...home, seasons: [...home.seasons].sort().reverse(), sports: [...home.sports] }] : [];
 
 const colores = [
   { nombre: 'Verde lagarto', hex: '#3AA935', var: 'var(--lizard)', texto: 'La piel del club. Resistente, escurridiza y siempre al sol.' },
@@ -224,7 +220,7 @@ const valores = [
         <div class="section-head">
           <div>
             <p class="eyebrow" data-reveal>
-              Nuestras casas
+              Nuestra casa
             </p>
             <h2 class="title-lg" data-split>
               Donde jugamos

@@ -6,6 +6,8 @@ export const club = {
   origen: 'Villafuerte',
   ciudad: 'Málaga',
   zona: 'Málaga Este',
+  // Un partido es en casa si el nombre de la pista contiene este texto
+  pistaLocal: 'Estanislao',
   lema: 'Verde por fuera, ácido por dentro',
   descripcion:
     'Club amateur malagueño con dos secciones —fútbol 7 y baloncesto— unidas por un lagarto, un limón y muchas ganas de competir.',
@@ -40,7 +42,7 @@ export const secciones = {
   },
 } as const;
 
-// Foto o apodo de los jugadores de fútbol, por su id de MálagaF7 (ver src/data/generated/futbol.json).
+// Foto o apodo de los jugadores de fútbol, por su id de MálagaF7.
 // Las fotos van en public/jugadores/, en vertical (3:4).
 type ExtraJugador = { foto?: string; apodo?: string };
 

@@ -68,7 +68,7 @@ export function formatUpdated(iso: string) {
   }).format(new Date(iso));
 }
 
-/** Resultado para el Lagarto: victoria, empate o derrota (los penaltis deshacen el empate). */
+/** Victoria, empate o derrota del Lagarto; los penaltis deshacen el empate. */
 export function outcome(m: { played: boolean; bye: boolean; isHome: boolean; score: number[] | null; shootout: number[] | null }) {
   if (!m.played || m.bye || !m.score) return null;
   const [h, a] = m.score;

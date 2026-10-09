@@ -95,7 +95,7 @@ const Tag = m.url ? 'a' : 'div';
         {res === 'W' ? 'V' : res === 'D' ? 'E' : 'D'}
       </span>
     )}
-    {!res && !m.bye && <span class="pill pill--next">{m.isHome ? 'Casa' : 'Fuera'}</span>}
+    {!res && !m.bye && <span class="pill pill--next">{m.atHome ? 'Casa' : 'Fuera'}</span>}
   </div>
 </Tag>
 

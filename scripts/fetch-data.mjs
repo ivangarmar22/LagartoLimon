@@ -19,11 +19,28 @@ async function getJSON(url) {
   return res.json();
 }
 
-// Las dos ligas guardan la hora local de Málaga (AFADE le añade una Z que no es real).
+// Fechas en hora de Málaga, "YYYY-MM-DDTHH:mm". MálagaF7 ya las da así.
 function localDate(raw) {
   const m = String(raw ?? '').match(/^(\d{4}-\d{2}-\d{2})[T ](\d{2}):(\d{2})/);
   if (!m || m[1].startsWith('0001')) return null;
   return `${m[1]}T${m[2]}:${m[3]}`;
+}
+
+// La Liga AFADE las da en UTC.
+const madridParts = new Intl.DateTimeFormat('en-CA', {
+  timeZone: 'Europe/Madrid',
+  year: 'numeric',
+  month: '2-digit',
+  day: '2-digit',
+  hour: '2-digit',
+  minute: '2-digit',
+  hourCycle: 'h23',
+});
+function utcToMadrid(raw) {
+  const d = raw ? new Date(raw) : null;
+  if (!d || Number.isNaN(d.getTime())) return null;
+  const p = Object.fromEntries(madridParts.formatToParts(d).map((x) => [x.type, x.value]));
+  return `${p.year}-${p.month}-${p.day}T${p.hour}:${p.minute}`;
 }
 
 const clean = (s) => (s ?? '').replace(/\s+/g, ' ').trim();
@@ -217,7 +234,7 @@ async function fetchBaloncesto() {
           round: `Jornada ${p.j_numero}`,
           stage: clean(fase.nombre),
           knockout: false,
-          date: localDate(p.fecha_celebracion),
+          date: utcToMadrid(p.fecha_celebracion),
           venue: clean(p.sede_nombre) || null,
           address: clean(p.sede_direccion) || null,
           isHome,

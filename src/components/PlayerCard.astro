@@ -29,7 +29,7 @@ const ABBR: Record<string, string> = {
 const SHORT: Record<string, string> = { Centrocampista: 'Medio' };
 const abbr = p ? (ABBR[p.posicion] ?? p.posicion.slice(0, 3).toUpperCase()) : '???';
 const dorsal = p?.dorsal ?? '–';
-// Técnicos: el cargo ocupa el sitio del dorsal y el apodo acompaña al nombre
+// Técnicos: cargo en lugar de dorsal y apodo junto al nombre
 const firstName = staff && p?.apodo ? `${p.nombre} «${p.apodo}»` : p?.apellidos ? (p.apodo ?? p.nombre) : ' ';
 ---
 
