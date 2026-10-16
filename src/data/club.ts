@@ -63,8 +63,9 @@ type JugadorManual = {
 
 export const plantillaBaloncesto: JugadorManual[] = [
   { nombre: 'Ángel Antonio', apellidos: 'Regojo', dorsal: 23, posicion: 'Alero' },
-  { nombre: 'Fernando', apellidos: 'Salgado', posicion: 'Base' },
+  { nombre: 'Fernando', apellidos: 'Salgado', dorsal: 12, posicion: 'Base' },
   { nombre: 'José Luis', apellidos: 'González', dorsal: 10, posicion: 'Base' },
+  { nombre: 'Enzo', posicion: 'Base' },
   { nombre: 'Marco', apellidos: 'Lueg', dorsal: 14, posicion: 'Pívot' },
   { nombre: 'Pablo', apellidos: 'Molina', dorsal: 4, posicion: 'Alero' },
   { nombre: 'Pablo', apellidos: 'Perotti', dorsal: 21, posicion: 'Alero' },
